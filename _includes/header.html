@@ -1,0 +1,55 @@
+<nav class="navbar is-dark">
+  {% assign default_paths = site.pages | map: "path" %}
+  {% assign page_paths = site.header_pages | default: default_paths %}
+
+  <div class="navbar-brand has-text-centered" style="display: block; width: 100%;">
+    <a href="{{ "/" | prepend: site.baseurl }}" class="navbar-item" style="display: block;">
+      <img src="{{ site.logo }}" alt="{{ site.title | escape }}" width="112" height="28">
+    </a>
+    <h1 class="is-white title is-7 m-none">{{ site.title | escape }}</h1>
+  </div>
+</nav>
+<nav class="navbar is-dark has-shadow">
+  <div class="container">
+    <div class="navbar-tabs">
+      <a class="navbar-item is-tab" href="/">
+        Home
+      </a>
+      {% for path in page_paths %}
+        {% assign my_page = site.pages | where: "path", path | first %}
+        {% if my_page.title %}
+          <a class="navbar-item is-tab" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-end is-hidden-touch">
+          {% if site.github_username %}
+            <a href="https://github.com/{{ site.github_username }}" class="navbar-item" target="_blank">
+              <span class="icon">
+                  <i class="fab fa-github"></i>
+              </span>
+            </a>
+          {% endif %}
+          {% if site.email %}
+            <a href="mailto:{{ site.email }}" class="navbar-item" target="_blank">
+              <span class="icon">
+                  <i class="far fa-envelope"></i>
+              </span>
+            </a>
+          {% endif %}
+          {% if site.twitter_username %}
+            <a href="https://twitter.com/{{ site.twitter_username }}" class="navbar-item" target="_blank">
+              <span class="icon">
+                  <i class="fab fa-twitter"></i>
+              </span>
+            </a>
+          {% endif %}
+          <a href="{{ "/feed.xml" | relative_url }}" class="navbar-item" target="_blank">
+            <span class="icon">
+                <i class="fas fa-rss"></i>
+            </span>
+          </a>
+        </div>
+    </div>
+  </nav>

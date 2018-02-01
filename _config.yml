@@ -1,0 +1,158 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+logo: "/images/default/logo.png"
+profile_image: "/images/default/profile.jpg"
+title: "世界を旅して暮らしたい放浪エンジニアブログ"
+email: yuuki.nakamura.0828@gmail.com
+author: "香港在住エンジニア"
+description: >- # this means to ignore newlines until "baseurl:"
+  香港在住のプログラマーです。<br>
+  世界を旅しながらサービスの開発・運用をしていくことが目標です。<br>
+  香港、深セン在住のエンジニアの方は、是非交流が持てればと思います。
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: nakanakamu0828
+github_username:  nakanakamu0828
+
+skills:
+  - name: amazonwebservices
+  # - name: android
+  # - name: angularjs
+  - name: apache
+  # - name: appcelerator
+  - name: apple
+  - name: atom
+  - name: babel
+  # - name: backbonejs
+  - name: bitbucket
+  - name: bootstrap
+  - name: bower
+  # - name: c
+  - name: chrome
+  # - name: codeigniter
+  - name: coffescript
+  # - name: confluence
+  # - name: cplusplus
+  # - name: csharp
+  - name: css3
+  # - name: cucumber
+  # - name: d3js
+  # - name: debian
+  - name: devicon
+  # - name: django
+  # - name: docker
+  - name: doctrine
+  # - name: dot-net
+  # - name: drupal
+  # - name: erlang
+  - name: facebook
+  - name: firefox
+  # - name: foundation
+  # - name: gatling
+  # - name: gimp
+  - name: git
+  - name: github
+  # - name: gitlab
+  - name: go
+  - name: google
+  # - name: gradle
+  # - name: grunt
+  # - name: gulp
+  - name: heroku
+  - name: html5
+  # - name: ie10
+  # - name: illustrator
+  # - name: inkscape
+  # - name: itellij
+  - name: java
+  # - name: jasmine
+  - name: javascript
+  - name: laravel
+  # - name: less
+  - name: linux
+  # - name: meteor
+  # - name: mocha
+  # - name: mongodb
+  # - name: moodle
+  - name: mysql
+  - name: nginx
+  - name: nodejs
+  # - name: nodewebkit
+  - name: oracle
+  # - name: photoshop
+  - name: php
+  - name: phpstorm
+  # - name: protractor
+  - name: postgresql
+  # - name: python
+  # - name: pycharm
+  - name: rails
+  # - name: react
+  # - name: redhat
+  - name: redis
+  - name: ruby
+  # - name: rubymine
+  - name: safari
+  - name: sass
+  # - name: sequelize
+  - name: slack
+  # - name: sourcetree
+  - name: ssh
+  # - name: swift
+  - name: symfony
+  - name: tomcat
+  - name: travis
+  - name: trello
+  - name: twitter
+  # - name: typescript
+  # - name: ubuntu
+  - name: vim
+  # - name: visualstudio
+  - name: vuejs
+  - name: webpack
+  # - name: webstorm
+  # - name: windows8
+  # - name: wordpress
+  # - name: yii
+  - name: zend
+
+icon_size: 50 # font-size of icons in px
+colored: colored # Leave blank for black and white icons
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+exclude:
+  - vendor
+  - node_modules
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
+
+sass:
+  load_paths:
+    - _sass
+    - node_modules

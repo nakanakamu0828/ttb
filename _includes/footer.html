@@ -1,0 +1,57 @@
+<footer class="footer">
+  <div class="container">
+      <h2 class="footer-heading">{{ site.title | escape }}</h2>
+      <div class="columns is-desktop">
+          <div class="column">
+            <ul class="contact-list">
+                <li>
+                    <figure class="image is-64x64 is-circle">
+                        <img src="{{ site.profile_image }}">
+                    </figure>
+                </li>
+                <li class="p-name">
+                  {% if site.author %}
+                    {{ site.author | escape }}
+                  {% else %}
+                    {{ site.title | escape }}
+                  {% endif %}
+                </li>
+                {% if site.email %}
+                <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+                {% endif %}
+              </ul>
+          </div>
+          <div class="column">
+              <p>{{ site.description }}</p>
+          </div>
+      </div>
+      <div class="content has-text-centered footer__social-box">
+        {% if site.github_username %}
+          <a href="https://github.com/{{ site.github_username }}" class="button is-social" target="_blank">
+            <span class="icon">
+                <i class="fab fa-github"></i>
+            </span>
+          </a>
+        {% endif %}
+        {% if site.email %}
+          <a href="mailto:{{ site.email }}" class="button is-social" target="_blank">
+            <span class="icon">
+                <i class="far fa-envelope"></i>
+            </span>
+          </a>
+        {% endif %}
+        {% if site.twitter_username %}
+          <a href="https://twitter.com/{{ site.twitter_username }}" class="button is-social" target="_blank">
+            <span class="icon">
+                <i class="fab fa-twitter"></i>
+            </span>
+          </a>
+        {% endif %}
+        <a href="{{ "/feed.xml" | relative_url }}" class="button is-social" target="_blank">
+          <span class="icon">
+              <i class="fas fa-rss"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </footer>

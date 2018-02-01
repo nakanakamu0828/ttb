@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<section class="hero is-light is-bold">
+  <div class="hero-body p-t-sm">
+    <div class="container has-text-centered">
+      <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul style="margin-left: 0">
+          <li><a href="/"><i class="fas fa-home"></i></a></li>
+          <li class="is-active"><a href="#" aria-current="page">{{ page.title | escape }}</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <div class="level-item has-text-centered">
+          <figure class="image is-96x96 is-circle">
+              <img src="{{ site.profile_image }}">
+          </figure>
+        </div>
+      </nav>
+
+      <h2 class="title">
+          {{ site.author | escape }}
+      </h2>
+      <h3 class="subtitle  p-t-xs">
+          {{ site.title | escape }}
+      </h3>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h3 class="title has-text-centered m-b-none">Introduction</h3>
+    <ul class="indicators"><li class="indicator-item active"></li></ul>
+    <div class="card">
+      <div class="card-content">
+        <p class="">
+            {{ site.description }}
+          </p>
+      </div>
+    </div>
+
+    <h3 class="title has-text-centered m-b-none m-t-xl">Tools and Experience</h3>
+    <ul class="indicators"><li class="indicator-item active"></li></ul>
+    <div class="card">
+      <div class="card-content">
+          {% for skill in site.skills %}
+              <i class="devicon-{{skill.name}}-plain {{site.colored}}" style="font-size:{{site.icon_size}}px;"></i>
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

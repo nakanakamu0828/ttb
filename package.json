@@ -1,0 +1,11 @@
+{
+  "name": "ttb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/yuki-nakamura/ttb.git",
+  "author": "Yuki Nakamura <nakamura.yuuki.0606@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bulma": "^0.6.2"
+  }
+}
