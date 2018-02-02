@@ -131,6 +131,8 @@ skills:
 
 icon_size: 50 # font-size of icons in px
 colored: colored # Leave blank for black and white icons
+google_analytics: UA-113488529-1
+
 
 # Build settings
 markdown: kramdown
