@@ -203,6 +203,14 @@
     background-position: 50% 50%;
 }
 
+.post-hero {
+    background-position: 50%;
+    background-size: cover;
+}
+.post-hero__body {
+    background-color:rgba(255,255,255,0.8);
+}
+
 @media only screen and (max-width: 480px) {
     .post-card {
         width: 98%;

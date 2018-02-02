@@ -2,8 +2,8 @@
 layout: default
 ---
 <article class="post h-entry" itemscope>
-  <section class="hero is-light is-bold">
-    <div class="hero-body p-t-sm">
+  <section class="hero post-hero is-light is-bold" style="background-image: url({{ page.thumbnail }});">
+    <div class="hero-body post-hero__body p-t-sm p-b-md">
       <div class="container">
         <nav class="breadcrumb" aria-label="breadcrumbs">
           <ul style="margin-left: 0">
@@ -13,7 +13,7 @@ layout: default
         </nav>
         <p class="post-meta">
           <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-            {% assign date_format = site.minima.date_format | default: "%Y.%m.%d" %}
+            {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
             <i class="fas fa-clock"></i>
             {{ page.date | date: date_format }}
           </time>
@@ -44,10 +44,10 @@ layout: default
             {% endif %}
           </p>
         {% endif %}
-        {% if page.categories | count %}
+        {% if page.tags.count %}
           <p>
-              {% for category in page.categories %}
-                <span class="tag is-link">{{ category }}</span>
+              {% for tag in page.tags %}
+                <span class="tag is-link">{{ tag }}</span>
               {% endfor %}
           </p>
         {% endif %}

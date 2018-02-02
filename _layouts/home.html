@@ -20,10 +20,10 @@ layout: default
               <div class="card-content post-card__content">
                   <h3 class="title post-card__content__title m-b-sm"><a href="{{ post.url | relative_url }}" title="{{ post.title | escape }}">{{ post.title | escape }}</a></h3>
                   <p class="m-b-sm">{{ post.description | escape }}</p>
-                  {% if post.categories %}
+                  {% if post.tags.count %}
                     <p class="m-b-sm">
-                      {% for category in post.categories %}
-                        <span class="tag is-link">{{ category }}</span>
+                      {% for tag in post.tags %}
+                        <span class="tag is-link">{{ tag }}</span>
                       {% endfor %}
                     </p>
                   {% endif %}
