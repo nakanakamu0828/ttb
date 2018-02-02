@@ -44,7 +44,7 @@ layout: default
             {% endif %}
           </p>
         {% endif %}
-        {% if page.categories %}
+        {% if page.categories | count %}
           <p>
               {% for category in page.categories %}
                 <span class="tag is-link">{{ category }}</span>
