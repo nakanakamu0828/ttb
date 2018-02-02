@@ -3,6 +3,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% seo %}
+  <link rel="alternate" hreflang="ja" href="{{ page.url | absolute_url }}">
   <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   {% feed_meta %}
@@ -10,5 +11,5 @@
     {% include google-analytics.html %}
   {% endif %}
   <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
-  <script src="{{'/assets/main.js' | absolute_url}}"></script>
+  <script src="{{'/assets/main.js' | absolute_url }}"></script>
 </head>
