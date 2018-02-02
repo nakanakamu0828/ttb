@@ -14,11 +14,14 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template i.e. YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - label: "Featured Image"
+        name: "thumbnail"
+        widget: "image"
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "string"}
       - {label: "Location", name: "location", widget: "string"}
       - label: "Categories"
-          name: "categories"
-          widget: "list"
-          default: ["news"]
+        name: "categories"
+        widget: "list"
+        default: ["news"]
       - {label: "Body", name: "body", widget: "markdown"}
