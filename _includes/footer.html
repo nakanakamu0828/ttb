@@ -10,10 +10,10 @@
                     </figure>
                 </li>
                 <li class="p-name">
-                  {% if site.author %}
-                    {{ site.author | escape }}
+                  {% if site.author_name %}
+                    {{ site.author_name | escape }}
                   {% else %}
-                    {{ site.title | escape }}
+                    {{ site.author | escape }}
                   {% endif %}
                 </li>
                 {% if site.email %}

@@ -18,7 +18,8 @@ logo: "/images/default/logo.png"
 profile_image: "/images/default/profile.jpg"
 title: "世界を旅して暮らしたい放浪エンジニアブログ"
 email: yuuki.nakamura.0828@gmail.com
-author: "香港在住エンジニア"
+author: nakanakamu0828
+author_name: 香港在住エンジニア
 description: >- # this means to ignore newlines until "baseurl:"
   香港在住のプログラマーです。<br>
   世界を旅しながらサービスの開発・運用をしていくことが目標です。<br>

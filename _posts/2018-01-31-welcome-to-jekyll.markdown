@@ -1,6 +1,8 @@
 ---
 layout: post
 title:  "Welcome to Jekyll!"
+description:  "Jekyll Jekyll Jekyll Jekyll Jekyll"
+location: Hong Kong
 date:   2018-01-31 12:01:52 +0900
 categories: jekyll update
 ---
