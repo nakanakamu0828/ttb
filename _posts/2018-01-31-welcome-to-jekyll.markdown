@@ -1,5 +1,6 @@
 ---
 layout: post
+thumbnail: http://artemsheludko.pw/flexible-jekyll/assets/img/js-1.png
 title:  "Welcome to Jekyll!"
 description:  "Jekyll Jekyll Jekyll Jekyll Jekyll"
 location: Hong Kong

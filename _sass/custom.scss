@@ -167,3 +167,60 @@
     }
 }
 
+.post-card {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    min-height: 11rem;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+    -webkit-box-shadow: 1px rgba(31, 35, 46, 0.15);
+    box-shadow: 1px rgba(31, 35, 46, 0.15);
+}
+.post-card__thumbnail {
+    width: 30%;
+    max-width: 100%;
+    min-height: 11rem;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+@media only screen and (max-width: 480px) {
+    .post-card {
+        width: 98%;
+        max-width: 100%;
+        margin: 2%;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+    }
+    .post-card__thumbnail {
+        width: 100%;
+    }
+    .post-card__content {
+        width: 100%;
+    }
+    .post-card__content__title {
+        font-size: 1.5rem;
+    }
+}

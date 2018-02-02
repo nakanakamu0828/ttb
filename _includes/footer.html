@@ -1,15 +1,15 @@
 <footer class="footer">
   <div class="container">
-      <h2 class="footer-heading">{{ site.title | escape }}</h2>
+      <h2 class="m-b-md">{{ site.title | escape }}</h2>
       <div class="columns is-desktop">
           <div class="column">
-            <ul class="contact-list">
-                <li>
+            <ul>
+                <li class="m-b-md">
                     <figure class="image is-64x64 is-circle">
                         <img src="{{ site.profile_image }}">
                     </figure>
                 </li>
-                <li class="p-name">
+                <li>
                   {% if site.author_name %}
                     {{ site.author_name | escape }}
                   {% else %}
@@ -17,7 +17,9 @@
                   {% endif %}
                 </li>
                 {% if site.email %}
-                <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+                  <li>
+                    <a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a>
+                  </li>
                 {% endif %}
               </ul>
           </div>

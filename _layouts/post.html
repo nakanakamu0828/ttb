@@ -18,7 +18,7 @@ layout: default
             {{ page.date | date: date_format }}
           </time>
         </p>
-        <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+        <h1 class="title" itemprop="name headline">{{ page.title | escape }}</h1>
         <h2 class="m-b-md" itemprop="name headline">{{ page.description | escape }}</h2>
         {% if page.author or site.author or page.location %}
           <p class="post-meta">
@@ -57,7 +57,7 @@ layout: default
 
   <section class="section">
     <div class="container">  
-        <div class="post-content e-content" itemprop="articleBody">
+        <div class="content">
           {{ content }}
         </div>
 
