@@ -22,8 +22,7 @@ author: nakanakamu0828
 author_name: 香港在住エンジニア
 description: >- # this means to ignore newlines until "baseurl:"
   香港在住のプログラマーです。<br>
-  世界を旅しながらサービスの開発・運用をしていくことが目標です。<br>
-  香港、深セン在住のエンジニアの方は、是非交流が持てればと思います。
+  世界を旅しながらサービスの開発・運用をしていくことが目標です。香港、深セン在住のエンジニアの方は、是非交流が持てればと思います。
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://tech-talk-blog.ml" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: nakanakamu0828
