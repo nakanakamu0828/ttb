@@ -15,6 +15,18 @@
       <a class="navbar-item is-tab" href="/">
         Home
       </a>
+      {% if site.categories %}
+        {% for category in site.categories %}
+          {% if 'Other' != category[0] %}
+            <a href="{{ '/categories/' | append: category[0] | relative_url }}" class="navbar-item is-tab">
+              {{ category[0] }}
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      <a href="{{ '/categories/' | append: 'Other' | relative_url }}" class="navbar-item is-tab">
+        Other
+      </a>
       {% for path in page_paths %}
         {% assign my_page = site.pages | where: "path", path | first %}
         {% if my_page.title %}

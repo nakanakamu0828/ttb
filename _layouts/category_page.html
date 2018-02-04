@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<section class="section">
+    <div class="container">
+        <div class="home">        
+        {{ content }}
+        
+        {% if site.posts.size > 0 %}
+            {% for post in site.categories[page.category] %}
+                <article class="card post-card">
+                {% if post.thumbnail %}
+                    <a class="post-card__thumbnail" style="background-image: url({{ post.thumbnail }})" href="{{ post.url | relative_url }}"></a>
+                {% endif %}
+                <div class="card-content post-card__content">
+                    <h3 class="title post-card__content__title m-b-sm"><a href="{{ post.url | relative_url }}" title="{{ post.title | escape }}">{{ post.title | escape }}</a></h3>
+                    <p class="m-b-sm">{{ post.description | escape }}</p>
+                    {% if post.categories %}
+                        <p class="m-b-sm">
+                        {% for category in post.categories %}
+                            <span class="tag is-link">{{ category }}</span>
+                        {% endfor %}
+                        </p>
+                    {% endif %}
+                    {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+                    <span class="post-meta">{{ post.date | date: date_format }}</span>
+                </div>
+                </article>
+            {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+</section>
