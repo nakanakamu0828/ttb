@@ -1,8 +1,8 @@
 ---
-layout: thank-you
+layout: thanks
 title: Thank you
 description: お問い合わせを受け付けました。
-permalink: /contact/thank-you/
+permalink: /contact/thanks
 ---
 
 お問い合わせ頂きありがとうございます。
