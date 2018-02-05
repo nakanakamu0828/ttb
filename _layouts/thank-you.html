@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<section class="hero is-light is-bold">
+  <div class="hero-body p-t-sm">
+    <div class="container has-text-centered">
+      <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul style="margin-left: 0">
+          <li><a href="/"><i class="fas fa-home"></i></a></li>
+          <li class="is-active"><a href="#" aria-current="page">{{ page.title | escape }}</a></li>
+        </ul>
+      </nav>
+      <h2 class="title">
+          {{ page.title | escape }}
+      </h2>
+      <h3 class="subtitle  p-t-xs">
+          {{ page.description | escape }}
+      </h3>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="message is-primary has-text-centered">
+        <div class="message-body">
+            {{ content }}
+        </div>
+    </div>
+  </div>
+</section>
