@@ -47,7 +47,10 @@ layout: default
         {% if page.tags %}
           <p>
               {% for tag in page.tags %}
-                <span class="tag is-link">{{ tag }}</span>
+                {% assign tag_name = tag | replace: " ", "_" %}
+                <a href="{{ '/tags/' | append: tag_name | relative_url }}" class="tag is-link">
+                  {{ tag }}
+                </a>
               {% endfor %}
           </p>
         {% endif %}
