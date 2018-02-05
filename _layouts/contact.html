@@ -7,7 +7,7 @@ layout: default
     <div class="container has-text-centered">
       <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul style="margin-left: 0">
-          <li><a href="/"><i class="fas fa-home"></i></a></li>
+          <li><a href="{{ '/' | relative_url }}"><i class="fas fa-home"></i></a></li>
           <li class="is-active"><a href="#" aria-current="page">{{ page.title | escape }}</a></li>
         </ul>
       </nav>
@@ -70,12 +70,12 @@ layout: default
 
             <div class="field is-grouped is-grouped-centered">
                 <p class="control">
-                    <a class="button is-primary">
+                    <button type="submit" class="button is-primary">
                     Submit
-                    </a>
+                    </button>
                 </p>
                 <p class="control">
-                    <a class="button is-light">
+                    <a href="{{ '/' | relative_url }}" class="button is-light">
                     Cancel
                     </a>
                 </p>
