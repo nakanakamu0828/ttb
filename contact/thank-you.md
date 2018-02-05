@@ -2,7 +2,7 @@
 layout: thank-you
 title: Thank you
 description: お問い合わせを受け付けました。
-permalink: /contact-thank-you/
+permalink: /contact/thank-you/
 ---
 
 お問い合わせ頂きありがとうございます。
