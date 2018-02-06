@@ -23,3 +23,16 @@ collections:
       - {label: "Categories", name: "categories", widget: "list", required: false}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
+  - name: "curation"
+    label: "Curation" # Used in the UI
+    folder: "_curations" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template i.e. YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "curation"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Url", name: "url", widget: "string"}
+      - {label: "Media", name: "media", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+  
