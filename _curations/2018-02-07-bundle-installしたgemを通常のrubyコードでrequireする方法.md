@@ -1,5 +1,6 @@
 ---
 layout: curation
+date: 2018-02-07 01:40:00
 title: bundle installしたgemを通常のrubyコードでrequireする方法
 target_link: 'https://qiita.com/litencatt/items/0063203d01f6524503b7'
 media: Qiita
