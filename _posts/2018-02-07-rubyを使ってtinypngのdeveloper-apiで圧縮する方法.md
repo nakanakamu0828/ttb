@@ -12,8 +12,8 @@ tags:
 ---
 こんばんは、なかむです。
 
-今回は、TinypingのDeveloper APIを利用して圧縮処理を行います。
-ツールとしてうまく組み込むことで圧縮処理の効率化を行い、サービスへの負荷を減らすことが目的です。
+今回は、TinypingのDeveloper APIを利用して圧縮処理を行います。  
+ツールとしてうまく組み込むことで圧縮処理の効率化を行い、サービスへの負荷を減らすことが目的です。  
 Rubyを使ってスクリプトを作成していきます。
 
 まずはAPI KEYをTinypingの [DEVELOPER API](https://tinypng.com/developers) ページから発行します。
@@ -60,5 +60,5 @@ source.to_file(filepath)
 $ TINIFY_API_KEY=[API KEY] ruby lib/tinify.rb [filepath]
 ```
 
-実行が完了したら画像が圧縮しているか確認します。
+実行が完了したら画像が圧縮しているか確認します。  
 他にもネット上の画像を圧縮し、ローカルに保存する機能などが用意されています。色々な機能を利用し、あなたにあったツールとして利用しましょう。
