@@ -35,4 +35,5 @@ collections:
       - {label: "Url", name: "url", widget: "string"}
       - {label: "Media", name: "media", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
   
