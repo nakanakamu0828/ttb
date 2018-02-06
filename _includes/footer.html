@@ -3,8 +3,8 @@
       <div class="columns is-desktop">
           <div class="column">
             <h2 class="m-b-sm">{{ site.title | escape }}</h2>
-            <div class="columns is-desktop">
-              <div class="column m-b-md">
+            <div class="columns is-desktop m-b-none">
+              <div class="column">
                   <figure class="image is-64x64 is-circle">
                       <img src="{{ site.profile_image }}">
                   </figure>
@@ -13,6 +13,10 @@
                 <p>{{ site.description }}</p>
               </div>
             </div>
+
+            <a href="https://twitter.com/nakanakamu0828?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @nakanakamu0828</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
           </div>
           <div class="column">
             {% if site.categories %}
