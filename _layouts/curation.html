@@ -36,8 +36,17 @@ layout: default
     </div>
   </section>
 
-  <section class="section">
+  <section class="section p-t-sm">
     <div class="container">
+      {% if page.thumbnail %}
+        <div class="columns is-desktop">
+            <div class="column is-one-fifth"></div>
+            <div class="column is-one-quarte">
+                <img src="{{ page.thumbnail }}" alt=""></img>
+            </div>
+            <div class="column is-one-fifth"></div>
+        </div>
+      {% endif %}
       <div class="box">
         <div class="m-b-xs"><strong><i class="fas fa-comments"></i> コメント</strong></div>
         <div class="content">
