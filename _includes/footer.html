@@ -16,7 +16,7 @@
           </div>
           <div class="column">
             {% if site.categories %}
-              <h2 class="m-b-sm">カテゴリー</h2>
+              <h2 class="strong m-b-sm">Categories</h2>
               <p>
                   {% for category in site.categories %}
                     <a href="{{ '/categories/' | append: category[0] | relative_url }}" class="tag is-link">
@@ -26,7 +26,7 @@
               </p>
             {% endif %}
             {% if site.tags %}
-              <h2 class="m-b-sm">タグ</h2>
+              <h2 class="m-b-sm">Tags</h2>
               <p>
                   {% for tag in site.tags %}
                     {% assign tag_name = tag[0] | replace: " ", "_" %}
@@ -36,9 +36,21 @@
                   {% endfor %}
               </p>
             {% endif %}
+            <h2 class="m-b-sm">Made By</h2>
+            <p>
+                <a href="https://www.netlify.com/" target="_blank" rel="nofollow">
+                  <img src="/images/default/netlify-logo.png" alt="Made with Netlify" height="18" width="96">
+                </a>
+                <a href="https://jekyllrb.com/" target="_blank" rel="nofollow">
+                  <img src="/images/default/jekyll-logo.png" alt="Made with Jekyll" height="18" width="96">
+                </a>
+                <a href="https://bulma.io/" target="_blank" rel="nofollow">
+                  <img src="/images/default/bulma-logo.png" alt="Made with Bulma" height="18" width="96">
+                </a>    
+            </p>
           </div>
       </div>
-      <div class="content has-text-centered footer__social-box">
+      <div class="has-text-centered footer__social-box">
         {% if site.github_username %}
           <a href="https://github.com/{{ site.github_username }}" class="button is-social" target="_blank">
             <span class="icon">
