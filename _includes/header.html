@@ -27,6 +27,9 @@
       <a href="{{ '/categories/' | append: 'Other' | relative_url }}" class="navbar-item is-tab">
         Other
       </a>
+      <a href="{{ '/curations/' | relative_url }}" class="navbar-item is-tab">
+        Curation
+      </a>
       {% for path in page_paths %}
         {% assign my_page = site.pages | where: "path", path | first %}
         {% if my_page.title and 'Thank you' !=  my_page.title %}

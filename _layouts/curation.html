@@ -1,0 +1,57 @@
+---
+layout: default
+---
+<article class="post h-entry" itemscope>
+  <section class="hero post-hero is-light is-bold">
+    <div class="hero-body post-hero__body p-t-sm p-b-md">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+          <ul style="margin-left: 0">
+            <li><a href="/"><i class="fas fa-home"></i></a></li>
+            <li><a href="{{ "/curations/" | prepend: site.baseurl }}">Curation</a></li>
+            <li class="is-active"><a href="#" aria-current="page">{{ page.title | escape }}</a></li>
+          </ul>
+        </nav>
+        <p class="post-meta">
+          <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+            {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+            <i class="fas fa-clock"></i>
+            {{ page.date | date: date_format }}
+          </time>
+        </p>
+        <span class="tag m-b-sm is-{{ page.media | downcase }}">{{ page.media }}からのキュレーション</span>
+        <h1 class="title m-b-md" itemprop="name headline">
+          <a href="{{ page.target_link }}" target="_blank" rel="nofollow">{{ page.title | escape }}</a>
+        </h1>
+        <h2 class="m-b-md" itemprop="name headline">{{ page.description | escape }}</h2>
+        {% if page.tags %}
+          <p>
+              {% for tag in page.tags %}
+                {% assign tag_name = tag | replace: " ", "_" %}
+                <span class="tag is-link">{{ tag }}</span>
+              {% endfor %}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="box">
+        <div class="m-b-xs"><strong><i class="fas fa-comments"></i> コメント</strong></div>
+        <div class="content">
+            {{ content }}
+        </div>
+        <div class=""><strong>元記事のURL</strong></div>
+        <a href="{{ page.target_link }}" target="_blank" rel="nofollow">{{ page.target_link }}</a>
+      </div>
+
+      {% if site.disqus.shortname %}
+        {% include disqus_comments.html %}
+      {% endif %}
+
+      <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+    </div>
+  </section>
+</article>

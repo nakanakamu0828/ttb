@@ -1,7 +1,7 @@
 ---
 layout: curation
 title: Google Homeで子供の朝支度を促してみる
-url: 'https://qiita.com/hideo-works/items/db25a748889d47d5eff2'
+target_link: 'https://qiita.com/hideo-works/items/db25a748889d47d5eff2'
 media: Qiita
 tags:
   - Node.js

@@ -115,12 +115,20 @@
 }
 
 // 
-// Button
+// Image
 // 
 .image.is-circle {
     & > img {
         border-radius: 50%;
     }
+}
+
+// 
+// Tag
+// 
+.tag:not(body).is-qiita {
+    background-color:#55c500;
+    color: #fff;
 }
 
 .indicators {
