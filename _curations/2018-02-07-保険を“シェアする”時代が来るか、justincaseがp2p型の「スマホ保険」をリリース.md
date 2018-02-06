@@ -6,7 +6,6 @@ target_link: 'http://jp.techcrunch.com/2018/02/07/justincase-fundrasing/'
 media: TechCrunch
 tags:
   - スマホ保険
-date: 2018-02-07 00:20:00
 ---
 フィンテック（fintech）に続いてインシュアテックが（Insurtech）が成長していくという話題をちらほら見かけるようになりました。
 生命保険や医療保険の場合、保険の契約には多くのルールがありユーザーの手間も多いです。
