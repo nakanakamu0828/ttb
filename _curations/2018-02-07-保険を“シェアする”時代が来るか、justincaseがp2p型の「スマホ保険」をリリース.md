@@ -1,6 +1,5 @@
 ---
 layout: curation
-date: 2018-02-07 00:20:00
 thumbnail: /images/uploads/screen_smartphone_insurance.png
 title: 保険を“シェアする”時代が来るか、justInCaseがP2P型の「スマホ保険」をリリース
 target_link: 'http://jp.techcrunch.com/2018/02/07/justincase-fundrasing/'
