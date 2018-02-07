@@ -226,6 +226,13 @@
 .post-hero__body {
     background-color:rgba(255,255,255,0.8);
 }
+.post-hero__body__title {}
+
+.content {
+    h1, h2, h3, h4, h5 {
+        font-weight: bold;
+    }
+}
 
 @media only screen and (max-width: 480px) {
     .post-card {
@@ -245,6 +252,17 @@
         width: 100%;
     }
     .post-card__content__title {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .post-hero__body__title {
+        font-size: 1.4rem;
+    }
+
+    .content {
+        h2 {
+            font-size: 1.25em;
+            margin-bottom: 0.5714em;
+        }
     }
 }
