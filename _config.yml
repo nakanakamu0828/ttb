@@ -168,7 +168,7 @@ collections:
 
 pwa:
   sw_filename: service-worker.js # Required
-  dest_js_directory: assets/js # Required
+  dest_js_directory: assets # Required
   cache_name: my-cache # Optional
   precache_recent_posts_num: 5 # Optional
   precache_glob_directory: / # Optional
