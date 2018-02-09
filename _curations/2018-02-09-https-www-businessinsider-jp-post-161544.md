@@ -1,7 +1,7 @@
 ---
 layout: curation
 thumbnail: /images/uploads/screen_curate_business_insider_201802091132.png
-title: 'https://www.businessinsider.jp/post-161544'
+title: 「極力働きたくない」渋谷系“漂流男子”夢は仮想通貨リタイア
 target_link: 'https://www.businessinsider.jp/post-161544'
 media: Business Insider
 tags:
