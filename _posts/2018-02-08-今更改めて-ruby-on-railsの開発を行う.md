@@ -8,21 +8,24 @@ categories:
   - Programming
 tags:
   - ruby
-  - rails
+  - RubyOnRails
 ---
-こんばんわ、なかむです。  
-今回はRuby On Railsの基礎として環境設定からインストール、プロジェクト作成まで行なっていきたいと思います。  
+こんばんわ、なかむです。\
+今回はRuby On Railsの基礎として環境設定からインストール、プロジェクト作成まで行なっていきたいと思います。\
 vagrantを利用してCentOS7で開発環境を構築していきます。  
-  
+
 【補足】
-* rbenvでrubyを管理
+
+* vagrantのIPアドレスは 192.168.33.10とする
+* rbenvでrubyを管理する
 * nginx + puma でWEB/APサーバーを構築
 * DBはMySQL5.7を利用
-* フロントエンドのライブラリはyarnで管理
 
 ## さっそくインストール
+
 yumを最新にupdateしてから作業を進めていきます。
 yumで必要なライブラリをインストール
+
 ```
 $ # rootユーザーにswitchして作業を進めます
 $ 
@@ -32,6 +35,7 @@ $ sudo su -
 ```
 
 rbenvでrubyをインストールするので、まずはrbenvをインストール
+
 ```
 # git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv
 # echo 'export RBENV_ROOT="/usr/local/rbenv"' >> /etc/profile
@@ -42,6 +46,7 @@ rbenvでrubyをインストールするので、まずはrbenvをインストー
 ```
 
 ruby2.5.0(執筆時点(2018/02/08)の最新)をインストール
+
 ```
 # rbenv install -v 2.5.0
 # rbenv global 2.5.0
@@ -50,6 +55,7 @@ ruby2.5.0(執筆時点(2018/02/08)の最新)をインストール
 ```
 
 Rails, Pumaをインストール
+
 ```
 # gem update --system
 # gem install bundler
@@ -58,19 +64,8 @@ Rails, Pumaをインストール
 # gem install --no-ri --no-rdoc puma
 ```
 
-nvm + yarn をインストール
-```
-# git clone git://github.com/creationix/nvm.git /usr/local/nvm
-# echo "if [[ -s /usr/local/nvm/nvm.sh ]];" >> /etc/profile
-# echo " then source /usr/local/nvm/nvm.sh" >> /etc/profile
-# echo "fi" >> /etc/profile
-# source /etc/profile
-# nvm install v8.4.0
-# chmod -R a+w /usr/local/nvm
-# npm install -g yarn
-```
-
 nginx をインストール
+
 ```
 # yum install nginx
 # # user を vagrantに変更
@@ -83,6 +78,7 @@ user vagrant;
 ```
 
 mysql をインストール
+
 ```
 # # mariadbのライブラリがあれば削除
 # yum remove mariadb-libs
@@ -120,16 +116,14 @@ character-set-server=utf8mb4
 
 mysqlコマンドからMySQLサーバーにログインできることを確認しましょう
 # mysql -uroot -p
-
-
 ```
 
 ここまでで必要なミドルウェアのインストールが完了です。
 
-
 ## Railsプロジェクトのリポジトリを作成
+
 vagrantユーザーにexitしてからリポジトリを作成していきます。
-vagrantを利用しているので、ホストOSにマウントされている/vagrantディレクトリにリポジトリを作成します。
+vagrantを利用しているので、ホストOSにマウントされている/vagrantディレクトリにリポジトリを作成します。作業はvagrantユーザーのhomeディレクトリ（/home/vagrant/）で行えるようにシンボリックリンクもはりたいと思います。
 
 ```
 # exit
@@ -146,6 +140,7 @@ netshop はプロジェクト名です。簡易的なecサイトを構築して�
 それでは各種設定をしていきます。
 
 ■ DB設定
+
 ```
 $ cd netshop/
 $ vi config/database.yml
@@ -160,12 +155,13 @@ default: &default
 ```
 
 ■ puma設定
+
 ```
 $ vi config/puma.rb
 
 _proj_path = "#{File.expand_path("../..", __FILE__)}"
 _proj_name = File.basename(_proj_path)
-_home = ENV.fetch("HOME") { "/vagrant" }
+_home = ENV.fetch("HOME") { "/home/vagrant" }
 _environment = ENV.fetch("RAILS_ENV") { "development" }
 
 pidfile "#{_home}/#{_proj_name}/run/#{_proj_name}.pid"
@@ -181,19 +177,20 @@ $ chmod a+w run
 ```
 
 ■ nginx設定
+
 ```
 $ mkdir -p misc/nginx
 $ vi misc/nginx development.conf
 
 upstream netshop {
-    server unix:///vagrant/netshop/run/netshop.sock fail_timeout=0;
+    server unix:///home/vagrant/netshop/run/netshop.sock fail_timeout=0;
 }
 
 server {
     listen 80;
     server_name netshop.local; # 開発環境のipアドレスもしくはホスト名を記述
 
-    root /vagrant/netshop/public; # アプリケーション名を記述
+    root /home/vagrant/netshop/public; # アプリケーション名を記述
 
     try_files $uri/index.html $uri @netshop; # アプリケーション名を記述
 
@@ -215,17 +212,22 @@ server_nameはご自身にあった環境の値を設定してください。
 $ sudo ln -snf /vagrant/netshop/misc/nginx/development.conf /etc/nginx/conf.d/netshop.conf
 
 nginxが設定ファイルを読み込むようにシンボリックリンクを /etc/nginx/conf.d/ に配置します
-
 ```
 
 設定は以上となります。
 
 ## Railsを起動
 
-まずはpumaを起動します。
+まずはnginxを起動します。
 
 ```
 $ sudo systemctl restart nginx
+```
+
+vagrantのホームディレクトリにシンボリックリンクをはります。
+
+```
+$ ln -snf /vagrant/netshop /home/vagrant/netshop
 ```
 
 続いてpumaを起動します。
@@ -234,5 +236,18 @@ $ sudo systemctl restart nginx
 ```
 $ bundle install --path=vendor/bundle
 $ bundle exec rails db:create
-$ bundle exec puma 
+$ bundle exec puma
 ```
+
+## ブラウザから確認
+
+ホストPCのhostsファイルに以下の内容を設定します。
+
+```
+192.168.33.10 netshop.local
+```
+
+ブラウザを開き、 <http://netshop.local>にアクセスします。
+以下の画面が開けば環境構築完了です。
+
+![Railsデフォルトページ](/images/uploads/screen_ror_default_201802091806.png)
