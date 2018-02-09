@@ -4,8 +4,8 @@ title: Ruby on Railsを使った開発で参照してもよいドキュメント
 target_link: 'https://qiita.com/hanachin_/items/76a24bcef889edb59d19'
 media: Qiita
 tags:
-  - Ruby
-  - RubyOnRails
+  - ruby
+  - ruby on rails
 ---
 まとまっていてすごくいいと思いました。  
 時代と共にドキュメントは劣化していく傾向があります。  
