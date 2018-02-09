@@ -128,7 +128,7 @@ vagrantを利用しているので、ホストOSにマウントされている/v
 ```
 # exit
 $ cd /vagrant/
-$ rails new --database=mysql --skip-turbolinks --skip-test --skip-bundle --skip-javascript netshop
+$ rails new --webpack --database=mysql --skip-coffee --skip-sprockets --skip-turbolinks --skip-test --skip-bundle --skip-javascript netshop
 
 今回はturbolinkやtestを利用しません
 また、初期はbundle installしないでプロジェクトを作成します
@@ -175,7 +175,7 @@ directory _proj_path
 
 ```
 $ mkdir -p misc/nginx
-$ vi misc/nginx development.conf
+$ vi misc/nginx/development.conf
 
 upstream netshop {
     server unix:///tmp/netshop.sock fail_timeout=0;
