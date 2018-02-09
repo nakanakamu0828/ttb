@@ -64,6 +64,18 @@ Rails, Pumaをインストール
 # gem install --no-ri --no-rdoc puma
 ```
 
+nvm + yarn をインストール
+```
+# git clone git://github.com/creationix/nvm.git /usr/local/nvm
+# echo "if [[ -s /usr/local/nvm/nvm.sh ]];" >> /etc/profile
+# echo " then source /usr/local/nvm/nvm.sh" >> /etc/profile
+# echo "fi" >> /etc/profile
+# source /etc/profile
+# nvm install v8.4.0
+# chmod -R a+w /usr/local/nvm
+# npm install -g yarn
+```
+
 nginx をインストール
 
 ```
