@@ -164,16 +164,11 @@ _proj_name = File.basename(_proj_path)
 _home = ENV.fetch("HOME") { "/home/vagrant" }
 _environment = ENV.fetch("RAILS_ENV") { "development" }
 
-pidfile "#{_home}/#{_proj_name}/run/#{_proj_name}.pid"
-bind "unix://#{_home}/#{_proj_name}/run/#{_proj_name}.sock"
+pidfile "/tmp/#{_proj_name}.pid"
+bind "unix:///tmp/#{_proj_name}.sock"
 directory _proj_path
 
 ファイルのhead部分に追加
-
-$ mkdir -p run
-$ chmod a+w run
-
-プロセスIDファイルの配置ディレクトリを作成
 ```
 
 ■ nginx設定
@@ -183,7 +178,7 @@ $ mkdir -p misc/nginx
 $ vi misc/nginx development.conf
 
 upstream netshop {
-    server unix:///home/vagrant/netshop/run/netshop.sock fail_timeout=0;
+    server unix:///tmp/netshop.sock fail_timeout=0;
 }
 
 server {
@@ -250,4 +245,4 @@ $ bundle exec puma
 ブラウザを開き、 <http://netshop.local>にアクセスします。
 以下の画面が開けば環境構築完了です。
 
-![Railsデフォルトページ](/images/uploads/screen_ror_default_201802091806.png)
+![Railsデフォルト画面](/images/uploads/screen_ror_default_201802091806.png)
