@@ -138,6 +138,10 @@
     background-color:#E73F1C;
     color: #fff;
 }
+.tag:not(body).is-business_insider {
+    background-color: #016080;
+    color: #fff;
+}
 
 .indicators {
     text-align: center;
