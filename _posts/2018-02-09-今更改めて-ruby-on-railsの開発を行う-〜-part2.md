@@ -152,3 +152,118 @@ $ foreman start
 ![Rails サンプル画面](/images/uploads/screen_rails_sample_201802100114.png)
 
 こちらの画面が表示できれば成功です。
+
+
+## JSLint, CSSLintの導入
+`package.json` にESLintを追加します。以下のように変更してください。
+
+```package.json
+{
+  "name": "netshop",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^3.2.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.11.1",
+    // 以下を追加
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb-base": "^12.0.1",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "lint-staged": "^4.2.3",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.7.3"
+  }
+}
+```
+
+Lintの適応ルールとして`.eslintrc`ファイルを作成します。
+
+```.eslintrc
+{
+  "extends": ["eslint-config-airbnb-base", "prettier"],
+  "plugins": ["prettier"],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "prettier/prettier": "error"
+  },
+  "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": {
+          "resolve": {
+            "modules": ["frontend", "node_modules"]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+次にCSSLintの設定です。  
+`package.json`の`devDependencies`内に以下を追加します。
+```package.json
+"devDependencies": {
+    ...
+    "stylelint": "^8.1.1",
+    "stylelint-config-standard": "^17.0.0"
+}
+```
+
+Lintの適応ルールとして`.stylelintrc`ファイルも作成します。
+```.stylelintrc
+{
+  "extends": "stylelint-config-standard"
+}
+```
+
+`package.json`の`dependencies`配下にnormalize.cssを追加します。
+
+
+次は`git hooks`を導入し、git commit時に自動チェックが走るようにしましょう。`package.json`に"scripts"を追加します。
+
+```package.json
+・・・
+"scripts": {
+  "lint-staged": "$(yarn bin)/lint-staged"
+},
+"lint-staged": {
+  "config/webpack/**/*.js": [
+    "prettier --write",
+    "eslint",
+    "git add"
+  ],
+  "frontend/**/*.js": [
+    "prettier --write",
+    "eslint",
+    "git add"
+  ],
+  "frontend/**/*.css": [
+    "prettier --write",
+    "stylelint --fix",
+    "git add"
+  ]
+},
+"pre-commit": [
+  "lint-staged"
+],
+・・・
+```
+これで、コミット時にstagedファイルのエラーがすべてチェックされ、自動整形されます。
+ここまでできたら`yarn`で追加したライブラリをインストールしましょう
+
+```
+$ yarn
+```
+
+`frontend/packs/application.js`を修正し、`git add . && git commit -m "testing JS linting"`を実行します。  
+チェック処理が実行されることを確認してください。
+
