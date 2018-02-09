@@ -8,7 +8,7 @@ categories:
   - Programming
 tags:
   - ruby
-  - RubyOnRails
+  - ruby on rails
 ---
 こんばんわ、なかむです。\
 今回はRuby On Railsの基礎として環境設定からインストール、プロジェクト作成まで行なっていきたいと思います。\
