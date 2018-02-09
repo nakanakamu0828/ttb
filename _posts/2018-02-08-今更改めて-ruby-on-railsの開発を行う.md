@@ -102,11 +102,137 @@ mysql をインストール
 # # パスワード変更。パスワードはdatabase.ymlで利用します。
 # mysql_secure_installation
 #
+
+mysqlの設定は文字コードだけ変えます（開発環境なので簡易的です）
+
+# cp /etc/my.cnf /etc/my.cnf.org
+# vi /etc/my.cnf
+
+[mysqld]
+-- 追加
+character-set-server=utf8mb4
+
+-- 追加
+[mysql]
+character-set-server=utf8mb4
+
+# systemctl restart mysqld.service
+
+mysqlコマンドからMySQLサーバーにログインできることを確認しましょう
+# mysql -uroot -p
+
+
 ```
 
 ここまでで必要なミドルウェアのインストールが完了です。
 
 
 ## Railsプロジェクトのリポジトリを作成
+vagrantユーザーにexitしてからリポジトリを作成していきます。
+vagrantを利用しているので、ホストOSにマウントされている/vagrantディレクトリにリポジトリを作成します。
 
+```
+# exit
+$ cd /vagrant/
+$ rails new --database=mysql --skip-turbolinks --skip-test --skip-bundle --skip-javascript netshop
 
+今回はturbolinkやtestを利用しません
+また、初期はbundle installしないでプロジェクトを作成します
+netshop はプロジェクト名です。簡易的なecサイトを構築してみたいと思います。
+```
+
+`rails new`のオプションは [こちら](http://railsdoc.com/rails) をご確認ください。
+
+それでは各種設定をしていきます。
+
+■ DB設定
+```
+$ cd netshop/
+$ vi config/database.yml
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: [MySQLのパスワード設定]
+  socket: /var/lib/mysql/mysql.sock
+```
+
+■ puma設定
+```
+$ vi config/puma.rb
+
+_proj_path = "#{File.expand_path("../..", __FILE__)}"
+_proj_name = File.basename(_proj_path)
+_home = ENV.fetch("HOME") { "/vagrant" }
+_environment = ENV.fetch("RAILS_ENV") { "development" }
+
+pidfile "#{_home}/#{_proj_name}/run/#{_proj_name}.pid"
+bind "unix://#{_home}/#{_proj_name}/run/#{_proj_name}.sock"
+directory _proj_path
+
+ファイルのhead部分に追加
+
+$ mkdir -p run
+$ chmod a+w run
+
+プロセスIDファイルの配置ディレクトリを作成
+```
+
+■ nginx設定
+```
+$ mkdir -p misc/nginx
+$ vi misc/nginx development.conf
+
+upstream netshop {
+    server unix:///vagrant/netshop/run/netshop.sock fail_timeout=0;
+}
+
+server {
+    listen 80;
+    server_name netshop.local; # 開発環境のipアドレスもしくはホスト名を記述
+
+    root /vagrant/netshop/public; # アプリケーション名を記述
+
+    try_files $uri/index.html $uri @netshop; # アプリケーション名を記述
+
+    location / {
+        proxy_pass http://netshop; # アプリケーション名を記述
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_max_temp_file_size 0;
+    }
+
+    error_page 500 502 503 504 /500.html;
+    client_max_body_size 4G;
+    keepalive_timeout 10;
+}
+
+server_nameはご自身にあった環境の値を設定してください。
+
+$ sudo ln -snf /vagrant/netshop/misc/nginx/development.conf /etc/nginx/conf.d/netshop.conf
+
+nginxが設定ファイルを読み込むようにシンボリックリンクを /etc/nginx/conf.d/ に配置します
+
+```
+
+設定は以上となります。
+
+## Railsを起動
+
+まずはpumaを起動します。
+
+```
+$ sudo systemctl restart nginx
+```
+
+続いてpumaを起動します。
+利用するgemはプロジェクト内にインストールします。
+
+```
+$ bundle install --path=vendor/bundle
+$ bundle exec rails db:create
+$ bundle exec puma 
+```
