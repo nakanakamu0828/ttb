@@ -12,7 +12,7 @@ layout: default
                     <a class="post-card__thumbnail" style="background-image: url({{ post.thumbnail }})" href="{{ post.url | relative_url }}"></a>
                 {% endif %}
                 <div class="card-content post-card__content">
-                    <span class="tag m-b-sm is-{{ page.media | replace: " ", "_" | downcase }}">{{ post.media }}からのキュレーション</span>
+                    <span class="tag m-b-sm is-{{ post.media | replace: " ", "_" | downcase }}">{{ post.media }}からのキュレーション</span>
                     <h3 class="title post-card__content__title m-b-sm"><a href="{{ post.url | relative_url }}" title="{{ post.title | escape }}">{{ post.title | escape }}</a></h3>
                     {% if post.tags %}
                         <p class="m-b-sm">
