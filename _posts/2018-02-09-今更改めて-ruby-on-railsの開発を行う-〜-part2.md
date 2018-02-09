@@ -13,17 +13,17 @@ tags:
 こんばんわ、なかむです。  
 
 前回はRuby On Railsの環境構築を行いました。  
-今回は実際にRailsの開発環境を整備していきます。webpackを導入したので新しい概念で開発を行いたいと思い、
+今回は実際にRailsの開発環境を整備していきます。webpackを導入したので新しい概念で開発を行いたいと思い
 
 [新しいRailsフロントエンド開発（1）Asset PipelineからWebpackへ（翻訳）](https://techracho.bpsinc.jp/hachi8833/2017_12_26/49931)
 
-を参考にさせて頂きます。
-それでは初めてきましょう。
+を参考にさせて頂きます。それでは初めてきましょう。
 
+## システム構成の変更
 
 まずは、ブラウザ互換処理対策としてbrowserslistの設定を行います。
 詳しくは、 [Autoprefixerの仕組み](https://qiita.com/morishitter/items/ffe56a2145f2b225675c) をご確認ください。  
-プロジェクトルートに以下のファイルを作成します。
+プロジェクトルートに以下のファイルを作成します。  
 
 ```
 $ touch .browserslistrc
@@ -47,6 +47,7 @@ end
 
 1. `app/javascript`を`frontend`にディレクトリ名を変更し、プロジェクトルートに移動します。
 
+
 ```
 $ mv app/javascript ./frontend
 ```
@@ -65,7 +66,7 @@ $ mv app/javascript ./frontend
 
   <body>
     <%= yield %>
-    <%= javascript_pack_tag "application" %>%
+    <%= javascript_pack_tag "application" %>
   </body>
 </html>
 ```
@@ -81,7 +82,6 @@ default: &default
   source_entry_path: packs
   public_output_path: packs
   cache_path: tmp/cache/webpacker
-
 ```
 
 4. frontendディレクトリ配下に置かれるパーシャルが読み込めるように、application_controller.rbを変更します。
@@ -95,9 +95,60 @@ end
 
 5. JSコードやCSSコードの変更時にページを自動更新するために、Procfileを作成ます。また、foremanを利用するためインストールを行います。
 
+
 ```
 $ touch Procfile
 $ echo 'server: bundle exec puma' >> Procfile
 $ echo 'assets: bin/webpack-dev-server' >> Procfile
 $ gem install foreman
 ```
+
+## セットアップの確認
+
+新しい構成が機能するか確認していきます。
+それではホーム画面用のリソースを生成します。
+
+```
+$ rails g controller homes
+```
+
+以下のようにcontroller, view, routes.rb, js, cssを追加・変更してください。
+
+```config/routes.rb
+Rails.application.routes.draw do
+  root to: "homes#show" <-- 追加
+end
+```
+
+```frontend/packs/application.js
+import "./application.css";
+document.body.insertAdjacentHTML("afterbegin", "Webpacker works!");
+```
+
+```frontend/packs/application.css
+html, body {
+  background: lightyellow;
+}
+```
+
+```app/controllers/homes_controller.rb
+class HomesController < ApplicationController
+
+    def show
+    end
+
+end
+```
+
+`views/homes/show.html.erb`は空で作成します
+
+## アプリ起動
+
+```
+$ bundle binstubs bundler --force
+$ foreman start
+```
+
+![Rails サンプル画面](/images/uploads/screen_rails_sample_201802100114.png)
+
+こちらの画面が表示できれば成功です。
