@@ -128,10 +128,11 @@ vagrantを利用しているので、ホストOSにマウントされている/v
 ```
 # exit
 $ cd /vagrant/
-$ rails new --database=mysql --skip-turbolinks --skip-test --skip-bundle --skip-javascript netshop
+$ rails new --webpack --database=mysql --skip-coffee --skip-sprockets --skip-turbolinks --skip-test --skip-bundle --skip-javascript netshop
 
-今回はturbolinkやtestを利用しません
-また、初期はbundle installしないでプロジェクトを作成します
+今回はturbolinkやtestを利用しません。
+そしてフロントエンドではwebpackを利用します。
+また、今回はbundle installしないでプロジェクトを作成します
 netshop はプロジェクト名です。簡易的なecサイトを構築してみたいと思います。
 ```
 
@@ -175,7 +176,7 @@ directory _proj_path
 
 ```
 $ mkdir -p misc/nginx
-$ vi misc/nginx development.conf
+$ vi misc/nginx/development.conf
 
 upstream netshop {
     server unix:///tmp/netshop.sock fail_timeout=0;
@@ -225,11 +226,12 @@ vagrantのホームディレクトリにシンボリックリンクをはりま�
 $ ln -snf /vagrant/netshop /home/vagrant/netshop
 ```
 
-続いてpumaを起動します。
-利用するgemはプロジェクト内にインストールします。
+続いてpumaを起動ですが、  
+gemをプロジェクト内にインストールし、webpackのセットアップを行った後にpumaを起動します。
 
 ```
 $ bundle install --path=vendor/bundle
+$ bundle exec rake webpacker:install
 $ bundle exec rails db:create
 $ bundle exec puma
 ```
