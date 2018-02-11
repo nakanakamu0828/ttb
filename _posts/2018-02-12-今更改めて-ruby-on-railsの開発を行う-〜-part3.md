@@ -20,10 +20,6 @@ tags:
 $ rm -f frontend/packs/application.css
 ```
 
-`app/views/layouts/application.html.erb` 内の`<%= stylesheet_pack_tag 'application' %>`の読み込みも不要です。
-削除してください。
-
-
 ## アプリの初期設定
 
 アプリ全体で共通利用するフォルダを作成します。
@@ -62,6 +58,7 @@ body {
 `normalize.css`を`frontend/init/index.css`の最初に読み込み、ブラウザ依存のCSSをリセットします。
 
 ## コンポーネント作成
+
 コンポーネントは、`layouts`, `pages`, `components`の３種類を用意したいと思います。
 
 * layouts : 共通デザインを定義
@@ -101,14 +98,48 @@ import "./site.css";
 </div>
 ```
 
+続いて前回作成したHome画面のコンポーネントを作成します。
+ページ毎のコンポーネントになります。
+
+```
+$ mkdir -p frontend/pages/home
+$ touch frontend/pages/home/{_show.html.erb,home.css,home.js}
+```
+
+各ファイルの内容は以下のように定義します。
+
+```frontend/pages/home/home.js
+// frontend/pages/home/home.js
+import "./home.css";
+```
+
+```frontend/pages/home/home.css
+/* frontend/pages/home/home.css */
+.home {}
+.home h1 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+```
+
+```frontend/pages/home/_show.html_erb
+<!-- frontend/pages/home/_show.html.erb -->
+<div class="home">
+    <h1>Home page</h1>
+    <p>Hello from our first component!</p>
+</div>
+```
+
 続いて前回作成したHome画面のhtmlの`app/views/homes/show.html.erb`を以下のように変更します。
 
 ```app/views/homes/show.html.erb
 <!-- app/views/homes/show.html.erb -->
 <%= render "layouts/site/site" do %>
-  <p>Hello from our first component!</p>
+  <%= render "pages/home/show" %>
 <% end %>
 ```
 
-ここまでできたらサーバーを再び起動します。以下のように表示されれば成功です。
+`site`レイアウトを使用して`home`の画面を表示します。
+ここまでできたらサーバーを再び起動し、以下の画面が表示さるか確認してください。
 
+![Rails サンプル画面](/images/uploads/screen_rails_sample_20180212003646.png)
