@@ -10,7 +10,7 @@ tags:
   - ruby
   - ruby on rails
 ---
-こんにちは、なかむです。
+こんばんは、なかむです。
 
 前回に引き続きRailsの開発を進めていきたいと思います。
 コンポーネントごとに画面を作成していきます。
@@ -130,7 +130,16 @@ import "./home.css";
 </div>
 ```
 
-続いて前回作成したHome画面のhtmlの`app/views/homes/show.html.erb`を以下のように変更します。
+`init`と同様で作成したコンポーネントは、`frontend/packs/application.js`にてimportします。
+
+```frontend/packs/application.js
+import "init";
+// 以下を追加
+import "layouts/site/site";
+import "pages/home/home";
+```
+
+前回作成したHome画面のhtml　`app/views/homes/show.html.erb`　を以下のように変更します。
 
 ```app/views/homes/show.html.erb
 <!-- app/views/homes/show.html.erb -->
@@ -139,11 +148,11 @@ import "./home.css";
 <% end %>
 ```
 
-`site`レイアウトを使用して`home`の画面を表示します。
+`site`レイアウトを使用して`home`の画面を表示するようにコンポーネントを読み込みます。
 ここまでできたらサーバーを再び起動し、以下の画面が表示さるか確認してください。
 
 ![Rails サンプル画面](/images/uploads/screen_rails_sample_20180212003646.png)
 
 
 今回は`layouts`, `pages`の２つのみで、`components`に触れませんでしたが、複数の画面で利用するUIパーツなど`components`として切り出して利用したいと考えています。  
-こちらに関しては実装を進めていく上でリファクタリングを進めながら切り出していきたいです。
+こちらに関しては実装を進めていく上でリファクタリングを進めながら切り出していきたいと思います。
