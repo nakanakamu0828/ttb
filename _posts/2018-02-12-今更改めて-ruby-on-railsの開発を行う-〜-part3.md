@@ -115,7 +115,6 @@ import "./home.css";
 
 ```frontend/pages/home/home.css
 /* frontend/pages/home/home.css */
-.home {}
 .home h1 {
     font-size: 1.2rem;
     font-weight: bold;
