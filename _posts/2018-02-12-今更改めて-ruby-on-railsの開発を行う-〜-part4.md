@@ -17,7 +17,9 @@ tags:
 今回は、bulmaを組み込みベースとなるデザインを作成していきます。
 
 ## bulmaをインストール
+
 yarnを利用してbulmaをインストールします。
+
 ```
 yarn add bulma
 ```
@@ -31,6 +33,7 @@ yarn add bulma
 ```
 
 ## `site`コンポーネントのレイアウトをbulmaベースに変更
+
 オンラインショップを意識して簡単なbulmaベースのレイアウトを作成します。
 
 `app/views/layouts/application.html.erb`にmetaタグとfontawesomeのjs読み込みを追加
@@ -237,4 +240,11 @@ yarn add bulma
 </div>
 ```
 
-ここまで変更したらサーバーを起動しなおしましょう。
+ここまで変更したらサーバーを起動しなおしましょう。\
+以下の画面が表示されれば成功です。
+
+![オンラインショップ](/images/uploads/screen_online_shop.png)
+
+
+
+今回の成果物は \[こちら](https://github.com/nakanakamu0828/netshop/tree/v0.4) をご確認ください。
