@@ -260,3 +260,5 @@ $ bundle exec puma
 以下の画面が開けば環境構築完了です。
 
 ![Railsデフォルト画面](/images/uploads/screen_ror_default_201802091806.png)
+
+今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.1) をご確認ください。
