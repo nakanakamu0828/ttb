@@ -144,9 +144,9 @@ yarn add bulma
 </div>
 ```
 
-ホーム画面のデザインを変更します。`frontend/pages/home/_show.html.erb`を以下のように修正します。
+ホーム画面のデザインを変更します。frontend/pages/home/_show.html.erbを以下のように修正します。
 
-```frontend/pages/home/_show.html.erb`
+```frontend/pages/home/_show.html.erb
 <div class="home">
     <section class="section">
         <div class="container">
@@ -175,7 +175,7 @@ yarn add bulma
                     <div class="card">
                         <div class="card-image">
                             <figure class="image is-4by3">
-                            <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                            <img src="https//bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
                             </figure>
                         </div>
                         <div class="card-content">
@@ -237,3 +237,4 @@ yarn add bulma
 </div>
 ```
 
+ここまで変更したらサーバーを起動しなおしましょう。
