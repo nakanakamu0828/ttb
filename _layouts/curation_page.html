@@ -3,6 +3,12 @@ layout: default
 ---
 <section class="section">
     <div class="container">
+        <nav class="breadcrumb m-b-none" aria-label="breadcrumbs">
+            <ul style="margin-left: 0">
+                <li><a href="/"><i class="fas fa-home"></i></a></li>
+                <li class="is-active"><a href="#" aria-current="page">Curation</a></li>
+            </ul>
+        </nav>
         <div class="home">        
         {{ content }}
         {% if site.curations.size > 0 %}
