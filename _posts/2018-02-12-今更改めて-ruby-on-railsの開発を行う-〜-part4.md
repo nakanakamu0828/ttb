@@ -240,11 +240,11 @@ yarn add bulma
 </div>
 ```
 
-ここまで変更したらサーバーを起動しなおしましょう。\
+ここまで変更したらサーバーを起動しなおしましょう。  
 以下の画面が表示されれば成功です。
 
 ![オンラインショップ](/images/uploads/screen_online_shop.png)
 
 
 
-今回の成果物は \[こちら](https://github.com/nakanakamu0828/netshop/tree/v0.4) をご確認ください。
+今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.4) をご確認ください。
