@@ -155,3 +155,5 @@ import "pages/home/home";
 
 今回は`layouts`, `pages`の２つのみで、`components`に触れませんでしたが、複数の画面で利用するUIパーツなど`components`として切り出して利用したいと考えています。  
 こちらに関しては実装を進めていく上でリファクタリングを進めながら切り出していきたいと思います。
+
+今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.3) をご確認ください。
