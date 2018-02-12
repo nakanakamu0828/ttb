@@ -20,3 +20,4 @@ EC2から接続することを前提とします。
 
 ![セキュリティグループ設定](/images/uploads/screen_aws_elasticache_secure_20180212175742.png)
 
+続いてRedisを作成していきます。
