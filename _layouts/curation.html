@@ -24,14 +24,29 @@ layout: default
           <a href="{{ page.target_link }}" target="_blank" rel="nofollow">{{ page.title | escape }}</a>
         </h1>
         <h2 class="m-b-md" itemprop="name headline">{{ page.description | escape }}</h2>
-        {% if page.tags %}
-          <p>
-              {% for tag in page.tags %}
-                {% assign tag_name = tag | replace: " ", "_" %}
-                <span class="tag is-link">{{ tag }}</span>
-              {% endfor %}
-          </p>
-        {% endif %}
+        <div class="columns">
+          {% if page.tags %}
+            <div class="column">
+                {% for tag in page.tags %}
+                  {% assign tag_name = tag | replace: " ", "_" %}
+                  <a href="{{ '/tags/' | append: tag_name | relative_url }}" class="tag is-link">
+                    {{ tag }}
+                  </a>
+                {% endfor %}
+            </div>
+          {% endif %}
+          <div class="column has-text-right-desktop">
+            <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.url | absolute_url }}&via={{ site.twitter_username }}&related={{ site.twitter_username }}" rel="nofollow" target="_blank" title="Share on Twitter" class="button is-social is-twitter is-circle">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://facebook.com/sharer.php?u={{ page.url | absolute_url }}" rel="nofollow" target="_blank" title="Share on Facebook" class="button is-social is-facebook is-circle">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://plus.google.com/share?url={{ page.url | absolute_url }}" rel="nofollow" target="_blank" title="Share on Google+" class="button is-social is-google-plus is-circle">
+              <i class="fab fa-google-plus-g"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
