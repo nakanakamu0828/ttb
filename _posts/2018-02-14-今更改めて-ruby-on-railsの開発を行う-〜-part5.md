@@ -1,6 +1,6 @@
 ---
 layout: post
-thumbnail: /images/uploads/screen_bulma.png
+thumbnail: /images/uploads/screen_site_multi_lang_en_20180214022016.png
 title: 今更改めて Ruby On Railsの開発を行う 〜 Part5
 description: 多言語のアプリに対応する
 location: Hong Kong
@@ -11,11 +11,11 @@ tags:
   - ruby on rails
   - i18n
 ---
-こんばんは、なかむです。
+こんばんは、なかむです。  
 今回はRailsアプリの多言語対応を試していきたいと思います。
 
-
 ## 言語の切り替え方法について
+
 切り替え方法は大きく４つあります。
 
 1. サブドメインから言語を選択
@@ -29,12 +29,12 @@ tags:
 サブドメインによるlocaleの管理は、[subdomain_locale](https://github.com/semaperepelitsa/subdomain_locale) というgemを利用したいと思います。
 
 ## subdomain_localeのインストール
+
 Gemfileに `gem "subdomain_locale"` を追加して `bundle install` します。
 
-
 ## Railsに言語設定を追加
-`config/application.js`に利用する言語を設定していきます。
 
+`config/application.js`に利用する言語を設定していきます。
 
 ```config/application.js
 config.i18n.enforce_available_locales = true
@@ -49,8 +49,8 @@ config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,y
 
 今回は英語と日本語の２カ国語とします
 
-
 ## 翻訳ファイルのディレクトリ構造を整理
+
 モデル、view、それ以外に利用するdefaultの3ディレクトリを用意します。
 
 ```
@@ -95,8 +95,8 @@ ja:
 
 site.titleの部分は、言語切り替えの確認時に利用します。
 
-
 ### ヘッダーに言語切り替えリンクを設置
+
 今回はselectタグで言語を切り替えられるようにします。
 ヘッダーに以下のselect文を追加してください。
 
@@ -125,6 +125,7 @@ site.titleの部分は、言語切り替えの確認時に利用します。
 ```
 
 javascriptを利用して、selectの値が変更された場合に画面を切り替えます。
+
 ```frontend/layouts/site/site.js
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('selectedLocale').addEventListener('change', function () {
@@ -135,10 +136,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });    
 });
-
 ```
 
 ## サイトタイトルを言語毎に切り替える
+
 言語が正しく切り替わるかどうか、サイトのタイトルを変更してみましょう。
 `frontend/layouts/site/_site.html.erb`のタイトル部分を以下のように修正してください。
 
@@ -153,11 +154,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ここまでできたら、サーバーを起動し画面を確認してみてください。
 
+■ 英語版
 
+![オンラインショップ 英語版](/images/uploads/screen_site_multi_lang_en_20180214022016.png)
+
+■ 日本語版
+
+![オンラインショップ 日本語版](/images/uploads/screen_site_multi_lang_ja_20180214022016.png)
 
 
 
 ## 補足
+
 今まで同様nginxをwebサーバーとして利用していう場合、設定ファイルにサブドメインへのアクセス設定を追加してください。
 
 ```misc/nginx/development.conf
@@ -166,3 +174,7 @@ server_name netshop.local;
 ↓
 server_name netshop.local en.netshop.local ja.netshop.local;
 ```
+
+## 参考URL
+* [あなたはいくつ知っている？Rails I18nの便利機能大全！](https://qiita.com/Kta-M/items/bd4ba36a58ad602a9d8b)
+* [Rails国際化 (I18n) API](https://railsguides.jp/i18n.html)
