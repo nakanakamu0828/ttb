@@ -164,6 +164,10 @@
     background-color: #016080;
     color: #fff;
 }
+.tag:not(body).is-tech_academy {
+    background-color: #222;
+    color: #fff;
+}
 
 .indicators {
     text-align: center;
