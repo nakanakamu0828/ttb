@@ -11,7 +11,7 @@ tags:
   - ruby on rails
   - i18n
 ---
-こんばんは、なかむです。  
+こんにちは、なかむです。  
 今回はRailsアプリの多言語対応を試していきたいと思います。
 
 ## 言語の切り替え方法について
@@ -25,6 +25,7 @@ tags:
 
 今回は１の「サブドメインから言語を選択」を利用したいと思います。
 システム的にはサブドメインで切り替える場合、サブドメイン毎にサーバーを分けることができるので分散させやすいというメリットもあります。
+また、言語によってコンテンツの内容を大きく変更する場合にも利用できます。
 
 サブドメインによるlocaleの管理は、[subdomain_locale](https://github.com/semaperepelitsa/subdomain_locale) というgemを利用したいと思います。
 
@@ -127,15 +128,16 @@ site.titleの部分は、言語切り替えの確認時に利用します。
 javascriptを利用して、selectの値が変更された場合に画面を切り替えます。
 
 ```frontend/layouts/site/site.js
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('selectedLocale').addEventListener('change', function () {
-        var selectedOption = this.options[this.selectedIndex];
-        var url = selectedOption.getAttribute('data-url');
-        if (url) {
-            location.href = url;
-        }
-    });    
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("selectedLocale").addEventListener("change", () => {
+    const selectedOption = this.options[this.selectedIndex];
+    const url = selectedOption.getAttribute("data-url");
+    if (url) {
+      window.location.href = url;
+    }
+  });
 });
+
 ```
 
 ## サイトタイトルを言語毎に切り替える
@@ -155,13 +157,17 @@ document.addEventListener('DOMContentLoaded', function () {
 ここまでできたら、サーバーを起動し画面を確認してみてください。
 
 ■ 英語版
+http://netshop.local/
 
 ![オンラインショップ 英語版](/images/uploads/screen_site_multi_lang_en_20180214022016.png)
 
 ■ 日本語版
+http://ja.netshop.local/
 
 ![オンラインショップ 日本語版](/images/uploads/screen_site_multi_lang_ja_20180214022016.png)
 
+
+今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.5) をご確認ください。
 
 
 ## 補足
@@ -174,6 +180,13 @@ server_name netshop.local;
 ↓
 server_name netshop.local en.netshop.local ja.netshop.local;
 ```
+
+ホストPCのhostsファイルにもサブドメインへのアクセスができるように設定を追加してください。
+私の環境の場合
+```/etc/hosts
+192.168.33.10 netshop.local ja.netshop.local
+```
+
 
 ## 参考URL
 * [あなたはいくつ知っている？Rails I18nの便利機能大全！](https://qiita.com/Kta-M/items/bd4ba36a58ad602a9d8b)
