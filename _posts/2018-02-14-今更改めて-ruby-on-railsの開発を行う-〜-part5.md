@@ -47,6 +47,9 @@ config.i18n.default_locale = :en
 config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 ```
 
+今回は英語と日本語の２カ国語とします
+
+
 ## 翻訳ファイルのディレクトリ構造を整理
 モデル、view、それ以外に利用するdefaultの3ディレクトリを用意します。
 
@@ -56,35 +59,49 @@ $ mv config/locales/en.yml config/locales/defaults/
 ```
 
 デフォルトで用意されていた`config/locales/en.yml`は`config/locales/defaults/`に移動しておきます。
+また、`config/locales/defaults/ja.yml`ファイルも作成しておきましょう。内容は以下の通りです。
 
-
-`app/controllers/application_controller.rb`に言語の判定と設定処理を追加します。
-
-```app/controllers/application_controller.rb
-# app/controllers/application_controller.rb
-class ApplicationController < ActionController::Base
-  ...
-
-  before_action :set_locale
-
-  def set_locale
-    I18n.locale = extract_locale_from_tld || I18n.default_locale
-  end
-
-  # サブドメインからlocaleを取得する
-  # 有効なlocaleが見つからない場合は、nilを返す
-  def extract_locale_from_tld
-    parsed_locale = request.subdomains.first
-    I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
-  end
-end
+```config/locales/defaults/en.yml
+en:
+  site:
+    title: "Online Shop"
+  date:
+    formats:
+      default: "%m/%d/%Y"
+      long: "%B %d, %Y"
+      short: "%m.%d.%y"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M:%S"
+      long: "%B %d, %Y %H時%M分%S秒 %z"
+      short: "%m.%d.%y %H:%M"
 ```
+
+```config/locales/defaults/ja.yml
+ja:
+  site:
+    title: "オンラインショップ"
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      short: "%y/%m/%d %H:%M"
+```
+
+site.titleの部分は、言語切り替えの確認時に利用します。
+
 
 ### ヘッダーに言語切り替えリンクを設置
 今回はselectタグで言語を切り替えられるようにします。
 ヘッダーに以下のselect文を追加してください。
 
 ```frontend/layouts/site/_site.html.erb
+<%# frontend/layouts/site/_site.html.erb %>
 ・・・
 <a class="navbar-item">
  　<i class="fas fa-shopping-cart"></i>
@@ -121,7 +138,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ```
 
+## サイトタイトルを言語毎に切り替える
+言語が正しく切り替わるかどうか、サイトのタイトルを変更してみましょう。
+`frontend/layouts/site/_site.html.erb`のタイトル部分を以下のように修正してください。
+
+```frontend/layouts/site/_site.html.erb
+<%# frontend/layouts/site/_site.html.erb %>
+<a class="navbar-item title" style="margin-bottom: 0;">
+ 　Online Shop
+</a>
+↓
+<%= link_to root_url(locale: I18n.locale), t('site.title'), class: 'navbar-item title', style: 'margin-bottom: 0;' %>
+```
+
+ここまでできたら、サーバーを起動し画面を確認してみてください。
+
+
+
 
 
 ## 補足
-今まで同様nginxをwebサーバーとして利用していう場合、設定ファイルにサブドメインへのサクセス設定を追加してください。
+今まで同様nginxをwebサーバーとして利用していう場合、設定ファイルにサブドメインへのアクセス設定を追加してください。
+
+```misc/nginx/development.conf
+# misc/nginx/development.conf
+server_name netshop.local;
+↓
+server_name netshop.local en.netshop.local ja.netshop.local;
+```
