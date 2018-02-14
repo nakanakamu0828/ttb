@@ -35,3 +35,17 @@ $ rbenv -version
 $ brew update
 $ brew install rbenv ruby-build
 ```
+
+続いてrubyのバージョンを確認
+```
+$ rbenv install --list
+```
+
+今回は2.5.0をインストールします。
+```
+$ rbenv install 2.5.0
+$ rbenv global 2.5.0
+$ sudo gem install railties && rbenv rehash
+```
+
+環境によってはpathを通す必要があるかもしれません。
