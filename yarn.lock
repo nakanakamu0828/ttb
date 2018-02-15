@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+bulma-extensions@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/bulma-extensions/-/bulma-extensions-1.0.2.tgz#30fcd6db836fb157c1fdb4702f601cad5a2576fd"
+
 bulma@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.6.2.tgz#f4b1d11d5acc51a79644eb0a2b0b10649d3d71f5"
