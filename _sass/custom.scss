@@ -168,6 +168,10 @@
     background-color: #222;
     color: #fff;
 }
+.tag:not(body).is-amp {
+    background-color: #8a7dff;
+    color: #fff;
+}
 
 .indicators {
     text-align: center;
