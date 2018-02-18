@@ -1,7 +1,7 @@
 <footer class="footer">
   <div class="container">
       <div class="columns is-desktop">
-          <div class="column">
+          <div class="column is-three-fifths">
             <h2 class="m-b-sm">{{ site.title | escape }}</h2>
             <div class="columns is-desktop m-b-none">
               <div class="column">
@@ -9,16 +9,16 @@
                       <img src="{{ site.profile_image }}">
                   </figure>
               </div>
-              <div class="column is-four-fifths">
+              <div class="column is-two-thirds">
                 <p>{{ site.description }}</p>
               </div>
             </div>
 
-            <a href="https://twitter.com/nakanakamu0828?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @nakanakamu0828</a>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <div class="m-b-md">
+              <a href="https://twitter.com/nakanakamu0828?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @nakanakamu0828</a>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
 
-          </div>
-          <div class="column">
             {% if site.categories %}
               <h2 class="strong m-b-sm">Categories</h2>
               <p>
@@ -52,6 +52,9 @@
                   <img src="/images/default/bulma-logo.png" alt="Made with Bulma" height="18" width="96">
                 </a>    
             </p>
+          </div>
+          <div class="column">
+            <a class="twitter-timeline" height="600px" href="https://twitter.com/nakanakamu0828?ref_src=twsrc%5Etfw">Tweets by nakanakamu0828</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           </div>
       </div>
       <div class="has-text-centered footer__social-box">
