@@ -32,9 +32,13 @@
 
   <link rel="alternate" hreflang="ja" href="{{ page.url | absolute_url }}">
   <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+  <style type="text/css">{% render_asset node_modules/flickity/dist/flickity.min.css %}</style>
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   {% feed_meta %}
   {% if jekyll.environment == 'production' and site.env.GOOGLE_ANALITICS_TRAKING_ID %}
     {% include google-analytics.html %}
   {% endif %}
+
+  <script>{% render_asset node_modules/flickity/dist/flickity.pkgd.min.js %}</script>
+
 </head>

@@ -190,6 +190,17 @@
     }
 }
 
+// 
+// Card
+// 
+.card.card--related-post {
+    width: 300px;
+    margin: 0 5px 10px 5px;
+}
+
+.card.card--related-post .card--related-post__title {
+    font-size: 1.2rem;
+}
 
 // 
 // Pages

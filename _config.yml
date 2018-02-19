@@ -134,6 +134,7 @@ icon_size: 50 # font-size of icons in px
 colored: colored # Leave blank for black and white icons
 google_analytics: 
 
+newly_post_count: 5
 
 # Build settings
 markdown: kramdown

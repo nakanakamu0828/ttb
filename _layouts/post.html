@@ -23,7 +23,7 @@ layout: default
         {% if page.author or site.author or page.location %}
           <p class="post-meta">
             {% if page.author or site.author %}
-              <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <span itemprop="author" itemscope>
                 <span class="p-author h-card" itemprop="name">
                   <i class="fas fa-user"></i>
                   {% if page.author %}
@@ -83,5 +83,11 @@ layout: default
 
         <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
     </div>
+  </section>
+
+  <section class="section">
+      <div class="container">
+          {% include newly_posts.html %}
+      </div>
   </section>
 </article>
