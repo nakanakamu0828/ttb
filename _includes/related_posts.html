@@ -1,8 +1,6 @@
 
-{% assign max_related = site.newly_post_count %}
-{% assign min_common_tags = 1 %}
-{% assign max_related_counter = 0 %}
-{% assign max_related_counter = 0 %}
+{% assign max_related_count = site.related_post_count %}
+{% assign related_counter = 0 %}
 
 {% for post in site.posts %}
   {% assign same_tag_count = 0 %}
@@ -14,10 +12,10 @@
     {% endif %}
   {% endfor %}
 
-  {% if same_tag_count >= min_common_tags %}
-    {% if 0 == max_related_counter %}
+  {% if same_tag_count > 0 %}
+    {% if 0 == related_counter %}
       <div class="related">
-          <h2>関連情報</h2>
+          <h2 class="title">関連情報</h2>
           <div class="main-carousel">
     {% endif %}
     <div class="carousel-cell">
@@ -28,28 +26,25 @@
           </figure>
         </div>
         <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title card--related-post__title is-4"><a href="{{ post.url | relative_url }}" title="{{ post.title | escape }}">{{ post.title | escape }}</a></p>
-            </div>
+          <div class="media m-b-xs">
+            <h3 class="title card--related-post__title m-b-xs"><a href="{{ post.url | relative_url }}" title="{{ post.title | escape }}">{{ post.title | escape }}</a></h3>
           </div>
       
-          <div class="content">
+          <div class="content m-b-xs">
               {% for tag in post.tags %}
                   {% assign tag_name = tag | replace: " ", "_" %}
                   <a href="{{ '/tags/' | append: tag_name | relative_url }}" class="tag is-link">
                       {{ tag }}
                   </a>
               {% endfor %}
-            <br>
-            {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-            <time >{{ post.date | date: date_format }}</time>
           </div>
-        </div>
+          {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+          <time>{{ post.date | date: date_format }}</time>
+      </div>
       </div>
     </div>
-    {% assign max_related_counter = max_related_counter | plus: 1 %}
-    {% if max_related_counter >= max_related %}
+    {% assign related_counter = related_counter | plus: 1 %}
+    {% if related_counter >= max_related_count %}
         </div>
       </div>
       {% break %}
