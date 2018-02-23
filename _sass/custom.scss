@@ -172,6 +172,10 @@
     background-color: #8a7dff;
     color: #fff;
 }
+.tag:not(body).is-zoo_online {
+    background-color: #111;
+    color: #fff;
+}
 
 .indicators {
     text-align: center;
