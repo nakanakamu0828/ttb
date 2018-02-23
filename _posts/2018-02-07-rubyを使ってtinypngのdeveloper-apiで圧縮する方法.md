@@ -8,18 +8,18 @@ categories:
   - Programming
 tags:
   - ruby
-  - tinyping
+  - tinypng
 ---
 こんばんは、なかむです。
 
-今回は、TinypingのDeveloper APIを利用して圧縮処理を行います。  
+今回は、TinypngのDeveloper APIを利用して圧縮処理を行います。  
 ツールとしてうまく組み込むことで圧縮処理の効率化を行い、サービスへの負荷を減らすことが目的です。  
 Rubyを使ってスクリプトを作成していきます。
 
-まずはAPI KEYをTinypingの [DEVELOPER API](https://tinypng.com/developers) ページから発行します。
+まずはAPI KEYをTinypngの [DEVELOPER API](https://tinypng.com/developers) ページから発行します。
 
 1. 名前、メールアドレスを入力し、`Get your API key`ボタン押下
-2. 入力したメールアドレスにTinypingからメールが届きます。その中のURLをクリックし、認証を完了させます。
+2. 入力したメールアドレスにTinypngからメールが届きます。その中のURLをクリックし、認証を完了させます。
 3. ログイン後の画面にAPI KEYが表示されます
 
 それではサンプルプロジェクトを作成します。
