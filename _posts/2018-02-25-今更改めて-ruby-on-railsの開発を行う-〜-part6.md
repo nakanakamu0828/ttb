@@ -99,5 +99,32 @@ mysql> desc category_translations;
 6 rows in set (0.00 sec)
 ```
 
-## seedを利用してデータをimport
+## seedを利用してデータをインポート
+`db/seeds.rb`に初期データをインポートする処理を記載します。
+
+```db/seeds.rb
+# db/seeds.rb
+[
+    { en: 'Mens', ja: '男性' },
+    { en: 'Womens', ja: '女性' },
+    { en: 'Children', ja: '子供' },
+    { en: 'Babies', ja: '赤ちゃん' }
+].each do |d|
+    I18n.locale = :en
+    data = Category.create(name: d[:en])
+
+    I18n.locale = :ja
+    data.name = d[:ja]
+    data.save!
+end
+```
+
+それでは実行してみましょう
+```
+$ rails db:seed
+```
+
+`category_translations`テーブルにデータが作成されていることを確認してください。
+
+## Railsアプリでカテゴリーを動的表示させる
 
