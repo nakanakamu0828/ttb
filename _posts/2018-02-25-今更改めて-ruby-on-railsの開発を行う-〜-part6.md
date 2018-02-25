@@ -11,7 +11,7 @@ tags:
   - ruby on rails
   - globalize
 ---
-おはようございます、なかむです。  
+こんにちは、なかむです。  
 引き続きRailsアプリの多言語対応を試していきたいと思います。  
 今期は、[globalize/globalize](https://github.com/globalize/globalize)というgemを利用してModelを多言語化していきます。
 
