@@ -1,6 +1,6 @@
 ---
 layout: post
-thumbnail: /images/uploads/rails.png
+thumbnail: /images/uploads/screen_rails_globalize_20180225122644.png
 title: 今更改めて Ruby On Railsの開発を行う 〜 Part6
 description: globalizeを利用してModelも多言語対応する
 location: Tokyo
@@ -14,7 +14,6 @@ tags:
 こんにちは、なかむです。  
 引き続きRailsアプリの多言語対応を試していきたいと思います。  
 今期は、[globalize/globalize](https://github.com/globalize/globalize)というgemを利用してModelを多言語化していきます。
-
 
 ## [globalize/globalize](https://github.com/globalize/globalize)のインストール
 
@@ -100,6 +99,7 @@ mysql> desc category_translations;
 ```
 
 ## seedを利用してデータをインポート
+
 `db/seeds.rb`に初期データをインポートする処理を記載します。
 
 ```db/seeds.rb
@@ -120,6 +120,7 @@ end
 ```
 
 それでは実行してみましょう
+
 ```
 $ rails db:seed
 ```
@@ -127,6 +128,7 @@ $ rails db:seed
 `category_translations`テーブルにデータが作成されていることを確認してください。
 
 ## Railsアプリでカテゴリーを動的表示させる
+
 ヘッダーメニューとしてカテゴリーを全画面に表示するので、`application_controller`に共通処理を実装します。
 
 ```app/controllers/application_controller.rb
@@ -175,6 +177,17 @@ view(`_site.html.erb`)も動的に変更されるように変更します。
 
 ここまでできたらサーバーを起動して言語切り替えでメニューが切り替わるか確認してください。
 
+![英語ページ](/images/uploads/screen_rails_globalize_20180225093042.png)
+
+英語での画面表示
+
+![日本語ページ](/images/uploads/screen_rails_globalize_20180225093015.png)
+
+日本語での画面表示
+
+
+今後ますます日本に多くの外国旅行者や海外のビジネスマンがやってきます。常に多言語対応を意識し常に開発することによって、外国人へのアプローチが可能となりサービスの幅も広がってくるでしょう。
+また、日本人も日本にとどまらず海外で暮らすことも増えてくると思います。そういったときに改めて学ぶのではなく、常に意識した設計・開発が重要です。
 
 
 今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.6) をご確認ください。
