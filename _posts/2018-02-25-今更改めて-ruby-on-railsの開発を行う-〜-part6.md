@@ -18,7 +18,7 @@ tags:
 ## [globalize/globalize](https://github.com/globalize/globalize)のインストール
 
 Gemfileに `gem 'globalize', git: 'https://github.com/globalize/globalize'` を追加して `bundle install` します。  
-githubのURLを指定するのは、ActiveRecord5.1に対応してリポジトリを設定するためです。
+githubのURLを指定するのは、ActiveRecord5.1に対応したリポジトリの指定です。
 
 ##　多言語化するModelを作成
 今回はネットショップのカテゴリーを多言語化したいと思います。  
@@ -179,15 +179,14 @@ view(`_site.html.erb`)も動的に変更されるように変更します。
 
 ![英語ページ](/images/uploads/screen_rails_globalize_20180225093042.png)
 
-英語での画面表示
+**英語での画面表示**
 
 ![日本語ページ](/images/uploads/screen_rails_globalize_20180225093015.png)
 
-日本語での画面表示
+**日本語での画面表示**
 
-
-今後ますます日本に多くの外国旅行者や海外のビジネスマンがやってきます。常に多言語対応を意識し常に開発することによって、外国人へのアプローチが可能となりサービスの幅も広がってくるでしょう。
-また、日本人も日本にとどまらず海外で暮らすことも増えてくると思います。そういったときに改めて学ぶのではなく、常に意識した設計・開発が重要です。
-
+今後はますますグローバル社会になりそうですね。日本にも多くの外国人がやってくるでしょう。常に多言語対応を意識し開発を行うことで、外国人へのアプローチが可能となりサービスの幅も広がると思います。
+また、日本人も日本にとどまらず海外で暮らす人が増えてくるでしょう。  
+今から多言語、他通貨、timezoneを意識した開発をすることで将来に備えましょう。
 
 今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.6) をご確認ください。
