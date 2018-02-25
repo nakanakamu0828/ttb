@@ -11,7 +11,7 @@ tags:
   - ruby on rails
   - globalize
 ---
-こんばんは、なかむです。  
+おはようございます、なかむです。  
 引き続きRailsアプリの多言語対応を試していきたいと思います。  
 今期は、[globalize/globalize](https://github.com/globalize/globalize)というgemを利用してModelを多言語化していきます。
 
@@ -70,7 +70,7 @@ end
 $ rails db:migrate
 ```
 
-DBを除いて、`categories`テーブルと`category_translations`テーブルが作成されていることを確認してください。
+DBの中を覗いて、`categories`テーブルと`category_translations`テーブルが作成されていることを確認してください。
 
 ```mysql
 mysql> desc categories;
@@ -127,4 +127,50 @@ $ rails db:seed
 `category_translations`テーブルにデータが作成されていることを確認してください。
 
 ## Railsアプリでカテゴリーを動的表示させる
+ヘッダーメニューとしてカテゴリーを全画面に表示するので、`application_controller`に共通処理を実装します。
 
+```app/controllers/application_controller.rb
+# app/controllers/application_controller.rb
+
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+  prepend_view_path Rails.root.join("frontend")
+
+
+  ### 以下を追加
+  before_action :init_category
+  def init_category
+    @categories = Category.where(state: true).order(id: :asc)
+  end
+  ### ここまで
+
+end
+```
+
+view(`_site.html.erb`)も動的に変更されるように変更します。
+
+```frontend/layouts/site/_site.html.erb
+<!-- frontend/layouts/site/_site.html.erb -->
+<ul>
+  <li class="is-active">
+    <a>Overview</a>
+  </li>
+  <li>
+    <a>Ladies</a>
+  </li>
+  <li>
+    <a>Mens</a>
+  </li>
+  <li>
+    <a>Children</a>
+  </li>
+  <li>
+    <a>Babies</a>
+  </li>
+</ul>
+
+↓
+<%= content_tag(:ul) { @categories.each { |category| concat(content_tag(:li, link_to(category.name, '#'))) } } %>
+```
+
+ここまでできたらサーバーを起動して言語切り替えでメニューが切り替わるか確認してください。
