@@ -185,3 +185,6 @@ pwa:
       strategy: networkFirst
     - route: "'/api/pic'"
       strategy: cacheFirst
+
+jekyll-minifier:
+  exclude: 'feed.xml'
