@@ -10,9 +10,9 @@ tags:
   - ruby
   - ruby on rails
 ---
-こんにちは、なかむです。 　
-今回は自己結合するテーブルをRailsで扱う方法をまとめていきます。
-前回の多言語対応時に作成したcategoriesテーブルに親子関係を持たせ、自己結合するようにします。
+こんにちは、なかむです。  
+今回は自己結合するテーブルをRailsで扱う方法をまとめていきます。  
+前回の多言語対応時に作成したcategoriesテーブルに親子関係を持たせ、自己結合するようにします。  
 テーブル構造は以下のER図からご確認ください。
 
 ![ER図](/images/uploads/screen_er_2018030205523.png)
@@ -67,7 +67,7 @@ Create Table: CREATE TABLE `categories` (
 
 ## Modelを修正
 
-Modelに親子のリレーションを設定します。`belong_to` `has_many`の追加です。以下のようなModelに変更してください。
+Modelに親子関係が保持できるように`belong_to`、`has_many`の記述を追加します。以下のようなModelに変更してください。
 
 ```app/models/category.rb
 # app/models/category.rb
@@ -110,7 +110,7 @@ end
 
 ## 親子関係のデータを作成
 
-seedにスクリプトを追加して、categoriesテーブルに親子関係を作成していきます。`db/seed.rb`を以下のように変更してください。
+seedのスクリプトを変更して、categoriesテーブルに親子関係のデータを作成していきます。`db/seed.rb`を以下のように変更してください。
 
 ```db/seed.rb
 # db/seed.rb
@@ -169,13 +169,14 @@ seedにスクリプトを追加して、categoriesテーブルに親子関係を
 end
 ```
 
-seedを実行します
+既にDBにデータが登録してある場合、レコードを削除します。
+続いてseedを実行します
 
 ```
 $ rails db:seed
 ```
 
-エラーなしで実行できたことを確認したら、categoriesテーブル、category_translationsテーブルのデータを確認してみてください。
+エラーなしで実行できたことを確認した後、categoriesテーブル、category_translationsテーブルのデータを確認してみてください。
 
 ## カテゴリーページの作成
 
@@ -185,7 +186,7 @@ $ rails db:seed
 $ rails g controller categories
 ```
 
-次にそれぞれ必要なファイルを作成・変更していきます
+次にそれぞれ必要なファイルを作成していきます
 `app/controllers/categories_controller.rb`のshowメソッドが詳細ページとなります。
 
 ```app/controllers/categories_controller.rb
@@ -227,7 +228,7 @@ $ touch frontend/pages/category/category.js
 $ touch frontend/pages/category/_category.css
 ```
 
-以下のようにコーディングしてみます
+レイアウトは以下のようにコーディングしていきます
 
 ```frontend/pages/category/_show.html.erb
 <%# frontend/pages/category/_show.html.erb %>
@@ -366,8 +367,8 @@ import "pages/home/home";
 import "pages/category/category";
 ```
 
-ヘッダーメニューのリンクを修正します
-まずは、親データのみヘッダーメニューに表示したいので`app/controllers/application_controller.rb`のcategoryデータ取得部分をparent_id が nilのもののみ取得するように変更します。  
+続いてヘッダーメニューのリンクを修正します。  
+親データのみヘッダーメニューに表示したいので`app/controllers/application_controller.rb`のcategoryデータ取得部分をparent_id が nilのもののみ取得するように変更します。  
 
 ```app/controllers/application_controller.rb
 @categories = Category.where(state: true).order(id: :asc)
@@ -375,7 +376,7 @@ import "pages/category/category";
 @categories = Category.where(state: true).where(parent: nil).order(id: :asc)
 ```
 
-`frontend/layouts/site/_site.html.erb`のメニュー部分も修正します。
+`frontend/layouts/site/_site.html.erb`のメニュー部分もカテゴリー詳細にリンクするよう修正します。
 
 ```frontend/layouts/site/_site.html.erb
 <%= content_tag(:ul) { @categories.each { |category| concat(content_tag(:li, link_to(category.name, '#'))) } } %>
@@ -387,4 +388,5 @@ import "pages/category/category";
 
 ![デモ画面](/images/uploads/screen_demo_20180302181142.png)
 
-今回の成果物は こちら をご確認ください。
+今回は親子関係のみですが、孫など更に階層を深くすることも可能です。
+今回の成果物は [こちら]() をご確認ください。
