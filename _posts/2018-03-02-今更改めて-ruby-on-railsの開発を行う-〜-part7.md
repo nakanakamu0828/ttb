@@ -169,7 +169,7 @@ seedのスクリプトを変更して、categoriesテーブルに親子関係の
 end
 ```
 
-既にDBにデータが登録してある場合、レコードを削除します。
+既にDBにデータが登録してある場合、レコードを削除します。  
 続いてseedを実行します
 
 ```
@@ -389,4 +389,4 @@ import "pages/category/category";
 ![デモ画面](/images/uploads/screen_demo_20180302181142.png)
 
 今回は親子関係のみですが、孫など更に階層を深くすることも可能です。
-今回の成果物は [こちら]() をご確認ください。
+今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.7) をご確認ください。
