@@ -133,3 +133,77 @@ seedにスクリプトを追加して、categoriesテーブルに親子関係を
     end
 end
 ```
+
+seedを実行します
+
+```
+$ rails db:seed
+```
+
+エラーなしで実行できたことを確認したら、categoriesテーブル、category_translationsテーブルのデータを確認してみてください。
+
+## カテゴリーページの作成
+カテゴリーの親子関係を表示するカテゴリー詳細ページを作成してみましょう。まずは、railsコマンドでcontrollerを用意します
+
+
+```
+$ rails g controller categories
+```
+
+次にそれぞれ必要なファイルを作成・変更していきます
+`app/controllers/categories_controller.rb`のshowメソッドが詳細ページとなります。
+```app/controllers/categories_controller.rb
+# app/controllers/categories_controller.rb
+class CategoriesController < ApplicationController
+    def show
+        @category = Category.where(state: true).find(params[:id])
+
+ 　 　 　#　将来的には、カテゴリーに紐づく商品を取得する
+    end
+end
+```
+
+`config/routes.rb`にカテゴリー詳細ページのルーティングを追加
+```config/routes.rb
+# config/routes.rb
+Rails.application.routes.draw do
+  resources :categories, only: [:show]
+  root to: "homes#show"
+end
+```
+
+`app/views/categories/show.html.erb`にコンポーネントの読み込みを記載します。コンポーネントについてはあとで作成していきます。
+```app/views/categories/show.html.erb
+<%# app/views/categories/show.html.erb %>
+<%= render "layouts/site/site" do %>
+  <%= render "pages/category/show" %>
+<% end %>
+```
+
+続いてコンポーネントを用意します
+
+```
+$ mkdir -p frontend/pages/category
+$ touch frontend/pages/category/_show.html.erb
+```
+
+`frontend/pages/category/_show.html.erb`ファイルのレイアウトは以下のようにコーディングします
+```frontend/pages/category/_show.html.erb
+<%# frontend/pages/category/_show.html.erb %>
+```
+
+ヘッダーメニューのリンクを修正します
+まずは、親データのみヘッダーメニューに表示したいので`app/controllers/application_controller.rb`のcategoryデータ取得部分をparent_id が nilのもののみ取得するように変更します。  
+```app/controllers/application_controller.rb
+@categories = Category.where(state: true).order(id: :asc)
+↓
+@categories = Category.where(state: true).where(parent: nil).order(id: :asc)
+```
+
+`frontend/layouts/site/_site.html.erb`のメニュー部分も修正します。
+```frontend/layouts/site/_site.html.erb
+<%= content_tag(:ul) { @categories.each { |category| concat(content_tag(:li, link_to(category.name, '#'))) } } %>
+↓
+<%= content_tag(:ul) { @categories.each { |category| concat(content_tag(:li, link_to(category.name, category_path(category)))) } } %>
+
+```
