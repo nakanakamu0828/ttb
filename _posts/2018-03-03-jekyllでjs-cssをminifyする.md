@@ -5,7 +5,7 @@ title: 'Jekyllでjs, cssをminifyする'
 description: 'digitalsparky/jekyll-minifierを利用してjs, cssをminifyする'
 location: Tokyo
 categories:
-  - Programming
+  - Blog
 tags:
   - jekyll
   - jekyll-minifier
