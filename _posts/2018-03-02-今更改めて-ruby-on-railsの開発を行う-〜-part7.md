@@ -348,10 +348,12 @@ $ touch frontend/pages/category/_category.css
 ```
 
 ```frontend/pages/category/category.js
+// frontend/pages/category/category.js
 import "./category.css";
 ```
 
 ```frontend/pages/category/category.css
+/* frontend/pages/category/category.css */
 .breadcrumb-block {
     padding: 1rem;
 }
