@@ -5,4 +5,5 @@
 layout: category_page
 category: Programming
 image: /favicon.jpg
+description: プログラミングに関する投稿の一覧です。言語やフレームワークなどプログラミングする際のノウハウをまとめています。
 ---

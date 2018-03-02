@@ -5,4 +5,5 @@
 layout: category_page
 category: Other
 image: /favicon.jpg
+description: どのカテゴリーにも属さない投稿の一覧です。
 ---

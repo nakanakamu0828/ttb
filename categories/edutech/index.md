@@ -5,4 +5,5 @@
 layout: category_page
 category: EduTech
 image: /favicon.jpg
+description: EduTechのサービスに関する投稿の一覧です。今後成長するビジネスの１つでもある教育×ITに注目し、まとめた内容を投稿しています。
 ---

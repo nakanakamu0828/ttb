@@ -5,4 +5,5 @@
 layout: category_page
 category: Blog
 image: /favicon.jpg
+description: プログに関する投稿の一覧です。本ブログの構築ノウハウやその他の技術でブログを構築する際のノウハウをまとめたものになります。
 ---

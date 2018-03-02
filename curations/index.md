@@ -4,4 +4,5 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: curation_page
 image: /favicon.jpg
+description: 気になる技術情報をキュレートしまとめた一覧です。
 ---

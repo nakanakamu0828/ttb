@@ -5,4 +5,5 @@
 layout: category_page
 category: Infrastructure
 image: /favicon.jpg
+description: サーバーやOSなどシステムのインフラに関する投稿の一覧です。サーバーやミドルウェアのインストール・セットアップなどの内容をまとめています。
 ---

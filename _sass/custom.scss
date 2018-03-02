@@ -93,6 +93,10 @@
     color: $white;
 }
 
+.title:not(.is-spaced) + .subtitle {
+    margin-top: -1.2rem;
+}
+
 // 
 // Button
 // 

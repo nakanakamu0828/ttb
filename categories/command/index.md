@@ -5,4 +5,5 @@
 layout: category_page
 category: Command
 image: /favicon.jpg
+description: コマンドに関する投稿の一覧です。LinuxやMacのコマンドやgitのコマンドなどエンジニアとして覚えるべきコマンドのノウハウまとめです。
 ---
