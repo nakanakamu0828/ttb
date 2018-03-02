@@ -1,6 +1,6 @@
 ---
 layout: post
-thumbnail: /images/uploads/rails.png
+thumbnail: /images/uploads/ruby_on_rails.png
 title: 今更改めて Ruby On Railsの開発を行う 〜 Part7
 description: 自己結合のテーブル・モデルをRailsで利用する
 location: Tokyo
@@ -348,10 +348,12 @@ $ touch frontend/pages/category/_category.css
 ```
 
 ```frontend/pages/category/category.js
+// frontend/pages/category/category.js
 import "./category.css";
 ```
 
 ```frontend/pages/category/category.css
+/* frontend/pages/category/category.css */
 .breadcrumb-block {
     padding: 1rem;
 }
