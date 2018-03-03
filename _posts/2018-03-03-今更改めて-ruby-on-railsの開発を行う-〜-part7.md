@@ -54,31 +54,62 @@ $ mkdir -p data/geoip
 $ cd data/geoip
 $ wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
 $ gzip -d GeoIP.dat.gz
+wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+$ gzip -d GeoLiteCity.dat.gz
 ```
+※ 今回はCityの情報をメインで利用しますが、GeoIP.dat.gzも合わせてダウンロードしておきましょう。
 
 ## `rails c`でGeoIPを確認
 `rails c`でコンソールを起動し、GeoIPを利用してホスト/IPアドレスの位置情報を取得してみます
 
 ```
 $ rails c
-irb(main):001:0>
-irb(main):002:0> geoip = GeoIP.new(Rails.root.join( "data/geoip/GeoIP.dat"))
-irb(main):003:0> code = c.country_code2.downcase
-=> "jp"
-irb(main):004:0> tz = TZInfo::Country.get(c.country_code2)
-=> #<TZInfo::Country: JP>
-irb(main):005:0> tz.zone_identifiers
-=> ["Asia/Tokyo"]
-
+irb(main):001:0> c = GeoIP.new('data/geoip/GeoLiteCity.dat').city('www.yahoo.co.jp')
+irb(main):002:0> c.timezone
+=> "Asia/Tokyo"
 ```
-「IPアドレスから位置（国）の情報を取得→国情報からtimezoneを取得」という流れでデータを取得しています。
+こちらは、Yahoo(www.yahoo.co.jp)のホスト名からtimezoneを取得した例になります。
 
 ## WEBサイトの初期アクセス時にtimezoneを設定する
-続いてはWEBサイト側で実装していきましょう。
+続いてはWEBサイト側で実装していきましょう。  
+どの画面にアクセスがあっても判定させたいので、`app/controllers/application_controler.rb`に処理を記載します。  
+以下のように変更してください。
+
+```app/controllers/application_controler.rb
+# app/controllers/application_controler.rb
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+  prepend_view_path Rails.root.join("frontend")
+
+  before_action :init_category
+  before_action :init_timezone
+
+  def init_category
+    @categories = Category.where(state: true).where(parent: nil).order(id: :asc)
+  end
+
+  # 
+  # セッションにtimezoneが設定されていない場合、GeoIPを利用してアクセス元のIPアドレスからtimezoneを設定する
+  # 
+  def init_timezone
+    if session[:timezone].blank?
+      c = GeoIP.new('data/geoip/GeoLiteCity.dat').city(request.remote_ip)
+      Time.zone = c.timezone unless c.nil?
+
+      session[:timezone] = Time.zone.name
+    end
+  end
+end
+```
+
+将来的には、`init_timezone`メソッド内でユーザーのログインチェックを行い、ログインしている場合はユーザーが設定したtimezoneを反映という形に変更していきく予定です。
+
+今回の実装はローカル環境では、timezoneの切り替えが確認できません。
+開発サーバーを用意した際に確認してみましょう。
+一旦、実装までをまとめさせて頂きました。
 
 
-
-
+今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.8) をご確認ください。
 
 
 
