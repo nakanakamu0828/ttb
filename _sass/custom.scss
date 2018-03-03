@@ -180,7 +180,10 @@
     background-color: #111;
     color: #fff;
 }
-
+.tag:not(body).is-note {
+    background-color:#2cb696;
+    color: #fff;
+}
 .indicators {
     text-align: center;
     margin: 1rem 0;
