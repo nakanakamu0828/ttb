@@ -59,7 +59,7 @@ $ gzip -d GeoLiteCity.dat.gz
 ```
 ※ 今回はCityの情報をメインで利用しますが、GeoIP.dat.gzも合わせてダウンロードしておきましょう。
 
-## `rails c`でGeoIPを確認
+## rails cでGeoIPを確認
 `rails c`でコンソールを起動し、GeoIPを利用してホスト/IPアドレスの位置情報を取得してみます
 
 ```
