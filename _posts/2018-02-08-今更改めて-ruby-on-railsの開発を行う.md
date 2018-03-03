@@ -1,6 +1,6 @@
 ---
 layout: post
-thumbnail: /images/uploads/rails.png
+thumbnail: /images/uploads/ruby_on_rails.png
 title: 今更改めて Ruby On Railsの開発を行う 〜 Part1
 description: Railsによる開発をスタートしよう
 location: Hong Kong
