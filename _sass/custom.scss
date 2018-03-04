@@ -219,6 +219,19 @@
     }
 }
 
+// 
+// Panel
+// 
+.panel {
+    .panel-heading {
+        &.is-dark {
+            background-color: #4a4a4a;
+            color: #fff;
+        }
+    }    
+}
+
+
 
 // 
 // Pages

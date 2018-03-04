@@ -144,6 +144,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-pwa-plugin
   - jekyll-minifier
+  - jekyll-archives
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -188,3 +189,10 @@ pwa:
 
 jekyll-minifier:
   exclude: 'feed.xml'
+
+jekyll-archives:
+  enabled: [month]
+  layouts:
+    month: month_archive
+  permalinks:
+    month: '/archives/month/:year:month/'

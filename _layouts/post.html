@@ -73,8 +73,15 @@ layout: default
 
   <section class="section">
     <div class="container">
-        <div class="content">
-          {{ content }}
+        <div class="columns">
+          <div class="column is-two-thirds">
+            <div class="content">
+              {{ content }}
+            </div>
+          </div>
+          <div class="column">
+              {% include month_archive_links.html %}
+          </div>
         </div>
 
         {% if site.disqus.shortname %}
