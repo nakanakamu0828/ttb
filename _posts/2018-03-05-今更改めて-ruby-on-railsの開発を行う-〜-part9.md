@@ -34,3 +34,18 @@ $ bundle install --path=vendor/bundle
 ※ 環境に合わせてプロジェクト配下にインストールするかどうかでコマンドを選択してください。
 
 ## sorceryのセットアップ
+
+sorceryのテンプレートを作成します
+```
+$ rails g sorcery:install
+
+      create  config/initializers/sorcery.rb
+    generate  model User --skip-migration
+      invoke  active_record
+      create    app/models/user.rb
+      insert  app/models/user.rb
+      insert  app/models/user.rb
+      create  db/migrate/20180305075527_sorcery_core.rb
+```
+
+※ 作成されたファイルを確認してみてください。
