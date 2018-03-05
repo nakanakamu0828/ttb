@@ -88,18 +88,19 @@ set :output, "#{Rails.root}/log/cron.log"
 $ bundle exec whenever
 ```
 
-■ 設定反映
-□ development（開発環境）
+■ 設定反映  
+□ development（開発環境）  
 ```
 bundle exec whenever --update-crontab
 ```
 
-□ production（商用環境）
+
+□ production（商用環境）  
 ```
 RAILS_ENV=production bundle exec whenever --update-crontab
 ```
 
-■ 設定削除
+■ 設定削除  
 ```
 bundle exec whenever --clear-crontab
 ```
