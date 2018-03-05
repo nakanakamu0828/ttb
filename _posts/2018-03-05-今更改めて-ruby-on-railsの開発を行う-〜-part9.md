@@ -71,6 +71,7 @@ $ rails g controller users/registrations
 class Users::RegistrationsController < ApplicationController
 
     def new
+        @user = User.new
     end
 
     def create
@@ -91,6 +92,7 @@ class Users::RegistrationsController < ApplicationController
             params.require(:user).permit(:email, :password, :password_confirmation)
         end
 end
+
 ```
 
 Userモデルにバリデーションを追加します。
@@ -115,5 +117,44 @@ $ touch app/views/users/registrations/new.html.erb
 ```
 
 `new.html.erb`に登録フォームを用意していきます。
+```app/views/users/registrations/new.html.erb
+<!-- app/views/users/registrations/new.html.erb -->
+```
+
+`config/routes.rb`に新規登録ページのルーティングを記載します
+```config/routes.rb
+# config/routes.rb
+namespace :users, module: :users do
+  resources :registrations, only: [:new, :create]
+end
+```
+
+以下のようにlink_toメソッドを利用することで、新規登録ページのリンクが作成されます。適した場所にリンクを配置してください。
+```
+<%= link_to 'singup', new_users_registration_path %>
+```
+
+今回はヘッダーにリンクを追加します。`frontend/layouts/site/_site.html.erb`を修正します。
+
+```frontend/layouts/site/_site.html.erb
+<!-- frontend/layouts/site/_site.html.erb -->
+<div id="navbarMenuHeroB" class="navbar-menu">
+  <div class="navbar-end">
+    <a class="navbar-item is-active">
+      Home
+    </a>
+    <!-- 以下のリンクを追加 -->
+    <%= link_to 'singup', new_users_registration_path, class: 'navbar-item' %>
+    <!-- ここまで -->
+    <a class="navbar-item">
+      Login
+    </a>
+    <a class="navbar-item">
+      <i class="fas fa-shopping-cart"></i>
+    </a>
+    ・・・
+```
+
+
 
 
