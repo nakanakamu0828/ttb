@@ -13,7 +13,7 @@ tags:
 ---
 こんにちは、なかむです。
 
-今回はsorceryを利用したユーザー認証処理を実装していきます。
+今回は[Sorcery/sorcery](https://github.com/Sorcery/sorcery)を利用したユーザー認証処理を実装していきます。
 まずは`Gemfile`に`sorcery`の設定を追加します
 
 ## sorceryインストール
@@ -49,3 +49,71 @@ $ rails g sorcery:install
 ```
 
 ※ 作成されたファイルを確認してみてください。
+
+続いてDBをセットアップします。
+migrationを利用してuserテーブルを作成します。
+```
+$ rails db:migrate
+```
+
+## ユーザー登録機能
+それではユーザー登録機能を作成していきます。
+`rails`コマンドを利用してcontrollerを作成しましょう。
+
+```
+$ rails g controller users/registrations
+```
+
+`new`メソッドで新規登録画面の表示を行い、`create`メソッドで登録します。`app/controllers/users/registrations_controller.rb`を以下のように修正しましょう。
+
+```app/controllers/users/registrations_controller.rb
+# app/controllers/users/registrations_controller.rb
+class Users::RegistrationsController < ApplicationController
+
+    def new
+    end
+
+    def create
+        @user = User.new(user_params)
+        respond_to do |format|
+            if @user.save
+                format.html { redirect_to root_url, notice: 'User was successfully created.' }
+                format.json { render :show, status: :created, location: @user }
+            else
+                format.html { render :new }
+                format.json { render json: @user.errors, status: :unprocessable_entity }
+            end
+        end
+    end
+
+    private
+        def user_params
+            params.require(:user).permit(:email, :password, :password_confirmation)
+        end
+end
+```
+
+Userモデルにバリデーションを追加します。
+```app/models/user.rb
+# app/models/user.rb
+class User < ApplicationRecord
+  authenticates_with_sorcery!
+
+  validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
+  validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
+  validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
+
+  validates :email, uniqueness: true
+end
+```
+
+続いてviewを用意していきます。 　
+以下のコマンドを実行してディレクトリとファイルを用意しましょう
+```
+$ mkdir -p app/views/users/registrations
+$ touch app/views/users/registrations/new.html.erb
+```
+
+`new.html.erb`に登録フォームを用意していきます。
+
+
