@@ -110,16 +110,27 @@ end
 ```
 
 続いてviewを用意していきます。 　
-以下のコマンドを実行してディレクトリとファイルを用意しましょう
+以下のコマンドを実行してディレクトリとファイルを用意しましょう。
+今回も`frontend`ディレクトリ配下にコンポーネントとして用意していきます。
 ```
 $ mkdir -p app/views/users/registrations
 $ touch app/views/users/registrations/new.html.erb
+$ mkdir -p frontend/pages/user/registration
+$ touch frontend/pages/user/registration/_new.html.erb
 ```
 
-`new.html.erb`に登録フォームを用意していきます。
+`app/views/users/registrationsnew.html.erb`ファイルは以下のようにコンポーネントを用意します。
 ```app/views/users/registrations/new.html.erb
 <!-- app/views/users/registrations/new.html.erb -->
+<%= render "layouts/site/site" do %>
+  <%= render "pages/user/registration/new" %>
+<% end %>
 ```
+
+コンポーネントの`_new.html.erb`にフォームをコーディングしていきます。
+```
+```
+
 
 `config/routes.rb`に新規登録ページのルーティングを記載します
 ```config/routes.rb
