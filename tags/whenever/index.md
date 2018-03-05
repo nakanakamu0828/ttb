@@ -3,7 +3,7 @@
 # Edit theme's home layout instead if you wanna make some changes
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: tag_page
-tag: jekyll-archives
+tag: yarn
 image: /favicon.jpg
-description: jekyll archivesに関する投稿の一覧です。jekyllでアーカイブページを作成する為のライブラリです。
+description: wheneverに関する投稿の一覧です。
 ---
