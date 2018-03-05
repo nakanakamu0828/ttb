@@ -109,8 +109,8 @@ class User < ApplicationRecord
 end
 ```
 
-続いてviewを用意していきます。 　
-以下のコマンドを実行してディレクトリとファイルを用意しましょう。
+続いてviewを用意していきます。  
+以下のコマンドを実行してディレクトリとファイルを用意しましょう。  
 今回も`frontend`ディレクトリ配下にコンポーネントとして用意していきます。
 ```
 $ mkdir -p app/views/users/registrations
@@ -127,8 +127,76 @@ $ touch frontend/pages/user/registration/_new.html.erb
 <% end %>
 ```
 
-コンポーネントの`_new.html.erb`にフォームをコーディングしていきます。
+コンポーネントの`_new.html.erb`に登録フォームをコーディングしていきます。
 ```
+<div class="user-registration">
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-half is-offset-one-quarter">
+                    <div class="box">
+                        <h1 class="title has-text-centered is-size-4">Signup</h1>
+                        <hr>
+                        <%= form_for(@user, url: users_registrations_path, html: { medhod: :post }) do |f| %>
+                             <% if @user.errors.any? %>
+                                <div class="notification is-danger">
+                                    <ul>
+                                        <% @user.errors.full_messages.each do |message| %>
+                                            <li><%= message %></li>
+                                        <% end %>
+                                    </ul>
+                                </div>
+                            <% end %>
+                            <div class="field">
+                                <label class="label">Email</label>
+                                <div class="control has-icons-left">
+                                    <%= f.email_field :email, class: "input", placeholder: 'Email', autocomplete: :off %>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Password</label>
+                                <div class="control has-icons-left">
+                                    <%= f.password_field :password, class: "input", placeholder: 'Password', autocomplete: :off %>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-key"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Confirm Password</label>
+                                <div class="control has-icons-left">
+                                    <%= f.password_field :password_confirmation, class: "input", placeholder: 'Confirm Password', autocomplete: :off %>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-key"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <hr>
+
+                            <div class="field is-grouped is-grouped-centered">
+                                <input type="submit" class="button is-primary  is-fullwidth" value="Submit">
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+```
+
+[補足]  
+ヘッダーに用意しているロケーション切り替えのselectが原因で、新規登録でバリデーションに引っかかった場合、５００エラーが出てしまいました。
+メニュー部分は以下のように修正しました。
+```frontend/layouts/site/_site.html.erb
+<!-- frontend/layouts/site/_site.html.erb -->
+<option data-url="<%= url_for Rails.application.routes.recognize_path(request.url).merge({ only_path: false, locale: locale }) %>"<%= I18n.locale == locale ? ' selected' : '' %>><%= locale %></option>
+↓
+<option data-url="<%= url_for(Rails.application.routes.recognize_path(request.get? ? request.url : url_for(:back)).merge({ only_path: false, locale: locale })) %>"<%= I18n.locale == locale ? ' selected' : '' %>><%= locale %></option>
 ```
 
 
