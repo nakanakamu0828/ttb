@@ -5,4 +5,5 @@
 layout: tag_page
 tag: redis
 image: /favicon.jpg
+description: redisに関する投稿の一覧です。
 ---

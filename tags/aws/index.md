@@ -5,4 +5,5 @@
 layout: tag_page
 tag: aws
 image: /favicon.jpg
+description: AWSに関する投稿の一覧です。
 ---

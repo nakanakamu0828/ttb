@@ -5,4 +5,5 @@
 layout: tag_page
 tag: su
 image: /favicon.jpg
+description: suコマンドに関する投稿の一覧です。
 ---

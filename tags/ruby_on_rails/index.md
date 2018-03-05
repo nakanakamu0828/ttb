@@ -5,4 +5,5 @@
 layout: tag_page
 tag: ruby on rails
 image: /favicon.jpg
+description: Ruby on Railsに関する投稿の一覧です。
 ---

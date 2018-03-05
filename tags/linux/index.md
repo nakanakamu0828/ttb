@@ -5,4 +5,5 @@
 layout: tag_page
 tag: linux
 image: /favicon.jpg
+description: Linuxに関する投稿の一覧です。
 ---

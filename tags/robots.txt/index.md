@@ -5,4 +5,5 @@
 layout: tag_page
 tag: robots.txt
 image: /favicon.jpg
+description: robots.txtに関する投稿の一覧です。
 ---

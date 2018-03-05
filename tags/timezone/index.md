@@ -5,4 +5,5 @@
 layout: tag_page
 tag: timezone
 image: /favicon.jpg
+description: timezoneに関する投稿の一覧です。
 ---

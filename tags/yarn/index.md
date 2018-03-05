@@ -5,4 +5,5 @@
 layout: tag_page
 tag: yarn
 image: /favicon.jpg
+description: tinypngに関する投稿の一覧です。
 ---

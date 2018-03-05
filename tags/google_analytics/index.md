@@ -5,4 +5,5 @@
 layout: tag_page
 tag: google analytics
 image: /favicon.jpg
+description: Google Analyticsに関する投稿の一覧です。
 ---

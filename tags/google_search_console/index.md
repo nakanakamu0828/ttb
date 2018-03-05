@@ -5,4 +5,5 @@
 layout: tag_page
 tag: google search console
 image: /favicon.jpg
+description: Google Search Consoleに関する投稿の一覧です。
 ---

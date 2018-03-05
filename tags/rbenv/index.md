@@ -5,4 +5,5 @@
 layout: tag_page
 tag: rbenv
 image: /favicon.jpg
+description: rbenvに関する投稿の一覧です。rubyのバージョンを管理するツール。
 ---

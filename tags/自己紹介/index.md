@@ -5,4 +5,5 @@
 layout: tag_page
 tag: 自己紹介
 image: /favicon.jpg
+description: 筆者の自己紹介に関する投稿の一覧です。
 ---

@@ -5,4 +5,5 @@
 layout: tag_page
 tag: git
 image: /favicon.jpg
+description: Gitに関する投稿の一覧です。バージョン管理ツールの定番「Git」。SVNとかもう忘れちゃいましたね。
 ---

@@ -5,4 +5,5 @@
 layout: tag_page
 tag: hammer.js 
 image: /favicon.jpg
+description: Hammer.jsに関する投稿の一覧です。
 ---

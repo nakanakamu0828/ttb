@@ -5,4 +5,5 @@
 layout: tag_page
 tag: ruby
 image: /favicon.jpg
+description: rubyに関する投稿の一覧です。本ブログで利用しているjekyllはruby製のツールです。
 ---

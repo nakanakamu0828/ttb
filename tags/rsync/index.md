@@ -5,4 +5,5 @@
 layout: tag_page
 tag: rsync
 image: /favicon.jpg
+description: rsyncコマンドに関する投稿の一覧です。
 ---

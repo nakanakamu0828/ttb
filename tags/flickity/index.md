@@ -5,4 +5,5 @@
 layout: tag_page
 tag: flickity
 image: /favicon.jpg
+description: Flickityに関する投稿の一覧です。今後のスライダーライブラリの定番「Flickity」。
 ---

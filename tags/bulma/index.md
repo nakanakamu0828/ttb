@@ -5,4 +5,5 @@
 layout: tag_page
 tag: bulma
 image: /favicon.jpg
+description: Bulmaに関する投稿の一覧です。本ブログのスタイルで利用しているCSSフレームワークの「Bulma」シンプルで利用しやすいこと。jQueryに依存しないことなど筆者も注目しています
 ---

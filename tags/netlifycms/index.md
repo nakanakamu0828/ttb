@@ -5,4 +5,5 @@
 layout: tag_page
 tag: netlifycms
 image: /favicon.jpg
+description: Netlify CMSに関する投稿の一覧です。
 ---

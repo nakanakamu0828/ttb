@@ -5,4 +5,5 @@
 layout: tag_page
 tag: jekyll-minifier
 image: /favicon.jpg
+description: jekyll minifierに関する投稿の一覧です。jekyllでjs, cssを圧縮する為のライブラリです。
 ---

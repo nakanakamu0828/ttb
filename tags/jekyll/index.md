@@ -5,4 +5,5 @@
 layout: tag_page
 tag: jekyll
 image: /favicon.jpg
+description: jekyllに関する投稿の一覧です。本ブログの構築に利用している静的サイトを生成するためのツールです。
 ---

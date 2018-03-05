@@ -5,4 +5,5 @@
 layout: tag_page
 tag: node.js
 image: /favicon.jpg
+description: Node.jsに関する投稿の一覧です。
 ---

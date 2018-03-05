@@ -5,4 +5,5 @@
 layout: tag_page
 tag: github
 image: /favicon.jpg
+description: Githubに関する投稿の一覧です。
 ---

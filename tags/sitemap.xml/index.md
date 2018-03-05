@@ -5,4 +5,5 @@
 layout: tag_page
 tag: sitemap.xml
 image: /favicon.jpg
+description: Sitemap.xmlに関する投稿の一覧です。
 ---

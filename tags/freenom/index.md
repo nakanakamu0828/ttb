@@ -5,4 +5,5 @@
 layout: tag_page
 tag: Freenom
 image: /favicon.jpg
+description: Freenomに関する投稿の一覧です。無料ドメインが取得できるサービスの１つです。本ブログもどこまで無料で出来るか験すため、「Freenom」にてドメインを取得しています。
 ---
