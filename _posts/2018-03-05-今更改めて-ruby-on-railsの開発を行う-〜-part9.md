@@ -14,3 +14,23 @@ tags:
 こんにちは、なかむです。
 
 今回はsorceryを利用したユーザー認証処理を実装していきます。
+まずは`Gemfile`に`sorcery`の設定を追加します
+
+## sorceryインストール
+
+```Gemfile
+# Gemfile
+gem 'sorcery'
+```
+
+続いて`bundle install`コマンドを実行し、ライブラリをインストールしてください。
+
+```
+$ bundle install
+or
+$ bundle install --path=vendor/bundle
+```
+
+※ 環境に合わせてプロジェクト配下にインストールするかどうかでコマンドを選択してください。
+
+## sorceryのセットアップ
