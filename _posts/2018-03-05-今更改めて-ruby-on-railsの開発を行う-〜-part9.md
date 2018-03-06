@@ -13,11 +13,10 @@ tags:
 ---
 こんにちは、なかむです。
 
-今回は[Sorcery/sorcery](https://github.com/Sorcery/sorcery)を利用したユーザー認証処理を実装していきます。
-まずは`Gemfile`に`sorcery`の設定を追加します
+今回は[Sorcery/sorcery](https://github.com/Sorcery/sorcery)を利用したユーザー認証処理を実装していきます。  
 
 ## sorceryインストール
-
+まずは`Gemfile`に`sorcery`の設定を追加します
 ```Gemfile
 # Gemfile
 gem 'sorcery'
@@ -32,6 +31,7 @@ $ bundle install --path=vendor/bundle
 ```
 
 ※ 環境に合わせてプロジェクト配下にインストールするかどうかでコマンドを選択してください。
+
 
 ## sorceryのセットアップ
 
@@ -50,21 +50,20 @@ $ rails g sorcery:install
 
 ※ 作成されたファイルを確認してみてください。
 
-続いてDBをセットアップします。
+続いてDBをセットアップします。  
 migrationを利用してuserテーブルを作成します。
 ```
 $ rails db:migrate
 ```
 
-## ユーザー登録機能
-それではユーザー登録機能を作成していきます。
-`rails`コマンドを利用してcontrollerを作成しましょう。
-
+## ユーザーの新規登録
+それではユーザーの新規登録機能を作成していきましょう。  
+`rails`コマンドを利用してcontrollerを作成します。
 ```
 $ rails g controller users/registrations
 ```
 
-`new`メソッドで新規登録画面の表示を行い、`create`メソッドで登録します。`app/controllers/users/registrations_controller.rb`を以下のように修正しましょう。
+`new`メソッドで新規登録画面の表示を行い、`create`メソッドで登録します。`app/controllers/users/registrations_controller.rb`を以下のように修正してください。
 
 ```app/controllers/users/registrations_controller.rb
 # app/controllers/users/registrations_controller.rb
@@ -95,7 +94,7 @@ end
 
 ```
 
-Userモデルにバリデーションを追加します。
+Userモデルにはバリデーションを追加します。
 ```app/models/user.rb
 # app/models/user.rb
 class User < ApplicationRecord
@@ -119,7 +118,7 @@ $ mkdir -p frontend/pages/user/registration
 $ touch frontend/pages/user/registration/_new.html.erb
 ```
 
-`app/views/users/registrationsnew.html.erb`ファイルは以下のようにコンポーネントを用意します。
+`app/views/users/registrations/new.html.erb`ファイルは以下のようにコンポーネントを呼び出すように設定してください。
 ```app/views/users/registrations/new.html.erb
 <!-- app/views/users/registrations/new.html.erb -->
 <%= render "layouts/site/site" do %>
@@ -127,8 +126,9 @@ $ touch frontend/pages/user/registration/_new.html.erb
 <% end %>
 ```
 
-コンポーネントの`_new.html.erb`に登録フォームをコーディングしていきます。
-```
+コンポーネントの`_new.html.erb`には、登録フォームをコーディングしていきます。
+```frontend/pages/user/registration/_new.html.erb
+<!-- frontend/pages/user/registration/_new.html.erb -->
 <div class="user-registration">
     <section class="section">
         <div class="container">
@@ -199,18 +199,51 @@ $ touch frontend/pages/user/registration/_new.html.erb
 <option data-url="<%= url_for(Rails.application.routes.recognize_path(request.get? ? request.url : url_for(:back)).merge({ only_path: false, locale: locale })) %>"<%= I18n.locale == locale ? ' selected' : '' %>><%= locale %></option>
 ```
 
+バリデーションエラーを多言語化する為、翻訳ファイルを作成します。
+```
+$ touch config/locales/models/ja.yml
+```
 
-`config/routes.rb`に新規登録ページのルーティングを記載します
+`config/locales/models/ja.yml`は以下のような内容にしてください。
+```config/locales/models/ja.yml
+ja:
+  activerecord: &activerecord
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        id: "ID"
+        email: "メールアドレス"
+        crypted_password: "パスワード"
+        salt: "Salt"
+        created_at: "登録日時"
+        updated_at: "更新日時"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "が入力されていません。"
+              taken: "は既に登録されています。"
+            password:
+              blank: "が入力されていません。"
+              too_short: "が短すぎます。"
+            password_confirmation:
+              blank: "が入力されていません。"
+              confirmation: "がパスワードと一致しません"
+```
+
+ルーティングファイル（`config/routes.rb`）に以下のような新規登録ページへのルーティングを追記します。
 ```config/routes.rb
 # config/routes.rb
 namespace :users, module: :users do
-  resources :registrations, only: [:new, :create]
+  resource :registrations, only: [:new, :create], :path_names => { new: 'signup' }
 end
 ```
 
-以下のようにlink_toメソッドを利用することで、新規登録ページのリンクが作成されます。適した場所にリンクを配置してください。
+以下のようなlink_toメソッドを利用することで、新規登録ページのリンクが作成されます。適した場所にリンクを配置してください。
 ```
-<%= link_to 'singup', new_users_registration_path %>
+<%= link_to 'signup', new_users_registration_path %>
 ```
 
 今回はヘッダーにリンクを追加します。`frontend/layouts/site/_site.html.erb`を修正します。
@@ -234,6 +267,85 @@ end
     ・・・
 ```
 
+ここまでできたら新規登録画面は完了です。    
+サーバーを再起動して画面を確認してみましょう。
 
 
+## ユーザーログイン
+次はログイン機能を実装していきます。  
+`rails`コマンドを利用してcontrollerを作成します。
+```
+$ rails g controller users/sessions
+```
 
+`new`メソッドでログイン画面の表示、`create`メソッドでログイン処理を実装します。また、`destroy`メソッドでログアウト処理を実装します。  
+`app/controllers/users/sessions_controller.rb`を以下のように修正してください。
+
+```app/controllers/users/sessions_controller.rb
+# app/controllers/users/sessions_controller.rb
+
+```
+
+続いてviewを用意していきます。  
+以下のコマンドを実行してディレクトリとファイルを用意しましょう。  
+新規登録と同様で`frontend`ディレクトリ配下にコンポーネントとして用意していきます。
+```
+$ mkdir -p app/views/users/sessions
+$ touch app/views/users/sessions/new.html.erb
+$ mkdir -p frontend/pages/user/session
+$ touch frontend/pages/user/session/_new.html.erb
+```
+
+`app/views/users/sessions/new.html.erb`ファイルは以下のようにコンポーネントを呼び出すように設定してください。
+```app/views/users/sessions/new.html.erb
+<!-- app/views/users/sessions/new.html.erb -->
+<%= render "layouts/site/site" do %>
+  <%= render "pages/user/session/new" %>
+<% end %>
+```
+
+コンポーネントの`_new.html.erb`には、ログインフォームをコーディングしていきます。
+```frontend/pages/user/sessions/_new.html.erb
+<!-- frontend/pages/user/sessions/_new.html.erb -->
+```
+
+
+ルーティングファイル（`config/routes.rb`）に以下のようなログインページへのルーティングを追記します。
+```config/routes.rb
+# config/routes.rb
+  namespace :users, module: :users do
+    resource :registrations, only: [:new, :create], :path_names => { new: 'signup' }
+    resource :sessions, only: [:new, :create, :destroy], :path_names => { new: 'signin' } <-- 追加
+  end
+```
+
+以下のようなlink_toメソッドを利用することで、ログインページのリンクが作成されます。適した場所にリンクを配置してください。
+```
+<%= link_to 'signin', new_users_sessions_path %>
+```
+
+今回はヘッダーにリンクを追加します。`frontend/layouts/site/_site.html.erb`を修正します。
+
+```frontend/layouts/site/_site.html.erb
+<!-- frontend/layouts/site/_site.html.erb -->
+<div id="navbarMenuHeroB" class="navbar-menu">
+  <div class="navbar-end">
+    <a class="navbar-item is-active">
+      Home
+    </a>
+    <%= link_to 'singup', new_users_registration_path, class: 'navbar-item' %>
+    <!-- 以下のリンクを修正 -->
+    <a class="navbar-item">
+      Login
+    </a>
+    ↓
+    <%= link_to 'singin', new_users_sessions_path, class: 'navbar-item' %>
+    <!-- ここまで -->
+    <a class="navbar-item">
+      <i class="fas fa-shopping-cart"></i>
+    </a>
+    ・・・
+```
+
+ここまでできたらログイン画面は完了です。    
+サーバーを再起動して画面を確認してみましょう。
