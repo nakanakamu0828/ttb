@@ -16,7 +16,9 @@ tags:
 今回は[Sorcery/sorcery](https://github.com/Sorcery/sorcery)を利用したユーザー認証処理を実装していきます。  
 
 ## sorceryインストール
+
 まずは`Gemfile`に`sorcery`の設定を追加します
+
 ```Gemfile
 # Gemfile
 gem 'sorcery'
@@ -33,9 +35,11 @@ $ bundle install --path=vendor/bundle
 ※ 環境に合わせてプロジェクト配下にインストールするかどうかでコマンドを選択してください。
 
 
+
 ## sorceryのセットアップ
 
 sorceryのテンプレートを作成します
+
 ```
 $ rails g sorcery:install
 
@@ -50,15 +54,20 @@ $ rails g sorcery:install
 
 ※ 作成されたファイルを確認してみてください。
 
-続いてDBをセットアップします。  
+続いてDBをセットアップします。\
 migrationを利用してuserテーブルを作成します。
+
 ```
 $ rails db:migrate
 ```
 
+
+
 ## ユーザーの新規登録
-それではユーザーの新規登録機能を作成していきましょう。  
+
+それではユーザーの新規登録機能を作成していきましょう。\
 `rails`コマンドを利用してcontrollerを作成します。
+
 ```
 $ rails g controller users/registrations
 ```
@@ -91,10 +100,10 @@ class Users::RegistrationsController < ApplicationController
             params.require(:user).permit(:email, :password, :password_confirmation)
         end
 end
-
 ```
 
 Userモデルにはバリデーションを追加します。
+
 ```app/models/user.rb
 # app/models/user.rb
 class User < ApplicationRecord
@@ -108,9 +117,10 @@ class User < ApplicationRecord
 end
 ```
 
-続いてviewを用意していきます。  
-以下のコマンドを実行してディレクトリとファイルを用意しましょう。  
+続いてviewを用意していきます。\
+以下のコマンドを実行してディレクトリとファイルを用意しましょう。\
 今回も`frontend`ディレクトリ配下にコンポーネントとして用意していきます。
+
 ```
 $ mkdir -p app/views/users/registrations
 $ touch app/views/users/registrations/new.html.erb
@@ -119,6 +129,7 @@ $ touch frontend/pages/user/registration/_new.html.erb
 ```
 
 `app/views/users/registrations/new.html.erb`ファイルは以下のようにコンポーネントを呼び出すように設定してください。
+
 ```app/views/users/registrations/new.html.erb
 <!-- app/views/users/registrations/new.html.erb -->
 <%= render "layouts/site/site" do %>
@@ -127,6 +138,7 @@ $ touch frontend/pages/user/registration/_new.html.erb
 ```
 
 コンポーネントの`_new.html.erb`には、登録フォームをコーディングしていきます。
+
 ```frontend/pages/user/registration/_new.html.erb
 <!-- frontend/pages/user/registration/_new.html.erb -->
 <div class="user-registration">
@@ -189,9 +201,10 @@ $ touch frontend/pages/user/registration/_new.html.erb
 </div>
 ```
 
-[補足]  
+\[補足]\
 ヘッダーに用意しているロケーション切り替えのselectが原因で、新規登録でバリデーションに引っかかった場合、５００エラーが出てしまいました。
 メニュー部分は以下のように修正しました。
+
 ```frontend/layouts/site/_site.html.erb
 <!-- frontend/layouts/site/_site.html.erb -->
 <option data-url="<%= url_for Rails.application.routes.recognize_path(request.url).merge({ only_path: false, locale: locale }) %>"<%= I18n.locale == locale ? ' selected' : '' %>><%= locale %></option>
@@ -200,11 +213,13 @@ $ touch frontend/pages/user/registration/_new.html.erb
 ```
 
 バリデーションエラーを多言語化する為、翻訳ファイルを作成します。
+
 ```
 $ touch config/locales/models/ja.yml
 ```
 
 `config/locales/models/ja.yml`は以下のような内容にしてください。
+
 ```config/locales/models/ja.yml
 ja:
   activerecord: &activerecord
@@ -234,6 +249,7 @@ ja:
 ```
 
 ルーティングファイル（`config/routes.rb`）に以下のような新規登録ページへのルーティングを追記します。
+
 ```config/routes.rb
 # config/routes.rb
 namespace :users, module: :users do
@@ -242,6 +258,7 @@ end
 ```
 
 以下のようなlink_toメソッドを利用することで、新規登録ページのリンクが作成されます。適した場所にリンクを配置してください。
+
 ```
 <%= link_to 'signup', new_users_registration_path %>
 ```
@@ -267,18 +284,23 @@ end
     ・・・
 ```
 
-ここまでできたら新規登録画面は完了です。    
+ここまでできたら新規登録画面は完了です。\
 サーバーを再起動して画面を確認してみましょう。
+
+![デモ：新規登録画面](/images/uploads/screen_demo_20180306120318.png)
+
 
 
 ## ユーザーログイン
-次はログイン機能を実装していきます。  
+
+次はログイン機能を実装していきます。\
 `rails`コマンドを利用してcontrollerを作成します。
+
 ```
 $ rails g controller users/sessions
 ```
 
-`new`メソッドでログイン画面の表示、`create`メソッドでログイン処理を実装します。また、`signout`メソッドを用意してログアウト処理を実装します。  
+`new`メソッドでログイン画面の表示、`create`メソッドでログイン処理を実装します。また`signout`メソッドを用意してログアウト処理を実装します。\
 `app/controllers/users/sessions_controller.rb`を以下のように修正してください。
 
 ```app/controllers/users/sessions_controller.rb
@@ -311,9 +333,10 @@ class Users::SessionsController < ApplicationController
 end
 ```
 
-続いてviewを用意していきます。  
-以下のコマンドを実行してディレクトリとファイルを用意しましょう。  
+続いてviewを用意していきます。\
+以下のコマンドを実行してディレクトリとファイルを用意しましょう。\
 新規登録と同様で`frontend`ディレクトリ配下にコンポーネントとして用意していきます。
+
 ```
 $ mkdir -p app/views/users/sessions
 $ touch app/views/users/sessions/new.html.erb
@@ -322,6 +345,7 @@ $ touch frontend/pages/user/session/_new.html.erb
 ```
 
 `app/views/users/sessions/new.html.erb`ファイルは以下のようにコンポーネントを呼び出すように設定してください。
+
 ```app/views/users/sessions/new.html.erb
 <!-- app/views/users/sessions/new.html.erb -->
 <%= render "layouts/site/site" do %>
@@ -330,6 +354,7 @@ $ touch frontend/pages/user/session/_new.html.erb
 ```
 
 コンポーネントの`_new.html.erb`には、ログインフォームをコーディングしていきます。
+
 ```frontend/pages/user/sessions/_new.html.erb
 <!-- frontend/pages/user/sessions/_new.html.erb -->
 <div class="user-session">
@@ -384,6 +409,7 @@ $ touch frontend/pages/user/session/_new.html.erb
 ```
 
 ルーティングファイル（`config/routes.rb`）に以下のようなログインページとログアウトのルーティングを追記します。
+
 ```config/routes.rb
 # config/routes.rb
   namespace :users, module: :users do
@@ -419,5 +445,5 @@ $ touch frontend/pages/user/session/_new.html.erb
     ・・・
 ```
 
-ここまでできたらログイン/ログアウトの実装は完了です。    
+ここまでできたらログイン/ログアウトの実装は完了です。\
 サーバーを再起動して画面を確認してみましょう。
