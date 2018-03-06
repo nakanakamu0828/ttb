@@ -445,6 +445,8 @@ $ touch frontend/pages/user/session/_new.html.erb
 ![デモ：ログイン画面](/images/uploads/screen_demo_20180306120328.png)
 
 
+今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.9) をご確認ください。
+
 ## 番外編
 現在作成デモとして作成しているサイトはサブドメインで言語切り替えを行っています。その場合、デフォルトではサブドメイン毎にセッションが張られます。なので、日本語ページでログインしていても英語ページでは未ログインになってしまいます。  
 これを回避する為には`config/initializers/session_store.rb`ファイルを作成し、以下のように設定してください。
