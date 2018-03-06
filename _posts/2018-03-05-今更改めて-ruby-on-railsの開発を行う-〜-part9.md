@@ -20,16 +20,20 @@ tags:
 まずは`Gemfile`に`sorcery`の設定を追加します
 
 ```ruby
+
 # Gemfile
 gem 'sorcery'
+
 ```
 
 続いて`bundle install`コマンドを実行し、ライブラリをインストールしてください。
 
 ```bash
+
 $ bundle install
 or
 $ bundle install --path=vendor/bundle
+
 ```
 
 ※ 環境に合わせてプロジェクト配下にインストールするかどうかでコマンドを選択してください。
@@ -39,6 +43,7 @@ $ bundle install --path=vendor/bundle
 sorceryのテンプレートを作成します
 
 ```bash
+
 $ rails g sorcery:install
 
       create  config/initializers/sorcery.rb
@@ -48,6 +53,7 @@ $ rails g sorcery:install
       insert  app/models/user.rb
       insert  app/models/user.rb
       create  db/migrate/20180305075527_sorcery_core.rb
+
 ```
 
 ※ 作成されたファイルを確認してみてください。
@@ -56,7 +62,9 @@ $ rails g sorcery:install
 migrationを利用してuserテーブルを作成します。
 
 ```bash
+
 $ rails db:migrate
+
 ```
 
 # ユーザーの新規登録
@@ -65,12 +73,15 @@ $ rails db:migrate
 `rails`コマンドを利用してcontrollerを作成します。
 
 ```bash
+
 $ rails g controller users/registrations
+
 ```
 
 `new`メソッドで新規登録画面の表示を行い、`create`メソッドで登録します。`app/controllers/users/registrations_controller.rb`を以下のように修正してください。
 
 ```ruby
+
 # app/controllers/users/registrations_controller.rb
 class Users::RegistrationsController < ApplicationController
 
@@ -96,11 +107,13 @@ class Users::RegistrationsController < ApplicationController
             params.require(:user).permit(:email, :password, :password_confirmation)
         end
 end
+
 ```
 
 Userモデルにはバリデーションを追加します。
 
 ```ruby
+
 # app/models/user.rb
 class User < ApplicationRecord
   authenticates_with_sorcery!
@@ -111,6 +124,7 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
 end
+
 ```
 
 続いてviewを用意していきます。  
@@ -118,24 +132,29 @@ end
 今回も`frontend`ディレクトリ配下にコンポーネントとして用意していきます。
 
 ```bash
+
 $ mkdir -p app/views/users/registrations
 $ touch app/views/users/registrations/new.html.erb
 $ mkdir -p frontend/pages/user/registration
 $ touch frontend/pages/user/registration/_new.html.erb
+
 ```
 
 `app/views/users/registrations/new.html.erb`ファイルは以下のようにコンポーネントを呼び出すように設定してください。
 
 ```html
+
 <!-- app/views/users/registrations/new.html.erb -->
 <%= render "layouts/site/site" do %>
   <%= render "pages/user/registration/new" %>
 <% end %>
+
 ```
 
 コンポーネントの`_new.html.erb`には、登録フォームをコーディングしていきます。
 
 ```html
+
 <!-- frontend/pages/user/registration/_new.html.erb -->
 <div class="user-registration">
     <section class="section">
@@ -195,6 +214,7 @@ $ touch frontend/pages/user/registration/_new.html.erb
         </div>
     </section>
 </div>
+
 ```
 
 [補足]  
@@ -202,21 +222,26 @@ $ touch frontend/pages/user/registration/_new.html.erb
 メニュー部分は以下のように修正しました。  
 
 ```html
+
 <!-- frontend/layouts/site/_site.html.erb -->
 <option data-url="<%= url_for Rails.application.routes.recognize_path(request.url).merge({ only_path: false, locale: locale }) %>"<%= I18n.locale == locale ? ' selected' : '' %>><%= locale %></option>
 ↓
 <option data-url="<%= url_for(Rails.application.routes.recognize_path(request.get? ? request.url : url_for(:back)).merge({ only_path: false, locale: locale })) %>"<%= I18n.locale == locale ? ' selected' : '' %>><%= locale %></option>
+
 ```
 
 バリデーションエラーを多言語化する為、翻訳ファイルを作成します。
 
 ```bash
+
 $ touch config/locales/models/ja.yml
+
 ```
 
 `config/locales/models/ja.yml`は以下のような内容にしてください。
 
 ```yaml
+
 ja:
   activerecord: &activerecord
     models:
@@ -242,26 +267,32 @@ ja:
             password_confirmation:
               blank: "が入力されていません。"
               confirmation: "がパスワードと一致しません"
+
 ```
 
 ルーティングファイル（`config/routes.rb`）に以下のような新規登録ページへのルーティングを追記します。
 
 ```ruby
+
 # config/routes.rb
 namespace :users, module: :users do
   resource :registrations, only: [:new, :create], :path_names => { new: 'signup' }
 end
+
 ```
 
 以下のようなlink_toメソッドを利用することで、新規登録ページのリンクが作成されます。適した場所にリンクを配置してください。
 
 ```html
+
 <%= link_to 'signup', new_users_registration_path %>
+
 ```
 
 今回はヘッダーにリンクを追加します。`frontend/layouts/site/_site.html.erb`を修正します。
 
 ```html
+
 <!-- frontend/layouts/site/_site.html.erb -->
 <div id="navbarMenuHeroB" class="navbar-menu">
   <div class="navbar-end">
@@ -278,6 +309,7 @@ end
       <i class="fas fa-shopping-cart"></i>
     </a>
     ・・・
+
 ```
 
 ここまでできたら新規登録画面は完了です。  
@@ -291,13 +323,16 @@ end
 `rails`コマンドを利用してcontrollerを作成します。
 
 ```bash
+
 $ rails g controller users/sessions
+
 ```
 
 `new`メソッドでログイン画面の表示、`create`メソッドでログイン処理を実装します。また`signout`メソッドを用意してログアウト処理を実装します。  
 `app/controllers/users/sessions_controller.rb`を以下のように修正してください。
 
 ```ruby
+
 # app/controllers/users/sessions_controller.rb
 class Users::SessionsController < ApplicationController
 
@@ -325,6 +360,7 @@ class Users::SessionsController < ApplicationController
             params.require(:user).permit(:email, :password)
         end
 end
+
 ```
 
 続いてviewを用意していきます。  
@@ -332,24 +368,29 @@ end
 新規登録と同様で`frontend`ディレクトリ配下にコンポーネントとして用意していきます。
 
 ```bash
+
 $ mkdir -p app/views/users/sessions
 $ touch app/views/users/sessions/new.html.erb
 $ mkdir -p frontend/pages/user/session
 $ touch frontend/pages/user/session/_new.html.erb
+
 ```
 
 `app/views/users/sessions/new.html.erb`ファイルは以下のようにコンポーネントを呼び出すように設定してください。
 
 ```html
+
 <!-- app/views/users/sessions/new.html.erb -->
 <%= render "layouts/site/site" do %>
   <%= render "pages/user/session/new" %>
 <% end %>
+
 ```
 
 コンポーネントの`_new.html.erb`には、ログインフォームをコーディングしていきます。
 
 ```html
+
 <!-- frontend/pages/user/sessions/_new.html.erb -->
 <div class="user-session">
     <section class="section">
@@ -400,13 +441,15 @@ $ touch frontend/pages/user/session/_new.html.erb
         </div>
     </section>
 </div>
+
 ```
 
 ルーティングファイル（`config/routes.rb`）に以下のようなログインページとログアウトのルーティングを追記します。
 
 ```ruby
+
 # config/routes.rb
-  namespace :users, module: :users do
+namespace :users, module: :users do
     resource :registrations, only: [:new, :create], :path_names => { new: 'signup' }
 
     ### ここから追加
@@ -415,12 +458,14 @@ $ touch frontend/pages/user/session/_new.html.erb
     end
     ### ここまで
 
-  end
+end
+
 ```
 
 登録と同様でヘッダーのリンクを追加しましょう。`frontend/layouts/site/_site.html.erb`を修正します。
 
 ```html
+
 <!-- frontend/layouts/site/_site.html.erb -->
 <div id="navbarMenuHeroB" class="navbar-menu">
  　<div class="navbar-end">
@@ -452,7 +497,9 @@ $ touch frontend/pages/user/session/_new.html.erb
 これを回避する為には`config/initializers/session_store.rb`ファイルを作成し、以下のように設定してください。
 
 ```ruby
+
 # config/initializers/session_store.rb
 Rails.application.config.session_store :cookie_store, key: '_netshop_session', :domain => :all
+
 ```
 ※ キーの名称は各自のアプリに合ったものを設定する

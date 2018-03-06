@@ -19,16 +19,21 @@ tags:
 # インストール
 
 `Gemfile`に以下の設定を追加
-```
+```ruby
+
+# Gemfile
 gem 'whenever', require: false
+
 ```
 
 `bundle install`コマンドでインストール
 
-```
+```bash
+
 $ bundle install
 or
 $ bundle install --path=vendor/bundle
+
 ```
 
 ※ 環境に合わせてプロジェクト配下にインストールするかどうかでコマンドを選択してください。
@@ -36,14 +41,18 @@ $ bundle install --path=vendor/bundle
 
 # 設定ファイルの作成
 以下のコマンドを実行することで、設定ファイルが作成されます。
-```
+```bash
+
 bundle exec wheneverize .
+
 ```
 
 `./config/schedule.rb`ファイルが作成されたことを確認してください。  
 今回はサンプルを記載します
 
-```config/schedule.rb
+```ruby
+
+# config/schedule.rb
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 rails_env = ENV['RAILS_ENV'] || :development
 set :environment, rails_env
@@ -80,27 +89,36 @@ set :output, "#{Rails.root}/log/cron.log"
 #  rake "my:rake:task"
 #  command "/usr/bin/my_command"
 #end
+
 ```
 
 # cronへの反映
 ■ 設定を確認する
-```
+```bash
+
 $ bundle exec whenever
+
 ```
 
 ■ 設定反映  
 □ development（開発環境）  
-```
+```bash
+
 bundle exec whenever --update-crontab
+
 ```
 
 
 □ production（商用環境）  
-```
+```bash
+
 RAILS_ENV=production bundle exec whenever --update-crontab
+
 ```
 
 ■ 設定削除  
-```
+```bash
+
 bundle exec whenever --clear-crontab
+
 ```

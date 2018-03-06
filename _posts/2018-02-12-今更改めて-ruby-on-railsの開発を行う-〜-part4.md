@@ -20,16 +20,21 @@ tags:
 
 yarnを利用してbulmaをインストールします。
 
-```
-yarn add bulma
+```bash
+
+$ yarn add bulma
+
 ```
 
 `frontend/init/index.css`でbulmaのimportを追加します。
 以下のように`frontend/init/index.css`を修正してください。
 
-```frontend/init/index.css
+```css
+
+-- frontend/init/index.css
 @import "normalize.css/normalize.css";
 @import "bulma/css/bulma.css";
+
 ```
 
 # `site`コンポーネントのレイアウトをbulmaベースに変更
@@ -38,7 +43,9 @@ yarn add bulma
 
 `app/views/layouts/application.html.erb`にmetaタグとfontawesomeのjs読み込みを追加
 
-```app/views/layouts/application.html.erb
+```html
+
+<!-- app/views/layouts/application.html.erb -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -54,11 +61,13 @@ yarn add bulma
     <%= javascript_pack_tag "application" %>
   </body>
 </html>
+
 ```
 
 `frontend/layouts/site/_site.html.erb`にベースとなるレイアウトを作成します。
 
-```frontend/layouts/site/_site.html.erb
+```html
+
 <!-- frontend/layouts/site/_site.html.erb -->
 <div class="site">
   <section class="hero is-info">
@@ -145,11 +154,14 @@ yarn add bulma
     </div>
   </footer>
 </div>
+
 ```
 
 ホーム画面のデザインを変更します。frontend/pages/home/_show.html.erbを以下のように修正します。
 
-```frontend/pages/home/_show.html.erb
+```html
+
+<!-- frontend/pages/home/_show.html.erb -->
 <div class="home">
     <section class="section">
         <div class="container">
@@ -238,13 +250,13 @@ yarn add bulma
         </div>
     </section>
 </div>
+
 ```
 
 ここまで変更したらサーバーを起動しなおしましょう。  
 以下の画面が表示されれば成功です。
 
 ![オンラインショップ](/images/uploads/screen_online_shop.png)
-
 
 
 今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.4) をご確認ください。

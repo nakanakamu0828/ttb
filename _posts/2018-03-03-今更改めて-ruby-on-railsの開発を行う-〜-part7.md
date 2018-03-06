@@ -31,17 +31,23 @@ phpなら`php.ini`、Ruby On Railsなら`application.rb`に設定を記述しま
 # `cjheath/geoip`インストール
 
 `Gemfile`に`cjheath/geoip`を追加します。
-```Gemfile
+```ruby
+
+# Gemfile
 gem "geoip"
+
 ```
 
 続いて`bundle install`コマンドを実行し、ライブラリをインストールしてください。
 
-```
-bundle install
+```bash
+
+$ bundle install
 or
-bundle install --path=vendor/bundle
+$ bundle install --path=vendor/bundle
+
 ```
+
 ※ 環境に合わせてプロジェクト配下にインストールするかどうかでコマンドを選択してください。
 
 
@@ -49,24 +55,28 @@ bundle install --path=vendor/bundle
 Geoのデータベースファイルとして、GeoIP.datが用意されています。  
 そちらをダウンロードしてプロジェクト内にセットアップしていきましょう。
 
-```
+```bash
+
 $ mkdir -p data/geoip
 $ cd data/geoip
 $ wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
 $ gzip -d GeoIP.dat.gz
 wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 $ gzip -d GeoLiteCity.dat.gz
+
 ```
 ※ 今回はCityの情報をメインで利用しますが、GeoIP.dat.gzも合わせてダウンロードしておきましょう。
 
 # rails cでGeoIPを確認
 `rails c`でコンソールを起動し、GeoIPを利用してホスト/IPアドレスの位置情報を取得してみます
 
-```
+```bash
+
 $ rails c
 irb(main):001:0> c = GeoIP.new('data/geoip/GeoLiteCity.dat').city('www.yahoo.co.jp')
 irb(main):002:0> c.timezone
 => "Asia/Tokyo"
+
 ```
 こちらは、Yahoo(www.yahoo.co.jp)のホスト名からtimezoneを取得した例になります。
 
@@ -75,7 +85,8 @@ irb(main):002:0> c.timezone
 どの画面にアクセスがあっても判定させたいので、`app/controllers/application_controler.rb`に処理を記載します。  
 以下のように変更してください。
 
-```app/controllers/application_controler.rb
+```ruby
+
 # app/controllers/application_controler.rb
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
@@ -100,6 +111,7 @@ class ApplicationController < ActionController::Base
     end
   end
 end
+
 ```
 
 将来的には、`init_timezone`メソッド内でユーザーのログインチェックを行い、ログインしている場合はユーザーが設定したtimezoneを反映という形に変更していきく予定です。
@@ -110,7 +122,3 @@ end
 
 
 今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.8) をご確認ください。
-
-
-
-

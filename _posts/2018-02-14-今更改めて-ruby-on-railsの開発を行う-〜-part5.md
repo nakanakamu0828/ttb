@@ -37,7 +37,9 @@ Gemfileに `gem "subdomain_locale"` を追加して `bundle install` します�
 
 `config/application.js`に利用する言語を設定していきます。
 
-```config/application.js
+```javascript
+
+// config/application.js
 config.i18n.enforce_available_locales = true
 config.i18n.available_locales = 'en', 'ja'
 
@@ -46,6 +48,7 @@ config.i18n.default_locale = :en
 
 # 翻訳ファイルのディレクトを追加
 config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
 ```
 
 今回は英語と日本語の２カ国語とします
@@ -54,15 +57,19 @@ config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,y
 
 モデル、view、それ以外に利用するdefaultの3ディレクトリを用意します。
 
-```
+```bash
+
 $ mkdir -p config/locales/{defaults,models,views}
 $ mv config/locales/en.yml config/locales/defaults/
+
 ```
 
 デフォルトで用意されていた`config/locales/en.yml`は`config/locales/defaults/`に移動しておきます。
 また、`config/locales/defaults/ja.yml`ファイルも作成しておきましょう。内容は以下の通りです。
 
-```config/locales/defaults/en.yml
+```yaml
+
+# config/locales/defaults/en.yml
 en:
   site:
     title: "Online Shop"
@@ -76,9 +83,12 @@ en:
       default: "%m/%d/%Y %H:%M:%S"
       long: "%B %d, %Y %H時%M分%S秒 %z"
       short: "%m.%d.%y %H:%M"
+
 ```
 
-```config/locales/defaults/ja.yml
+```yaml
+
+# config/locales/defaults/ja.yml
 ja:
   site:
     title: "オンラインショップ"
@@ -92,6 +102,7 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
+
 ```
 
 site.titleの部分は、言語切り替えの確認時に利用します。
@@ -101,7 +112,8 @@ site.titleの部分は、言語切り替えの確認時に利用します。
 今回はselectタグで言語を切り替えられるようにします。
 ヘッダーに以下のselect文を追加してください。
 
-```frontend/layouts/site/_site.html.erb
+```html
+
 <%# frontend/layouts/site/_site.html.erb %>
 ・・・
 <a class="navbar-item">
@@ -123,11 +135,14 @@ site.titleの部分は、言語切り替えの確認時に利用します。
   </div>
 </div>
 ・・・
+
 ```
 
 javascriptを利用して、selectの値が変更された場合に画面を切り替えます。
 
-```frontend/layouts/site/site.js
+```javascript
+
+// frontend/layouts/site/site.js
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("selectedLocale").addEventListener("change", () => {
     const selectedOption = this.options[this.selectedIndex];
@@ -145,13 +160,15 @@ document.addEventListener("DOMContentLoaded", () => {
 言語が正しく切り替わるかどうか、サイトのタイトルを変更してみましょう。
 `frontend/layouts/site/_site.html.erb`のタイトル部分を以下のように修正してください。
 
-```frontend/layouts/site/_site.html.erb
+```html
+
 <%# frontend/layouts/site/_site.html.erb %>
 <a class="navbar-item title" style="margin-bottom: 0;">
  　Online Shop
 </a>
 ↓
 <%= link_to root_url(locale: I18n.locale), t('site.title'), class: 'navbar-item title', style: 'margin-bottom: 0;' %>
+
 ```
 
 ここまでできたら、サーバーを起動し画面を確認してみてください。
@@ -174,17 +191,22 @@ http://ja.netshop.local/
 
 今まで同様nginxをwebサーバーとして利用していう場合、設定ファイルにサブドメインへのアクセス設定を追加してください。
 
-```misc/nginx/development.conf
+```conf
+
 # misc/nginx/development.conf
 server_name netshop.local;
 ↓
 server_name netshop.local en.netshop.local ja.netshop.local;
+
 ```
 
 ホストPCのhostsファイルにもサブドメインへのアクセスができるように設定を追加してください。
 私の環境の場合
-```/etc/hosts
+```
+
+# /etc/hosts
 192.168.33.10 netshop.local ja.netshop.local
+
 ```
 
 

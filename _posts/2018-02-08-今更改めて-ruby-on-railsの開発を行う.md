@@ -26,46 +26,55 @@ vagrantを利用してCentOS7で開発環境を構築していきます。
 yumを最新にupdateしてから作業を進めていきます。
 yumで必要なライブラリをインストール
 
-```
+```bash
+
 $ # rootユーザーにswitchして作業を進めます
 $ 
 $ sudo su -
 # yum -y update
 # yum -y install git gcc-c++ glibc-headers openssl-devel readline libyaml-devel readline-devel zlib zlib-devel libffi-devel libxml2 libxslt libxml2-devel libxslt-devel mysql mysql-devel ImageMagick ImageMagick-devel epel-release curl-devel
+
 ```
 
 rbenvでrubyをインストールするので、まずはrbenvをインストール
 
-```
+```bash
+
 # git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv
 # echo 'export RBENV_ROOT="/usr/local/rbenv"' >> /etc/profile
 # echo 'export PATH="${RBENV_ROOT}/bin:${PATH}"' >> /etc/profile
 # echo 'eval "$(rbenv init -)"' >> /etc/profile
 # source /etc/profile
 # git clone https://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build
+
 ```
 
 ruby2.5.0(執筆時点(2018/02/08)の最新)をインストール
 
-```
+```bash
+
 # rbenv install -v 2.5.0
 # rbenv global 2.5.0
 # rbenv rehash
 # chmod -R a+w /usr/local/rbenv
+
 ```
 
 Rails, Pumaをインストール
 
-```
+```bash
+
 # gem update --system
 # gem install bundler
 # gem install nokogiri -- --use-system-libraries
 # gem install --no-ri --no-rdoc rails
 # gem install --no-ri --no-rdoc puma
+
 ```
 
 nvm + yarn をインストール
-```
+```bash
+
 # git clone git://github.com/creationix/nvm.git /usr/local/nvm
 # echo "if [[ -s /usr/local/nvm/nvm.sh ]];" >> /etc/profile
 # echo " then source /usr/local/nvm/nvm.sh" >> /etc/profile
@@ -74,11 +83,13 @@ nvm + yarn をインストール
 # nvm install v8.4.0
 # chmod -R a+w /usr/local/nvm
 # npm install -g yarn
+
 ```
 
 nginx をインストール
 
-```
+```bash
+
 # yum install nginx
 # # user を vagrantに変更
 # vi /etc/nginx/nginx.conf
@@ -87,11 +98,13 @@ nginx をインストール
 user vagrant;
 
 # chmod -R a+w /var/log/nginx/
+
 ```
 
 mysql をインストール
 
-```
+```bash
+
 # # mariadbのライブラリがあれば削除
 # yum remove mariadb-libs
 # rm -rf /var/lib/mysql/
@@ -128,6 +141,7 @@ character-set-server=utf8mb4
 
 mysqlコマンドからMySQLサーバーにログインできることを確認しましょう
 # mysql -uroot -p
+
 ```
 
 ここまでで必要なミドルウェアのインストールが完了です。
@@ -137,7 +151,8 @@ mysqlコマンドからMySQLサーバーにログインできることを確認�
 vagrantユーザーにexitしてからリポジトリを作成していきます。
 vagrantを利用しているので、ホストOSにマウントされている/vagrantディレクトリにリポジトリを作成します。作業はvagrantユーザーのhomeディレクトリ（/home/vagrant/）で行えるようにシンボリックリンクもはりたいと思います。
 
-```
+```bash
+
 # exit
 $ cd /vagrant/
 $ rails new --webpack --database=mysql --skip-coffee --skip-sprockets --skip-turbolinks --skip-test --skip-bundle --skip-javascript netshop
@@ -146,6 +161,7 @@ $ rails new --webpack --database=mysql --skip-coffee --skip-sprockets --skip-tur
 そしてフロントエンドではwebpackを利用します。
 また、今回はbundle installしないでプロジェクトを作成します
 netshop はプロジェクト名です。簡易的なecサイトを構築してみたいと思います。
+
 ```
 
 `rails new`のオプションは [こちら](http://railsdoc.com/rails) をご確認ください。
@@ -154,7 +170,8 @@ netshop はプロジェクト名です。簡易的なecサイトを構築して�
 
 ■ DB設定
 
-```
+```bash
+
 $ cd netshop/
 $ vi config/database.yml
 
@@ -165,11 +182,13 @@ default: &default
   username: root
   password: [MySQLのパスワード設定]
   socket: /var/lib/mysql/mysql.sock
+
 ```
 
 ■ puma設定
 
-```
+```bash
+
 $ vi config/puma.rb
 
 _proj_path = "#{File.expand_path("../..", __FILE__)}"
@@ -182,11 +201,13 @@ bind "unix:///tmp/#{_proj_name}.sock"
 directory _proj_path
 
 ファイルのhead部分に追加
+
 ```
 
 ■ nginx設定
 
-```
+```bash
+
 $ mkdir -p misc/nginx
 $ vi misc/nginx/development.conf
 
@@ -220,6 +241,7 @@ server_nameはご自身にあった環境の値を設定してください。
 $ sudo ln -snf /vagrant/netshop/misc/nginx/development.conf /etc/nginx/conf.d/netshop.conf
 
 nginxが設定ファイルを読み込むようにシンボリックリンクを /etc/nginx/conf.d/ に配置します
+
 ```
 
 設定は以上となります。
@@ -228,24 +250,30 @@ nginxが設定ファイルを読み込むようにシンボリックリンクを
 
 まずはnginxを起動します。
 
-```
+```bash
+
 $ sudo systemctl restart nginx
+
 ```
 
 vagrantのホームディレクトリにシンボリックリンクをはります。
 
-```
+```bash
+
 $ ln -snf /vagrant/netshop /home/vagrant/netshop
+
 ```
 
 続いてpumaを起動ですが、  
 gemをプロジェクト内にインストールし、webpackのセットアップを行った後にpumaを起動します。
 
-```
+```bash
+
 $ bundle install --path=vendor/bundle
 $ bundle exec rake webpacker:install
 $ bundle exec rails db:create
 $ bundle exec puma
+
 ```
 
 # ブラウザから確認
@@ -253,7 +281,9 @@ $ bundle exec puma
 ホストPCのhostsファイルに以下の内容を設定します。
 
 ```
+
 192.168.33.10 netshop.local
+
 ```
 
 ブラウザを開き、 <http://netshop.local>にアクセスします。

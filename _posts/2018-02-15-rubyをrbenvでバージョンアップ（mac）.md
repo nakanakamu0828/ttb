@@ -14,17 +14,21 @@ tags:
 久しぶりに部屋にしまったままのMacBook Airを取り出しこの記事を書いています。
 
 # Rubyの環境を確認する
-```
+```bash
+
 $ ruby -v
 ruby 2.3.3p222 (2016-11-21 revision 56859) [universal.x86_64-darwin17]
+
 ```
 
 あ、rubyのバージョンが古い・・・
 最新版にアップグレードをしたい。
 
-```
+```bash
+
 $ rbenv -version
 -bash: rbenv: command not found
+
 ```
 
 え！ rbenv入ってない・・・
@@ -33,21 +37,27 @@ $ rbenv -version
 # インストール
 それではインストールしていきます。
 
-```
+```bash
+
 $ brew update
 $ brew install rbenv ruby-build
+
 ```
 
 続いてrubyのバージョンを確認
-```
+```bash
+
 $ rbenv install --list
+
 ```
 
 今回は2.5.0をインストールします。
-```
+```bash
+
 $ rbenv install 2.5.0
 $ rbenv global 2.5.0
 $ sudo gem install railties && rbenv rehash
+
 ```
 
 環境によってはpathを通す必要があるかもしれません。

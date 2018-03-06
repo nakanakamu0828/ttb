@@ -38,16 +38,20 @@ ElastiCacheのTOPから「今すぐ始める」ボタンを押下し設定して
 # EC2からRedisに接続できるか確認
 Redisクライアントが入っていない場合、以下のコマンドからインストールします。
 
-```
+```bash
+
 # yum install -y redis --enablerepo=epel
+
 ```
 
 続いてRedisへの接続を確認します。  
 Redisのホスト名はAWSのコンソールから確認してください。  
 "プライマリエンドポイント"というところです。
 
-```
+```bash
+
 $ redis-cli -h [host]
+
 ```
 
 接続できればRedisの環境構築は完了です。

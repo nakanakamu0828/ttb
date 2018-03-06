@@ -21,13 +21,16 @@ tags:
 
 マイグレーションファイルを作成します
 
-```
+```bash
+
 $ rails g migration AddColumnParentIdToCateogry
+
 ```
 
 マイグレーションファイルの内容は以下のようにします。
 
-```db/migrate/20180301xxxxxx_add_column_parent_id_to_cateogry.rb
+```ruby
+
 # db/migrate/20180301xxxxxx_add_column_parent_id_to_cateogry.rb
 class AddColumnParentIdToCateogry < ActiveRecord::Migration[5.1]
   def change
@@ -35,17 +38,21 @@ class AddColumnParentIdToCateogry < ActiveRecord::Migration[5.1]
     add_foreign_key :categories, :categories, column: :parent_id
   end
 end
+
 ```
 
 マイグレーションファイルが作成できたらDBに反映します
 
-```
+```bash
+
 $ rails db:migrate
+
 ```
 
 DBのcategoriesテーブルは以下のようになります
 
-```
+```mysql
+
 mysql> show create table categories\G
 *************************** 1. row ***************************
        Table: categories
@@ -61,6 +68,7 @@ Create Table: CREATE TABLE `categories` (
   CONSTRAINT `fk_rails_82f48f7407` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
 1 row in set (0.00 sec)
+
 ```
 
 ※ 制約名を定義した方がいいですね・・・
@@ -69,7 +77,8 @@ Create Table: CREATE TABLE `categories` (
 
 Modelに親子関係が保持できるように`belong_to`、`has_many`の記述を追加します。以下のようなModelに変更してください。
 
-```app/models/category.rb
+```ruby
+
 # app/models/category.rb
 class Category < ApplicationRecord
     translates :name
@@ -106,13 +115,15 @@ class Category < ApplicationRecord
         parents.reverse
     end
 end
+
 ```
 
 # 親子関係のデータを作成
 
 seedのスクリプトを変更して、categoriesテーブルに親子関係のデータを作成していきます。`db/seed.rb`を以下のように変更してください。
 
-```db/seed.rb
+```ruby
+
 # db/seed.rb
 [
     {
@@ -167,13 +178,16 @@ seedのスクリプトを変更して、categoriesテーブルに親子関係の
         data.save!
     end
 end
+
 ```
 
 既にDBにデータが登録してある場合、レコードを削除します。  
 続いてseedを実行します
 
-```
+```bash
+
 $ rails db:seed
+
 ```
 
 エラーなしで実行できたことを確認した後、categoriesテーブル、category_translationsテーブルのデータを確認してみてください。
@@ -182,14 +196,17 @@ $ rails db:seed
 
 カテゴリーの親子関係を表示するカテゴリー詳細ページを作成してみましょう。まずは、railsコマンドでcontrollerを用意します
 
-```
+```bash
+
 $ rails g controller categories
+
 ```
 
 次にそれぞれ必要なファイルを作成していきます
 `app/controllers/categories_controller.rb`のshowメソッドが詳細ページとなります。
 
-```app/controllers/categories_controller.rb
+```ruby
+
 # app/controllers/categories_controller.rb
 class CategoriesController < ApplicationController
     def show
@@ -198,39 +215,47 @@ class CategoriesController < ApplicationController
  　 　 　#　将来的には、カテゴリーに紐づく商品を取得する
     end
 end
+
 ```
 
 `config/routes.rb`にカテゴリー詳細ページのルーティングを追加
 
-```config/routes.rb
+```ruby
+
 # config/routes.rb
 Rails.application.routes.draw do
   resources :categories, only: [:show]
   root to: "homes#show"
 end
+
 ```
 
 `app/views/categories/show.html.erb`にコンポーネントの読み込みを記載します。コンポーネントについてはあとで作成していきます。
 
-```app/views/categories/show.html.erb
+```html
+
 <%# app/views/categories/show.html.erb %>
 <%= render "layouts/site/site" do %>
   <%= render "pages/category/show" %>
 <% end %>
+
 ```
 
 続いてコンポーネントを用意します
 
-```
+```bash
+
 $ mkdir -p frontend/pages/category
 $ touch frontend/pages/category/_show.html.erb
 $ touch frontend/pages/category/category.js
 $ touch frontend/pages/category/_category.css
+
 ```
 
 レイアウトは以下のようにコーディングしていきます
 
-```frontend/pages/category/_show.html.erb
+```html
+
 <%# frontend/pages/category/_show.html.erb %>
 <div class="cateogry">
     <%
@@ -345,45 +370,58 @@ $ touch frontend/pages/category/_category.css
         </div>
     </section>
 </div>
+
 ```
 
-```frontend/pages/category/category.js
+```javascript
+
 // frontend/pages/category/category.js
 import "./category.css";
+
 ```
 
-```frontend/pages/category/category.css
+```css
+
 /* frontend/pages/category/category.css */
 .breadcrumb-block {
     padding: 1rem;
 }
+
 ```
 
 `frontend/packs/application.js`にて`category.js`の読み込み設定を追加してください。
 
-```frontend/packs/application.js
+```javascript
+
 import "init";
 import "layouts/site/site";
 import "pages/home/home";
 // 以下を追加
 import "pages/category/category";
+
 ```
 
 続いてヘッダーメニューのリンクを修正します。  
 親データのみヘッダーメニューに表示したいので`app/controllers/application_controller.rb`のcategoryデータ取得部分をparent_id が nilのもののみ取得するように変更します。  
 
-```app/controllers/application_controller.rb
+```ruby
+
+# app/controllers/application_controller.rb
 @categories = Category.where(state: true).order(id: :asc)
 ↓
 @categories = Category.where(state: true).where(parent: nil).order(id: :asc)
+
 ```
 
 `frontend/layouts/site/_site.html.erb`のメニュー部分もカテゴリー詳細にリンクするよう修正します。
 
-```frontend/layouts/site/_site.html.erb
+```html
+
+<!-- frontend/layouts/site/_site.html.erb -->
 <%= content_tag(:ul) { @categories.each { |category| concat(content_tag(:li, link_to(category.name, '#'))) } } %>
 ↓
 <%= content_tag(:ul) { @categories.each { |category| concat(content_tag(:li, link_to(category.name, category_path(category), class: defined?(@category) && @category.parents(category) ? 'is-active' : ''))) } } %>
+
 ```
 
 ここまでできたらサーバーを再起動して画面を確認しましょう

@@ -26,14 +26,18 @@ tags:
 詳しくは、 [Autoprefixerの仕組み](https://qiita.com/morishitter/items/ffe56a2145f2b225675c) をご確認ください。  
 プロジェクトルートに以下のファイルを作成します。  
 
-```
+```bash
+
 $ touch .browserslistrc
 $ echo '> 1%' >> .browserslistrc
+
 ```
 
 次に`application.rb`を開いて以下の行を追記します。
 
-```config/application.rb
+```ruby
+
+# config/application.rb
 config.generators do |g|
   g.test_framework  false
   g.stylesheets     false
@@ -41,6 +45,7 @@ config.generators do |g|
   g.helper          false
   g.channel         assets: false
 end
+
 ```
 
 `app/assets`は利用しないので削除します。
@@ -49,13 +54,17 @@ end
 1. `app/javascript`を`frontend`にディレクトリ名を変更し、プロジェクトルートに移動します。
 
 
-```
+```bash
+
 $ mv app/javascript ./frontend
+
 ```
 
 2. `application.html.erb`を以下のように変更します。
 
-```app/views/layouts/application.html.erb
+```html
+
+<!-- app/views/layouts/application.html.erb -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -70,6 +79,7 @@ $ mv app/javascript ./frontend
     <%= javascript_pack_tag "application" %>
   </body>
 </html>
+
 ```
 
 * `javascript_include_tag "application"` → `javascript_pack_tag "application"` に変更  
@@ -77,31 +87,39 @@ $ mv app/javascript ./frontend
 
 3. `webpacker.yml` を以下のように変更します。
 
-```config/webpacker.yml
+```yaml
+
+# config/webpacker.yml
 default: &default
   source_path: frontend  <-- ここを修正
   source_entry_path: packs
   public_output_path: packs
   cache_path: tmp/cache/webpacker
+
 ```
 
 4. frontendディレクトリ配下に置かれるパーシャルが読み込めるように、application_controller.rbを変更します。
 
-```app/controllers/application_controller.rb
+```ruby
+
+# app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   prepend_view_path Rails.root.join("frontend") <-- 追加
 end
+
 ```
 
 5. JSコードやCSSコードの変更時にページを自動更新するために、Procfileを作成ます。また、foremanを利用するためインストールを行います。
 
 
-```
+```bash
+
 $ touch Procfile
 $ echo 'server: bundle exec puma' >> Procfile
 $ echo 'assets: bin/webpack-dev-server' >> Procfile
 $ gem install foreman
+
 ```
 
 # セットアップの確認
@@ -109,45 +127,61 @@ $ gem install foreman
 新しい構成が機能するか確認していきます。
 それではホーム画面用のリソースを生成します。
 
-```
+```bash
+
 $ rails g controller homes
+
 ```
 
 以下のようにcontroller, view, routes.rb, js, cssを追加・変更してください。
 
-```config/routes.rb
+```ruby
+
+# config/routes.rb
 Rails.application.routes.draw do
   root to: "homes#show" <-- 追加
 end
+
 ```
 
-```frontend/packs/application.js
+```javascript
+
+// frontend/packs/application.js
 import "./application.css";
 document.body.insertAdjacentHTML("afterbegin", "Webpacker works!");
+
 ```
 
-```frontend/packs/application.css
+```css
+
+-- frontend/packs/application.css
 html, body {
   background: lightyellow;
 }
+
 ```
 
-```app/controllers/homes_controller.rb
+```ruby
+
+# app/controllers/homes_controller.rb
 class HomesController < ApplicationController
 
     def show
     end
 
 end
+
 ```
 
 `views/homes/show.html.erb`は空で作成します
 
 # アプリ起動
 
-```
+```bash
+
 $ bundle binstubs bundler --force
 $ foreman start
+
 ```
 
 ![Rails サンプル画面](/images/uploads/screen_rails_sample_201802100114.png)
@@ -158,7 +192,8 @@ $ foreman start
 # JSLint, CSSLintの導入
 `package.json` にESLintを追加します。以下のように変更してください。
 
-```package.json
+```json
+
 {
   "name": "netshop",
   "private": true,
@@ -180,11 +215,13 @@ $ foreman start
     "prettier": "^1.7.3"
   }
 }
+
 ```
 
 Lintの適応ルールとして`.eslintrc`ファイルを作成します。
 
-```.eslintrc
+```
+
 {
   "extends": ["eslint-config-airbnb-base", "prettier"],
   "plugins": ["prettier"],
@@ -207,23 +244,28 @@ Lintの適応ルールとして`.eslintrc`ファイルを作成します。
     }
   }
 }
+
 ```
 
 次にCSSLintの設定です。  
 `package.json`の`devDependencies`内に以下を追加します。
-```package.json
+```json
+
 "devDependencies": {
     ...
     "stylelint": "^8.1.1",
     "stylelint-config-standard": "^17.0.0"
 }
+
 ```
 
 Lintの適応ルールとして`.stylelintrc`ファイルも作成します。
-```.stylelintrc
+```
+
 {
   "extends": "stylelint-config-standard"
 }
+
 ```
 
 `package.json`の`dependencies`配下にnormalize.cssを追加します。
@@ -231,7 +273,8 @@ Lintの適応ルールとして`.stylelintrc`ファイルも作成します。
 
 次は`git hooks`を導入し、git commit時に自動チェックが走るようにしましょう。`package.json`に"scripts"を追加します。
 
-```package.json
+```
+
 ・・・
 "scripts": {
   "lint-staged": "$(yarn bin)/lint-staged"
@@ -257,12 +300,15 @@ Lintの適応ルールとして`.stylelintrc`ファイルも作成します。
   "lint-staged"
 ],
 ・・・
+
 ```
 これで、コミット時にstagedファイルのエラーがすべてチェックされ、自動整形されます。
 ここまでできたら`yarn`で追加したライブラリをインストールしましょう
 
-```
+```bash
+
 $ yarn
+
 ```
 
 `frontend/packs/application.js`を修正し、`git add . && git commit -m "testing JS linting"`を実行します。  

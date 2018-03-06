@@ -26,19 +26,23 @@ Rubyを使ってスクリプトを作成していきます。
 #プロジェクト作成
 それではサンプルプロジェクトを作成します。
 
-```
+```bash
+
 $ mkdir -p tinify-sample
 $ cd tinify-sample
 $ touch Gemfile
 $ echo 'source "https://rubygems.org"' >> Gemfile
 $ echo 'gem "tinify"' >> Gemfile
 $ bundle install --path vendor/bundler
+
 ```
 
 続いてスクリプト(tinify.rb)を作成します。
 以下の内容でファイルを作成してください。
 
-```tinify.rb
+```ruby
+
+# tinify.rb
 require "bundler/setup"
 require "tinify"
 Tinify.key = ENV["TINIFY_API_KEY"]
@@ -50,6 +54,7 @@ return unless File.exists?(filepath)
 
 source = Tinify.from_file(filepath)
 source.to_file(filepath)
+
 ```
 
 #スクリプト実行
@@ -60,8 +65,10 @@ source.to_file(filepath)
 * スクリプトの第１引数に圧縮したい画像のパスを指定します。
 
 
-```
+```bash
+
 $ TINIFY_API_KEY=[API KEY] ruby lib/tinify.rb [filepath]
+
 ```
 
 実行が完了したら画像が圧縮しているか確認します。  

@@ -24,22 +24,27 @@ githubのURLを指定するのは、ActiveRecord5.1に対応したリポジト�
 今回はネットショップのカテゴリーを多言語化したいと思います。  
 railsコマンドからModelとマイグレーションファイルを作成します。
 
-```
+```bash
+
 $ rails g model Category
+
 ```
 
 `app/models/category.rb`モデルに翻訳対象項目を指定します
 
-```app/models/category.rb
+```ruby
+
 # app/models/category.rb
 class Category < ApplicationRecord
     translates :name
 end
+
 ```
 
 マイグレーションファイルは以下のような内容に変更します
 
-```db/migrate/20180224xxxxxx_create_categories.rb
+```ruby
+
 # db/migrate/20180224xxxxxx_create_categories.rb
 class CreateCategories < ActiveRecord::Migration[5.1]
   def change
@@ -60,18 +65,22 @@ class CreateCategories < ActiveRecord::Migration[5.1]
     end
   end
 end
+
 ```
 
 `Category.create_translation_table!`で各言語の翻訳カテゴリーを登録するテーブルを作成しています。
 それではmigrateします
 
-```
+```bash
+
 $ rails db:migrate
+
 ```
 
 DBの中を覗いて、`categories`テーブルと`category_translations`テーブルが作成されていることを確認してください。
 
 ```mysql
+
 mysql> desc categories;
 +------------+---------------------+------+-----+---------+----------------+
 | Field      | Type                | Null | Key | Default | Extra          |
@@ -96,13 +105,15 @@ mysql> desc category_translations;
 | name        | varchar(255) | YES  |     | NULL    |                |
 +-------------+--------------+------+-----+---------+----------------+
 6 rows in set (0.00 sec)
+
 ```
 
 # seedを利用してデータをインポート
 
 `db/seeds.rb`に初期データをインポートする処理を記載します。
 
-```db/seeds.rb
+```ruby
+
 # db/seeds.rb
 [
     { en: 'Mens', ja: '男性' },
@@ -117,12 +128,15 @@ mysql> desc category_translations;
     data.name = d[:ja]
     data.save!
 end
+
 ```
 
 それでは実行してみましょう
 
-```
+```bash
+
 $ rails db:seed
+
 ```
 
 `category_translations`テーブルにデータが作成されていることを確認してください。
@@ -131,9 +145,9 @@ $ rails db:seed
 
 ヘッダーメニューとしてカテゴリーを全画面に表示するので、`application_controller`に共通処理を実装します。
 
-```app/controllers/application_controller.rb
-# app/controllers/application_controller.rb
+```ruby
 
+# app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   prepend_view_path Rails.root.join("frontend")
@@ -147,11 +161,13 @@ class ApplicationController < ActionController::Base
   ### ここまで
 
 end
+
 ```
 
 view(`_site.html.erb`)も動的に変更されるように変更します。
 
-```frontend/layouts/site/_site.html.erb
+```html
+
 <!-- frontend/layouts/site/_site.html.erb -->
 <ul>
   <li class="is-active">
@@ -173,6 +189,7 @@ view(`_site.html.erb`)も動的に変更されるように変更します。
 
 ↓
 <%= content_tag(:ul) { @categories.each { |category| concat(content_tag(:li, link_to(category.name, '#'))) } } %>
+
 ```
 
 ここまでできたらサーバーを起動して言語切り替えでメニューが切り替わるか確認してください。
