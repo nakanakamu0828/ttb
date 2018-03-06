@@ -1,5 +1,6 @@
 ---
 layout: default
+noToc: true
 ---
 <article class="post h-entry" itemscope>
   <section class="hero post-hero is-light is-bold" style="background-image: url({{ page.thumbnail }});">
@@ -77,7 +78,7 @@ layout: default
         <div class="columns">
           <div class="column is-two-thirds">
             <div class="content">
-              {{ content }}
+                {{ content | toc_generate }}
             </div>
             <nav class="pagination is-centered is-rounded is-small" role="navigation" aria-label="pagination">
               <a href="{% if page.previous.url %}{{page.previous.url}}{% else %}javascript:void(0);{% endif %}" class="pagination-previous"{% unless page.previous.url %} disabled{% endunless %}>

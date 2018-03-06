@@ -15,12 +15,12 @@ tags:
 引き続きRailsアプリの多言語対応を試していきたいと思います。  
 今期は、[globalize/globalize](https://github.com/globalize/globalize)というgemを利用してModelを多言語化していきます。
 
-## [globalize/globalize](https://github.com/globalize/globalize)のインストール
+# [globalize/globalize](https://github.com/globalize/globalize)のインストール
 
 Gemfileに `gem 'globalize', git: 'https://github.com/globalize/globalize'` を追加して `bundle install` します。  
 githubのURLを指定するのは、ActiveRecord5.1に対応したリポジトリの指定です。
 
-##　多言語化するModelを作成
+#　多言語化するModelを作成
 今回はネットショップのカテゴリーを多言語化したいと思います。  
 railsコマンドからModelとマイグレーションファイルを作成します。
 
@@ -98,7 +98,7 @@ mysql> desc category_translations;
 6 rows in set (0.00 sec)
 ```
 
-## seedを利用してデータをインポート
+# seedを利用してデータをインポート
 
 `db/seeds.rb`に初期データをインポートする処理を記載します。
 
@@ -127,7 +127,7 @@ $ rails db:seed
 
 `category_translations`テーブルにデータが作成されていることを確認してください。
 
-## Railsアプリでカテゴリーを動的表示させる
+# Railsアプリでカテゴリーを動的表示させる
 
 ヘッダーメニューとしてカテゴリーを全画面に表示するので、`application_controller`に共通処理を実装します。
 

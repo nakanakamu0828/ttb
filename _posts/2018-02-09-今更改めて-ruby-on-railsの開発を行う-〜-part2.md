@@ -20,7 +20,7 @@ tags:
 
 を参考にさせて頂きます。それでは初めていきましょう。
 
-## システム構成の変更
+# システム構成の変更
 
 まずは、ブラウザ互換処理対策としてbrowserslistの設定を行います。
 詳しくは、 [Autoprefixerの仕組み](https://qiita.com/morishitter/items/ffe56a2145f2b225675c) をご確認ください。  
@@ -104,7 +104,7 @@ $ echo 'assets: bin/webpack-dev-server' >> Procfile
 $ gem install foreman
 ```
 
-## セットアップの確認
+# セットアップの確認
 
 新しい構成が機能するか確認していきます。
 それではホーム画面用のリソースを生成します。
@@ -143,7 +143,7 @@ end
 
 `views/homes/show.html.erb`は空で作成します
 
-## アプリ起動
+# アプリ起動
 
 ```
 $ bundle binstubs bundler --force
@@ -155,7 +155,7 @@ $ foreman start
 こちらの画面が表示できれば成功です。
 
 
-## JSLint, CSSLintの導入
+# JSLint, CSSLintの導入
 `package.json` にESLintを追加します。以下のように変更してください。
 
 ```package.json

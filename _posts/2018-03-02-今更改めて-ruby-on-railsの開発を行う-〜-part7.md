@@ -17,7 +17,7 @@ tags:
 
 ![ER図](/images/uploads/screen_er_2018030205523.png)
 
-## categoriesテーブルに親IDとなるparent_idカラムを追加
+# categoriesテーブルに親IDとなるparent_idカラムを追加
 
 マイグレーションファイルを作成します
 
@@ -65,7 +65,7 @@ Create Table: CREATE TABLE `categories` (
 
 ※ 制約名を定義した方がいいですね・・・
 
-## Modelを修正
+# Modelを修正
 
 Modelに親子関係が保持できるように`belong_to`、`has_many`の記述を追加します。以下のようなModelに変更してください。
 
@@ -108,7 +108,7 @@ class Category < ApplicationRecord
 end
 ```
 
-## 親子関係のデータを作成
+# 親子関係のデータを作成
 
 seedのスクリプトを変更して、categoriesテーブルに親子関係のデータを作成していきます。`db/seed.rb`を以下のように変更してください。
 
@@ -178,7 +178,7 @@ $ rails db:seed
 
 エラーなしで実行できたことを確認した後、categoriesテーブル、category_translationsテーブルのデータを確認してみてください。
 
-## カテゴリーページの作成
+# カテゴリーページの作成
 
 カテゴリーの親子関係を表示するカテゴリー詳細ページを作成してみましょう。まずは、railsコマンドでcontrollerを用意します
 

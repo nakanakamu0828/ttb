@@ -16,7 +16,7 @@ tags:
 今回はRailsのプロジェクトに、[javan/whenever](https://github.com/javan/whenever)を組み込んでいきます。 　
 定期バッチを利用する為に、wheneverを利用しています。
 
-## インストール
+# インストール
 
 `Gemfile`に以下の設定を追加
 ```
@@ -34,7 +34,7 @@ $ bundle install --path=vendor/bundle
 ※ 環境に合わせてプロジェクト配下にインストールするかどうかでコマンドを選択してください。
 
 
-## 設定ファイルの作成
+# 設定ファイルの作成
 以下のコマンドを実行することで、設定ファイルが作成されます。
 ```
 bundle exec wheneverize .
@@ -82,7 +82,7 @@ set :output, "#{Rails.root}/log/cron.log"
 #end
 ```
 
-## cronへの反映
+# cronへの反映
 ■ 設定を確認する
 ```
 $ bundle exec whenever

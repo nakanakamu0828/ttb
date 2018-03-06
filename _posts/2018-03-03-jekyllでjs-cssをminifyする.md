@@ -16,7 +16,7 @@ jekyllはデフォルトだとjs, cssがminify（圧縮）されないみたい�
 本当に簡単でplugin組み込みするだけでした・・・
 
 
-## gemをインストール
+# gemをインストール
 `Gemfile`に`jekyll-minifier`を追加します。
 
 ```Gemfile
@@ -39,7 +39,7 @@ $ bundle install --path vendor/bundler
 ```
 ※ プロジェクト配下にインストールするかどうかでコマンドを変えてください。
 
-## _config.ymlに設定を追加
+# _config.ymlに設定を追加
 `_config.yml`ファイルの`plugins`に`jekyll-minifier`の設定を追加します。
 
 ```_config.yml

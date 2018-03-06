@@ -16,12 +16,14 @@ tags:
 ツールとしてうまく組み込むことで圧縮処理の効率化を行い、サービスへの負荷を減らすことが目的です。  
 Rubyを使ってスクリプトを作成していきます。
 
+#API Keyの取得
 まずはAPI KEYをTinypngの [DEVELOPER API](https://tinypng.com/developers) ページから発行します。
 
 1. 名前、メールアドレスを入力し、`Get your API key`ボタン押下
 2. 入力したメールアドレスにTinypngからメールが届きます。その中のURLをクリックし、認証を完了させます。
 3. ログイン後の画面にAPI KEYが表示されます
 
+#プロジェクト作成
 それではサンプルプロジェクトを作成します。
 
 ```
@@ -49,6 +51,8 @@ return unless File.exists?(filepath)
 source = Tinify.from_file(filepath)
 source.to_file(filepath)
 ```
+
+#スクリプト実行
 
 最初に作成したTinypingのAPI KEYを指定してスクリプトを実行します。
 

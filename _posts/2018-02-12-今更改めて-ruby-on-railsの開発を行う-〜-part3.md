@@ -20,7 +20,7 @@ tags:
 $ rm -f frontend/packs/application.css
 ```
 
-## アプリの初期設定
+# アプリの初期設定
 
 アプリ全体で共通利用するフォルダを作成します。
 今回は`init`とします。
@@ -57,7 +57,7 @@ body {
 
 `normalize.css`を`frontend/init/index.css`の最初に読み込み、ブラウザ依存のCSSをリセットします。
 
-## コンポーネント作成
+# コンポーネント作成
 
 コンポーネントは、`layouts`, `pages`, `components`の３種類を用意したいと思います。
 

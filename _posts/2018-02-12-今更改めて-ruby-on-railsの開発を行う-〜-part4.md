@@ -16,7 +16,7 @@ tags:
 前回はコンポーネントを作成し、Ruby On Railsのフロントエンド環境を整備しました。
 今回は、bulmaを組み込みベースとなるデザインを作成していきます。
 
-## bulmaをインストール
+# bulmaをインストール
 
 yarnを利用してbulmaをインストールします。
 
@@ -32,7 +32,7 @@ yarn add bulma
 @import "bulma/css/bulma.css";
 ```
 
-## `site`コンポーネントのレイアウトをbulmaベースに変更
+# `site`コンポーネントのレイアウトをbulmaベースに変更
 
 オンラインショップを意識して簡単なbulmaベースのレイアウトを作成します。
 

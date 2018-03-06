@@ -14,7 +14,7 @@ tags:
 こんにちは、なかむです。  
 今回はRailsアプリの多言語対応を試していきたいと思います。
 
-## 言語の切り替え方法について
+# 言語の切り替え方法について
 
 切り替え方法は大きく４つあります。
 
@@ -29,11 +29,11 @@ tags:
 
 サブドメインによるlocaleの管理は、[subdomain_locale](https://github.com/semaperepelitsa/subdomain_locale) というgemを利用したいと思います。
 
-## subdomain_localeのインストール
+# subdomain_localeのインストール
 
 Gemfileに `gem "subdomain_locale"` を追加して `bundle install` します。
 
-## Railsに言語設定を追加
+# Railsに言語設定を追加
 
 `config/application.js`に利用する言語を設定していきます。
 
@@ -50,7 +50,7 @@ config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,y
 
 今回は英語と日本語の２カ国語とします
 
-## 翻訳ファイルのディレクトリ構造を整理
+# 翻訳ファイルのディレクトリ構造を整理
 
 モデル、view、それ以外に利用するdefaultの3ディレクトリを用意します。
 
@@ -96,7 +96,7 @@ ja:
 
 site.titleの部分は、言語切り替えの確認時に利用します。
 
-### ヘッダーに言語切り替えリンクを設置
+# ヘッダーに言語切り替えリンクを設置
 
 今回はselectタグで言語を切り替えられるようにします。
 ヘッダーに以下のselect文を追加してください。
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ```
 
-## サイトタイトルを言語毎に切り替える
+# サイトタイトルを言語毎に切り替える
 
 言語が正しく切り替わるかどうか、サイトのタイトルを変更してみましょう。
 `frontend/layouts/site/_site.html.erb`のタイトル部分を以下のように修正してください。
@@ -170,7 +170,7 @@ http://ja.netshop.local/
 今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.5) をご確認ください。
 
 
-## 補足
+# 補足
 
 今まで同様nginxをwebサーバーとして利用していう場合、設定ファイルにサブドメインへのアクセス設定を追加してください。
 
@@ -188,6 +188,6 @@ server_name netshop.local en.netshop.local ja.netshop.local;
 ```
 
 
-## 参考URL
+# 参考URL
 * [あなたはいくつ知っている？Rails I18nの便利機能大全！](https://qiita.com/Kta-M/items/bd4ba36a58ad602a9d8b)
 * [Rails国際化 (I18n) API](https://railsguides.jp/i18n.html)

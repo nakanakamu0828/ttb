@@ -28,7 +28,7 @@ phpなら`php.ini`、Ruby On Railsなら`application.rb`に設定を記述しま
 [cjheath/geoip](https://github.com/cjheath/geoip) というライブラリを利用してIPアドレスから位置情報を取得します。  
 そして、位置情報から適したtimezoneを設定してみましょう。
 
-## `cjheath/geoip`インストール
+# `cjheath/geoip`インストール
 
 `Gemfile`に`cjheath/geoip`を追加します。
 ```Gemfile
@@ -45,7 +45,7 @@ bundle install --path=vendor/bundle
 ※ 環境に合わせてプロジェクト配下にインストールするかどうかでコマンドを選択してください。
 
 
-## GeoIP.datファイルのセットアップ
+# GeoIP.datファイルのセットアップ
 Geoのデータベースファイルとして、GeoIP.datが用意されています。  
 そちらをダウンロードしてプロジェクト内にセットアップしていきましょう。
 
@@ -59,7 +59,7 @@ $ gzip -d GeoLiteCity.dat.gz
 ```
 ※ 今回はCityの情報をメインで利用しますが、GeoIP.dat.gzも合わせてダウンロードしておきましょう。
 
-## rails cでGeoIPを確認
+# rails cでGeoIPを確認
 `rails c`でコンソールを起動し、GeoIPを利用してホスト/IPアドレスの位置情報を取得してみます
 
 ```
@@ -70,7 +70,7 @@ irb(main):002:0> c.timezone
 ```
 こちらは、Yahoo(www.yahoo.co.jp)のホスト名からtimezoneを取得した例になります。
 
-## WEBサイトの初期アクセス時にtimezoneを設定する
+# WEBサイトの初期アクセス時にtimezoneを設定する
 続いてはWEBサイト側で実装していきましょう。  
 どの画面にアクセスがあっても判定させたいので、`app/controllers/application_controler.rb`に処理を記載します。  
 以下のように変更してください。

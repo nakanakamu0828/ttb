@@ -15,7 +15,7 @@ tags:
 
 今回は[Sorcery/sorcery](https://github.com/Sorcery/sorcery)を利用したユーザー認証処理を実装していきます。  
 
-## sorceryインストール
+# sorceryインストール
 
 まずは`Gemfile`に`sorcery`の設定を追加します
 
@@ -34,7 +34,7 @@ $ bundle install --path=vendor/bundle
 
 ※ 環境に合わせてプロジェクト配下にインストールするかどうかでコマンドを選択してください。
 
-## sorceryのセットアップ
+# sorceryのセットアップ
 
 sorceryのテンプレートを作成します
 
@@ -59,7 +59,7 @@ migrationを利用してuserテーブルを作成します。
 $ rails db:migrate
 ```
 
-## ユーザーの新規登録
+# ユーザーの新規登録
 
 それではユーザーの新規登録機能を作成していきましょう。  
 `rails`コマンドを利用してcontrollerを作成します。
@@ -285,7 +285,7 @@ end
 
 ![デモ：新規登録画面](/images/uploads/screen_demo_20180306120318.png)
 
-## ユーザーログイン
+# ユーザーログイン
 
 次はログイン機能を実装していきます。  
 `rails`コマンドを利用してcontrollerを作成します。
@@ -447,7 +447,7 @@ $ touch frontend/pages/user/session/_new.html.erb
 
 今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.9) をご確認ください。
 
-## 番外編
+# 番外編
 現在作成デモとして作成しているサイトはサブドメインで言語切り替えを行っています。その場合、デフォルトではサブドメイン毎にセッションが張られます。なので、日本語ページでログインしていても英語ページでは未ログインになってしまいます。  
 これを回避する為には`config/initializers/session_store.rb`ファイルを作成し、以下のように設定してください。
 
