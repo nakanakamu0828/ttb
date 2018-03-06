@@ -278,12 +278,37 @@ end
 $ rails g controller users/sessions
 ```
 
-`new`メソッドでログイン画面の表示、`create`メソッドでログイン処理を実装します。また、`destroy`メソッドでログアウト処理を実装します。  
+`new`メソッドでログイン画面の表示、`create`メソッドでログイン処理を実装します。また、`signout`メソッドを用意してログアウト処理を実装します。  
 `app/controllers/users/sessions_controller.rb`を以下のように修正してください。
 
 ```app/controllers/users/sessions_controller.rb
 # app/controllers/users/sessions_controller.rb
+class Users::SessionsController < ApplicationController
 
+    def new
+        @user = User.new
+    end
+
+    def create
+        @user = login(login_params[:email], login_params[:password])
+        if @user
+            redirect_back_or_to(root_path, notice: 'Login successful')
+        else
+            flash.now[:alert] = 'Login failed'
+            render action: 'new'
+        end
+    end
+
+    def signout
+        logout
+        redirect_to(root_path, notice: 'Logged out!')
+    end
+
+    private
+        def login_params
+            params.require(:user).permit(:email, :password)
+        end
+end
 ```
 
 続いてviewを用意していきます。  
@@ -307,45 +332,92 @@ $ touch frontend/pages/user/session/_new.html.erb
 コンポーネントの`_new.html.erb`には、ログインフォームをコーディングしていきます。
 ```frontend/pages/user/sessions/_new.html.erb
 <!-- frontend/pages/user/sessions/_new.html.erb -->
+<div class="user-session">
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-half is-offset-one-quarter">
+                    <div class="box">
+                        <h1 class="title has-text-centered is-size-4">Signin</h1>
+                        <hr>
+                        <%= form_for(@user ||= User.new, url: users_sessions_path, html: { medhod: :post }) do |f| %>
+                             <% if @user.errors.any? %>
+                                <div class="notification is-danger">
+                                    <ul>
+                                        <% @user.errors.full_messages.each do |message| %>
+                                            <li><%= message %></li>
+                                        <% end %>
+                                    </ul>
+                                </div>
+                            <% end %>
+                            <div class="field">
+                                <label class="label">Email</label>
+                                <div class="control has-icons-left">
+                                    <%= f.email_field :email, class: "input", placeholder: 'Email', autocomplete: :off %>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Password</label>
+                                <div class="control has-icons-left">
+                                    <%= f.password_field :password, class: "input", placeholder: 'Password', autocomplete: :off %>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-key"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <hr>
+
+                            <div class="field is-grouped is-grouped-centered">
+                                <input type="submit" class="button is-primary  is-fullwidth" value="Submit">
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 ```
 
-
-ルーティングファイル（`config/routes.rb`）に以下のようなログインページへのルーティングを追記します。
+ルーティングファイル（`config/routes.rb`）に以下のようなログインページとログアウトのルーティングを追記します。
 ```config/routes.rb
 # config/routes.rb
   namespace :users, module: :users do
     resource :registrations, only: [:new, :create], :path_names => { new: 'signup' }
-    resource :sessions, only: [:new, :create, :destroy], :path_names => { new: 'signin' } <-- 追加
+
+    ### ここから追加
+    resource :sessions, only: [:new, :create], :path_names => { new: 'signin' } do
+      get :signout, to: 'sessions#signout', as: :signout
+    end
+    ### ここまで
+
   end
 ```
 
-以下のようなlink_toメソッドを利用することで、ログインページのリンクが作成されます。適した場所にリンクを配置してください。
-```
-<%= link_to 'signin', new_users_sessions_path %>
-```
-
-今回はヘッダーにリンクを追加します。`frontend/layouts/site/_site.html.erb`を修正します。
+登録と同様でヘッダーのリンクを追加しましょう。`frontend/layouts/site/_site.html.erb`を修正します。
 
 ```frontend/layouts/site/_site.html.erb
 <!-- frontend/layouts/site/_site.html.erb -->
 <div id="navbarMenuHeroB" class="navbar-menu">
-  <div class="navbar-end">
-    <a class="navbar-item is-active">
-      Home
-    </a>
-    <%= link_to 'singup', new_users_registration_path, class: 'navbar-item' %>
-    <!-- 以下のリンクを修正 -->
-    <a class="navbar-item">
-      Login
-    </a>
-    ↓
-    <%= link_to 'singin', new_users_sessions_path, class: 'navbar-item' %>
-    <!-- ここまで -->
-    <a class="navbar-item">
-      <i class="fas fa-shopping-cart"></i>
-    </a>
+ 　<div class="navbar-end">
+ 　 　<a class="navbar-item is-active">
+ 　 　 　Home
+ 　 　</a>
+ 　 　<% if current_user %>
+ 　 　  <%= link_to 'Singout',  signout_users_sessions_path, class: 'navbar-item', method: :delete %>
+ 　 　<% else %>
+ 　 　  <%= link_to 'Singup', new_users_registrations_path, class: 'navbar-item' %>
+ 　 　  <%= link_to 'Singin', new_users_sessions_path, class: 'navbar-item' %>
+ 　 　<% end %>
+ 　 　<a class="navbar-item">
+ 　 　  <i class="fas fa-shopping-cart"></i>
+ 　 　</a>
     ・・・
 ```
 
-ここまでできたらログイン画面は完了です。    
+ここまでできたらログイン/ログアウトの実装は完了です。    
 サーバーを再起動して画面を確認してみましょう。
