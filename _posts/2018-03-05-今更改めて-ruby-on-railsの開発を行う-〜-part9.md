@@ -34,8 +34,6 @@ $ bundle install --path=vendor/bundle
 
 ※ 環境に合わせてプロジェクト配下にインストールするかどうかでコマンドを選択してください。
 
-
-
 ## sorceryのセットアップ
 
 sorceryのテンプレートを作成します
@@ -54,18 +52,16 @@ $ rails g sorcery:install
 
 ※ 作成されたファイルを確認してみてください。
 
-続いてDBをセットアップします。\
+続いてDBをセットアップします。  
 migrationを利用してuserテーブルを作成します。
 
 ```
 $ rails db:migrate
 ```
 
-
-
 ## ユーザーの新規登録
 
-それではユーザーの新規登録機能を作成していきましょう。\
+それではユーザーの新規登録機能を作成していきましょう。  
 `rails`コマンドを利用してcontrollerを作成します。
 
 ```
@@ -117,8 +113,8 @@ class User < ApplicationRecord
 end
 ```
 
-続いてviewを用意していきます。\
-以下のコマンドを実行してディレクトリとファイルを用意しましょう。\
+続いてviewを用意していきます。  
+以下のコマンドを実行してディレクトリとファイルを用意しましょう。  
 今回も`frontend`ディレクトリ配下にコンポーネントとして用意していきます。
 
 ```
@@ -201,9 +197,9 @@ $ touch frontend/pages/user/registration/_new.html.erb
 </div>
 ```
 
-\[補足]\
-ヘッダーに用意しているロケーション切り替えのselectが原因で、新規登録でバリデーションに引っかかった場合、５００エラーが出てしまいました。
-メニュー部分は以下のように修正しました。
+[補足]  
+ヘッダーに用意しているロケーション切り替えのselectが原因で、新規登録でバリデーションに引っかかった場合、５００エラーが出てしまいました。  
+メニュー部分は以下のように修正しました。  
 
 ```frontend/layouts/site/_site.html.erb
 <!-- frontend/layouts/site/_site.html.erb -->
@@ -284,23 +280,21 @@ end
     ・・・
 ```
 
-ここまでできたら新規登録画面は完了です。\
-サーバーを再起動して画面を確認してみましょう。
+ここまでできたら新規登録画面は完了です。  
+サーバーを再起動して画面を確認してみましょう。  
 
 ![デモ：新規登録画面](/images/uploads/screen_demo_20180306120318.png)
 
-
-
 ## ユーザーログイン
 
-次はログイン機能を実装していきます。\
+次はログイン機能を実装していきます。  
 `rails`コマンドを利用してcontrollerを作成します。
 
 ```
 $ rails g controller users/sessions
 ```
 
-`new`メソッドでログイン画面の表示、`create`メソッドでログイン処理を実装します。また`signout`メソッドを用意してログアウト処理を実装します。\
+`new`メソッドでログイン画面の表示、`create`メソッドでログイン処理を実装します。また`signout`メソッドを用意してログアウト処理を実装します。  
 `app/controllers/users/sessions_controller.rb`を以下のように修正してください。
 
 ```app/controllers/users/sessions_controller.rb
@@ -333,8 +327,8 @@ class Users::SessionsController < ApplicationController
 end
 ```
 
-続いてviewを用意していきます。\
-以下のコマンドを実行してディレクトリとファイルを用意しましょう。\
+続いてviewを用意していきます。  
+以下のコマンドを実行してディレクトリとファイルを用意しましょう。  
 新規登録と同様で`frontend`ディレクトリ配下にコンポーネントとして用意していきます。
 
 ```
@@ -445,5 +439,18 @@ $ touch frontend/pages/user/session/_new.html.erb
     ・・・
 ```
 
-ここまでできたらログイン/ログアウトの実装は完了です。\
+ここまでできたらログイン/ログアウトの実装は完了です。  
 サーバーを再起動して画面を確認してみましょう。
+
+![デモ：ログイン画面](/images/uploads/screen_demo_20180306120328.png)
+
+
+## 番外編
+現在作成デモとして作成しているサイトはサブドメインで言語切り替えを行っています。その場合、デフォルトではサブドメイン毎にセッションが張られます。なので、日本語ページでログインしていても英語ページでは未ログインになってしまいます。  
+これを回避する為には`config/initializers/session_store.rb`ファイルを作成し、以下のように設定してください。
+
+```config/initializers/session_store.rb
+# config/initializers/session_store.rb
+Rails.application.config.session_store :cookie_store, key: '_netshop_session', :domain => :all
+```
+※ キーの名称は各自のアプリに合ったものを設定する
