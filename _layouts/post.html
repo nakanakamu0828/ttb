@@ -12,17 +12,17 @@ layout: default
             <li class="is-active"><a href="#" aria-current="page">{{ page.title | escape }}</a></li>
           </ul>
         </nav>
-        <p class="post-meta">
+        <p class="has-text-grey m-b-md">
           <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
             {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
             <i class="fas fa-clock"></i>
             {{ page.date | date: date_format }}
           </time>
         </p>
-        <h1 class="title post-hero__body__title" itemprop="name headline">{{ page.title | escape }}</h1>
+        <h1 class="title post-hero__body__title m-b-xs" itemprop="name headline">{{ page.title | escape }}</h1>
         <h2 class="m-b-md" itemprop="name headline">{{ page.description | escape }}</h2>
         {% if page.author or site.author or page.location %}
-          <p class="post-meta">
+          <p class="has-text-grey m-b-md">
             {% if page.author or site.author %}
               <span itemprop="author" itemscope>
                 <span class="p-author h-card" itemprop="name">
