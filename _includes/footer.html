@@ -87,6 +87,29 @@
       </div>
     </div>
   </footer>
-
+  <nav class="is-hidden-desktop navbar navbar--bottom is-fixed-bottom" role="navigation" aria-label="main navigation">
+      <div class="">
+          <div class="columns is-gapless is-mobile m-t-sm">
+              <a href="{{ "/" | prepend: site.baseurl }}" class="column has-text-centered">
+                  <i class="fas fa-home is-size-4"></i><br>
+                  <span class="is-size-7">HOME</span>
+              </a>
+              <a href="https://twitter.com/{{ site.twitter_username }}" class="column has-text-centered" target="_blank">
+                  <i class="fab fa-twitter is-size-4"></i><br>
+                  <span class="is-size-7">Follow</span>
+              </a>
+              <a class="column has-text-centered modal-button" data-target="modal-share">
+                  <i class="fas fa-share-alt is-size-4"></i><br>
+                  <span class="is-size-7">Share</span>
+              </a>
+              <a id="linkTotop" href="javascript:void(0);" class="column has-text-centered">
+                  <i class="fas fa-angle-up is-size-4"></i><br>
+                  <span class="is-size-7">TOP</span>
+              </a>
+          </div>
+      </div>
+  </nav>
+  {% include modal.html %}
+  
   <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
   <script defer src="{{'/assets/main.js' | absolute_url }}"></script>

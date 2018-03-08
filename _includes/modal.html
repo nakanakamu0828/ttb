@@ -1,0 +1,18 @@
+<div id="modal-share" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box has-text-centered">
+            <h3 class="title">Share</h3>
+            <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.url | absolute_url }}&via={{ site.twitter_username }}&related={{ site.twitter_username }}" rel="nofollow" target="_blank" title="Share on Twitter" class="button is-social is-twitter is-circle">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://facebook.com/sharer.php?u={{ page.url | absolute_url }}" rel="nofollow" target="_blank" title="Share on Facebook" class="button is-social is-facebook is-circle">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://plus.google.com/share?url={{ page.url | absolute_url }}" rel="nofollow" target="_blank" title="Share on Google+" class="button is-social is-google-plus is-circle">
+                <i class="fab fa-google-plus-g"></i>
+            </a>        
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
