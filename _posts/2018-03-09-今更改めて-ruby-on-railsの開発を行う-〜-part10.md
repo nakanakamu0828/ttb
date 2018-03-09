@@ -110,4 +110,4 @@ end
 
 
 今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.10) になります。  
-`rack-attack`の設定部分はコメントアウトしています。
+`rack-attack`の設定部分はコメントアウトしています。利用したい内容に変更してご利用ください。
