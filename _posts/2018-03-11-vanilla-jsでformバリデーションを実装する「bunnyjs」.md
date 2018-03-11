@@ -227,3 +227,10 @@ $ parcel src/index.html -d public
 
 
 今回の成果物は [こちら](https://github.com/nakanakamu0828/sample-bunnyjs) になります。  
+Netlifyでデモ環境を用意しています。以下のURLにてご確認ください。
+
+<https://agitated-stallman-153551.netlify.com/>
+
+# 補足
+Netlifyにてデモ画面を構築する際に、`parcel-bundler`をプロジェクト内にインストールするように修正しました。  
+github上の`package.json`は、`parcel-bundler`が組み込まれています。
