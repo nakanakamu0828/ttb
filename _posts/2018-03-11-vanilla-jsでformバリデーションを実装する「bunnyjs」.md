@@ -116,34 +116,34 @@ $ touch src/scss/style.scss
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Flickity Sample</title>
+<title>bunnyjs Sample</title>
 </head>
 <body>
     <div class="container">
         <h1>bunnyjs</h1>
         <form id="form1" method="POST" novalidate="">
         
-            <div class="form-group has-danger">
+            <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="" minlength="6" maxlength="18">
             </div>
         
-            <div class="form-group has-danger">
+            <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="" minlength="6" maxlength="18">
             </div>
         
-            <div class="form-group has-danger">
+            <div class="form-group">
                 <label for="password_confirmation">Confirm Password</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Password again" required="" minlength="6" maxlength="18">
             </div>
         
-            <div class="form-group has-danger">
+            <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" required="" maxlength="18" data-ajax="/api/users/email-exists/?q={value}">
+                <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" required="" maxlength="18">
             </div>
         
-            <div class="form-group has-danger">
+            <div class="form-group">
                 <label for="select">Select</label>
                 <select name="select" id="select" class="c-select form-control" required="">
                     <option value="" selected="">Select option</option>
@@ -153,7 +153,7 @@ $ touch src/scss/style.scss
                 </select>
             </div>
         
-            <div class="form-group has-danger">
+            <div class="form-group">
                 <label for="photo">Photo</label>
                 <input type="file" name="photo" accept="image/jpeg, image/png" id="photo" class="form-control" placeholder="Photo" required="" maxfilesize="1" mindimensions="500x500">
             </div>
@@ -163,7 +163,7 @@ $ touch src/scss/style.scss
                 <textarea name="about" id="about" class="form-control"></textarea>
             </div>
         
-            <div class="form-group has-danger">
+            <div class="form-group">
                 <label class="c-input c-radio">
                     <input name="agree" type="radio" value="1" required="">
                     <span class="c-indicator"></span>
@@ -221,6 +221,9 @@ $ parcel src/index.html -d public
 
 ```
 
-ブラウザで http://localhost:1234/ を開きます。未入力で"Submit"ボタンを押下し、requiredのエラーが出るかどうかご確認ください。
+ブラウザで <http://localhost:1234/> を開きます。未入力で"Submit"ボタンを押下し、requiredのエラーが出るかどうかご確認ください。
 
 ![デモ画面 : BunnyJs](/images/uploads/screen_20180311183818.png)
+
+
+今回の成果物は [こちら](https://github.com/nakanakamu0828/sample-bunnyjs) になります。  
