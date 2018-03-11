@@ -11,12 +11,12 @@ tags:
   - es6
   - bunnyjs
 ---
-こんにちは、なかむです。\
+こんにちは、なかむです。  
 今回は[bunnyjs](https://github.com/Mevrael/bunny)というライブラリを利用して、vanilla js（pure js）のformバリデーションを実装していきます。
 
 <https://bunnyjs.com/>
 
-\[前提条件として]
+[前提条件として]
 
 * npmを利用してフロントエンドのモジュールを管理
 * parcelを利用してbuildとサーバー起動を行う
@@ -193,7 +193,7 @@ Validation.init(document.getElementById('form1'));
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 ```
 
-\#parcelで起動
+# parcelで起動
 
 ```bash
 $ parcel src/index.html -d public
