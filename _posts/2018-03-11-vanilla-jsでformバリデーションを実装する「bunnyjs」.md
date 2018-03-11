@@ -24,8 +24,10 @@ tags:
 # プロジェクトディレクトリの作成
 
 ```bash
+
 $ mkdir -p sample-bunnyjs
 $ cd sample-bunnyjs
+
 ```
 
 # インストール
@@ -37,14 +39,17 @@ bunnyjsを試すためにまずは必要なライブラリをインストール�
 ```bash
     
 $ npm install -g parcel-bundler
+
 ```
 
 ## buildに必要なライブラリをインストール
 
 ```bash
+
 $ npm init
 $ npm install babel-preset-env -D
 $ npm install node-sass -D
+
 ```
 
 ## babelの設定ファイルを作成
@@ -52,22 +57,27 @@ $ npm install node-sass -D
 ```bash
     
 $ touch .babelrc
+
 ```
 
 ## .babelrc
 
 ```
+
 {
   "presets": [
     "env"
    ]
 }
+
 ```
 
 ## bunnyjsインストール
 
 ```bash
+
 $ npm install bunnyjs --save
+
 ```
 
 ## Bootstrap4インストール
@@ -75,7 +85,9 @@ $ npm install bunnyjs --save
 今回はCSSフレームワークのbootstrap4を利用してformを簡単に調整します。  
 
 ```bash
+
 $ npm install bootstrap --save
+
 ```
 
 ※スタイルだけ利用して、jqueryなどjsは読み込みません。
@@ -87,16 +99,19 @@ $ npm install bootstrap --save
 ## ディレクトリとファイルを作成する
 
 ```bash
+
 $ mkdir -p {src,public}
 $ mkdir -p src/{js,scss,images}
 $ touch src/index.html
 $ touch src/js/app.js
 $ touch src/scss/style.scss
+
 ```
 
 ## エントリーポイントとなるsrc/index.html
 
 ```html
+
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -163,11 +178,13 @@ $ touch src/scss/style.scss
     <script src="js/app.js"></script>
 </body>
 </html>
+
 ```
 
 ## src/js/app.js
 
 ```javascript
+
 import '../scss/style.scss';
 import { Validation } from 'bunnyjs/src/Validation';
 
@@ -185,18 +202,23 @@ Validation.ui.config = {
 };
 
 Validation.init(document.getElementById('form1'));
+
 ```
 
 ## src/scss/style.scss
 
 ```scss
+
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
 ```
 
 # parcelで起動
 
 ```bash
+
 $ parcel src/index.html -d public
+
 ```
 
 ブラウザで http://localhost:1234/ を開きます。未入力で"Submit"ボタンを押下し、requiredのエラーが出るかどうかご確認ください。
