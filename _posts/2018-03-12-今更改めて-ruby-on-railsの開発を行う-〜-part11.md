@@ -5,7 +5,7 @@ title: 今更改めて Ruby On Railsの開発を行う 〜 Part11
 description: meta-tagsを導入してSEO対策をしよう
 location: Hong Kong
 categories:
-  - Programmin
+  - Programming
 tags:
   - ruby
   - ruby on rails
