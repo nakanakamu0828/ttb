@@ -38,6 +38,9 @@
   {% if jekyll.environment == 'production' and site.env.GOOGLE_ANALITICS_TRAKING_ID %}
     {% include google-analytics.html %}
   {% endif %}
+  {% if jekyll.environment == 'production' and site.env.GOOGLE_ANALITICS_ADS_ID %}
+    {% include google-adsbygoogle.html %}
+  {% endif %}
 
   <script>{% render_asset node_modules/flickity/dist/flickity.pkgd.min.js %}</script>
   
