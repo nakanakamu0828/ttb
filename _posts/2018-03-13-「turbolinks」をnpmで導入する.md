@@ -23,8 +23,10 @@ https://www.npmjs.com/package/turbolinks
 # プロジェクトディレクトリの作成
 
 ```bash
+
 $ mkdir -p sample-turbolinks
 $ cd sample-turbolinks
+
 ```
 
 # インストール
@@ -34,32 +36,40 @@ turbolinksを試すためにまずは必要なライブラリをインストー�
 ## buildに必要なライブラリをインストール
 
 ```bash
+
 $ npm init
 $ npm install babel-preset-env -D
 $ npm install node-sass -D
 $ npm install parcel-bundler --save
+
 ```
 
 ## babelの設定ファイルを作成
 
 ```bash
+
 $ touch .babelrc
+
 ```
 
 ## .babelrc
 
 ```
+
 {
   "presets": [
     "env"
   ]
 }
+
 ```
 
 ## turbolinksインストール
 
 ```bash
+
 $ npm install turbolinks --save
+
 ```
 
 これで準備は完了です。
@@ -69,78 +79,88 @@ $ npm install turbolinks --save
 ## ディレクトリとファイルを作成する
 
 ```bash
+
 $ mkdir -p {src,public}
 $ mkdir -p src/{js,scss,images}
 $ touch src/index.html
 $ touch src/next.html
 $ touch src/js/app.js
 $ touch src/scss/style.scss
+
 ```
 
 ## エントリーポイントとなるsrc/index.html
 
 ```html
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>turbolinks Sample</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>turbolinks Sample</title>
 </head>
 <body>
-<div class="container">
-<h1>Turbolinks</h1>
-<a href="next.html">Next</a>
-<a href="no-turbolinks.html" data-turbolinks="false">No Turbolinks</a>
-</div>
-<script src="js/app.js"></script>
+  <div class="container">
+    <h1>Turbolinks</h1>
+    <a href="next.html">Next</a>
+    <a href="no-turbolinks.html" data-turbolinks="false">No Turbolinks</a>
+  </div>
+  <script src="js/app.js"></script>
 </body>
 </html>
+
 ```
 
 ## turbolinksを利用した遷移先となるsrc/next.html
 
 ```html
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>turbolinks Sample - Next</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>turbolinks Sample - Next</title>
 </head>
 <body>
-<div class="container">
-<h1>Turbolinks - Next</h1>
-<a href="index.html">Prev</a>
-</div>
-<script src="js/app.js"></script>
+  <div class="container">
+    <h1>Turbolinks - Next</h1>
+    <a href="index.html">Prev</a>
+  </div>
+  <script src="js/app.js"></script>
 </body>
 </html>
+
 ```
 
 ## turbolinksを利用しない遷移先となるsrc/no-turbolinks.html
 
 ```html
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>turbolinks Sample - No Turbolinks</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>turbolinks Sample - No Turbolinks</title>
 </head>
 <body>
-<div class="container">
-<h1>No Turbolinks</h1>
-<a href="index.html" data-turbolinks="false">Prev</a>
-</div>
-<script src="js/app.js"></script>
+  <div class="container">
+    <h1>No Turbolinks</h1>
+    <a href="index.html" data-turbolinks="false">Prev</a>
+  </div>
+  <script src="js/app.js"></script>
 </body>
 </html>
+
 ```
 
 ## src/js/app.js
 
 ```javascript
+
 import '../scss/style.scss';
 import Turbolinks from 'turbolinks';
 Turbolinks.start();
+
 ```
 
 ## src/scss/style.scss
@@ -150,9 +170,16 @@ Turbolinks.start();
 # parcelで起動
 
 ```bash
+
 $ parcel src/index.html -d public
+
 ```
 
 ブラウザで http://localhost:1234/ を開きます。
 
 ![デモ画面 : git](/images/uploads/screen_demo_201803122358.gif)
+
+今回の成果物は [こちら](https://github.com/nakanakamu0828/sample-turbolinks) になります。  
+Netlifyでデモ環境を用意しています。以下のURLにてご確認ください。
+
+<https://pedantic-spence-04ac89.netlify.com/>
