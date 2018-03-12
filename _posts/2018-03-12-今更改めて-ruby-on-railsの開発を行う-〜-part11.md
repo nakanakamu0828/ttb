@@ -169,3 +169,4 @@ en:
 こちらのgithubからご自身のサービスにあったmeta_tagの設定をしましょう。
 
 
+今回の成果物は [こちら](https://github.com/nakanakamu0828/netshop/tree/v0.11) になります。
