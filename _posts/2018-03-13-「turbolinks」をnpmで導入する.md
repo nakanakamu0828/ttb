@@ -20,73 +20,66 @@ https://www.npmjs.com/package/turbolinks
 * npmを利用してフロントエンドのモジュールを管理
 * parcelを利用してbuildとサーバー起動を行う
 
-
 # プロジェクトディレクトリの作成
 
 ```bash
-
 $ mkdir -p sample-turbolinks
 $ cd sample-turbolinks
-
 ```
 
 # インストール
+
 turbolinksを試すためにまずは必要なライブラリをインストールしていきましょう
 
 ## buildに必要なライブラリをインストール
-```bash
 
+```bash
 $ npm init
 $ npm install babel-preset-env -D
 $ npm install node-sass -D
 $ npm install parcel-bundler --save
-
 ```
 
 ## babelの設定ファイルを作成
+
 ```bash
-
 $ touch .babelrc
-
 ```
+
 ## .babelrc
-```
 
+```
 {
   "presets": [
     "env"
   ]
 }
-
 ```
 
 ## turbolinksインストール
 
 ```bash
-
 $ npm install turbolinks --save
-
 ```
 
 これで準備は完了です。
 
-
 # 各ファイルを作成
-## ディレクトリとファイルを作成する
-```bash
 
+## ディレクトリとファイルを作成する
+
+```bash
 $ mkdir -p {src,public}
 $ mkdir -p src/{js,scss,images}
 $ touch src/index.html
 $ touch src/next.html
 $ touch src/js/app.js
 $ touch src/scss/style.scss
-
 ```
 
 ## エントリーポイントとなるsrc/index.html
-```html
 
+```html
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -102,12 +95,11 @@ $ touch src/scss/style.scss
 <script src="js/app.js"></script>
 </body>
 </html>
-
 ```
 
 ## turbolinksを利用した遷移先となるsrc/next.html
-```html
 
+```html
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -122,13 +114,11 @@ $ touch src/scss/style.scss
 <script src="js/app.js"></script>
 </body>
 </html>
-
 ```
 
-
 ## turbolinksを利用しない遷移先となるsrc/no-turbolinks.html
-```html
 
+```html
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -143,26 +133,26 @@ $ touch src/scss/style.scss
 <script src="js/app.js"></script>
 </body>
 </html>
-
 ```
 
 ## src/js/app.js
-```javascript
 
+```javascript
 import '../scss/style.scss';
 import Turbolinks from 'turbolinks';
 Turbolinks.start();
-
 ```
 
 ## src/scss/style.scss
+
 今回はスタイル設定なし
 
-
 # parcelで起動
+
 ```bash
-
 $ parcel src/index.html -d public
-
 ```
+
 ブラウザで http://localhost:1234/ を開きます。
+
+![デモ画面 : git](/images/uploads/screen_demo_201803122358.gif)
