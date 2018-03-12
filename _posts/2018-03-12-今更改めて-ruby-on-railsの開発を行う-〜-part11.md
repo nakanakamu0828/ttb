@@ -5,7 +5,7 @@ title: 今更改めて Ruby On Railsの開発を行う 〜 Part11
 description: meta-tagsを導入してSEO対策をしよう
 location: Hong Kong
 categories:
-  - Programmin
+  - Programming
 tags:
   - ruby
   - ruby on rails
@@ -73,25 +73,11 @@ def default_meta_tags
     description = I18n.t('site.meta_tag.description', { sitename: sitename })
     {
         site: title,
-        title: title,
+        title: '',
         description: description,
         charset: 'utf-8',
         keywords: [],
         reverse: true,
-        og: {
-        url: request.url,
-        title: title,
-        description: description,
-        site_name: site,
-        type: 'article',
-        },
-        twitter: {
-        card: 'summary',
-        site: '@nakanakamu0828',
-        title: title.presence || site,
-        description: description,
-        image: image
-        }
     }
 end
 
