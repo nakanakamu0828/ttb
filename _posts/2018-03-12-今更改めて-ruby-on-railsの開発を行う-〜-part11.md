@@ -16,7 +16,7 @@ tags:
 今回は[kpumuk/meta-tags](https://github.com/kpumuk/meta-tags)というgemを利用して、SEO対策を行いたいと思います。
 
 # meta-tags インストール
-まずはGemfileにrack-attackの設定を追加します
+まずはGemfileにmeta-tagsの設定を追加します
 ```ruby
       
 # Gemfile
