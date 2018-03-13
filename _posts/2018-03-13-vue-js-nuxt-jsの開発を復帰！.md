@@ -21,7 +21,7 @@ tags:
 んー、メディア系を作るならSEO対応しないとなー
 SPAだとダメだよね。
 
-** ぢゃ、Nuxt.js だ！**
+ぢゃ、Nuxt.js だ！
 
 っとなったわけです。
 
@@ -48,5 +48,5 @@ $ vue -V
 
 早速次回から開発に入っていきます。
 
-Vue.js : <https://jp.vuejs.org/index.html>
-Nuxt.js : <https://ja.nuxtjs.org/>
+Vue.js : <https://jp.vuejs.org/index.html>　　
+Nuxt.js : <https://ja.nuxtjs.org/>　　
