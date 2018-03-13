@@ -183,3 +183,4 @@ $ parcel src/index.html -d public
 Netlifyでデモ環境を用意しています。以下のURLにてご確認ください。
 
 <https://pedantic-spence-04ac89.netlify.com/>
+
