@@ -157,7 +157,6 @@ $ touch src/scss/style.scss
 
 ```javascript
 
-import '../scss/style.scss';
 import Turbolinks from 'turbolinks';
 Turbolinks.start();
 
