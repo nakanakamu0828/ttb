@@ -192,7 +192,7 @@ $ foreman start
 # JSLint, CSSLintの導入
 `package.json` にESLintを追加します。以下のように変更してください。
 
-```json
+```
 
 {
   "name": "netshop",
@@ -249,7 +249,7 @@ Lintの適応ルールとして`.eslintrc`ファイルを作成します。
 
 次にCSSLintの設定です。  
 `package.json`の`devDependencies`内に以下を追加します。
-```json
+```
 
 "devDependencies": {
     ...
