@@ -122,6 +122,9 @@ $ gem install foreman
 
 ```
 
+※　2018/03/14時点ではwebpack4がリリースされ、webpack-dev-serverのバージョンが3にアップしたことによりエラーが発生しました。webpack-dev-serverはバージョン2系をご利用ください。
+
+
 # セットアップの確認
 
 新しい構成が機能するか確認していきます。
