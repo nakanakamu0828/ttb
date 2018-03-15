@@ -46,3 +46,16 @@ $ cd my-vuetify
 $ npm install
 ```
 
+# サーバー起動
+開発環境としてサーバーを起動してみましょう。
+```bash
+
+$ npm run dev
+
+```
+
+ブラウザから <http://localhost:3000> を開いて確認しましょう。  
+以下の画面が表示されればVuetifyテンプレートからのNuxt.jsプロジェクト作成成功です。
+
+![Vuetify](/images/uploads/screen_vuetify_demo_20180315115443.png)
+
