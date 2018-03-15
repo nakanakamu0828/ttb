@@ -59,3 +59,6 @@ $ npm run dev
 
 ![Vuetify](/images/uploads/screen_vuetify_demo_20180315115443.png)
 
+
+まだ、デモページを用意するほどでもない！
+引き続き進めていきます！！
