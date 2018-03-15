@@ -19,10 +19,30 @@ tags:
 
 # vueコマンドを利用してNuxt.jsプロジェクト作成する
 
-```bash
+Vuetifyは、用途ごとにテンプレートを用意してくれています。今回はNuxt.jsのテンプレートを利用します。
 
+![Vuetify](/images/uploads/screen_vuetify_20180315114254.png)
+
+
+以下のコマンドからプロジェクトを作成します
+
+```bash
 $ vue init vuetifyjs/nuxt my-vuetify
+
+? Project name my-vuetify
+? Project description Nuxt.js + Vuetify.js project
+? Author
+? Use a-la-carte components? Yes
+
+   vue-cli · Generated "my-vuetify".
+
+   To get started:
+
+     cd my-vuetify
+     npm install # Or yarn
+     npm run dev
+
 $ cd my-vuetify
 $ npm install
-
 ```
+
