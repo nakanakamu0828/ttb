@@ -27,6 +27,7 @@ Vuetifyは、用途ごとにテンプレートを用意してくれています�
 以下のコマンドからプロジェクトを作成します
 
 ```bash
+
 $ vue init vuetifyjs/nuxt my-vuetify
 
 ? Project name my-vuetify
@@ -44,6 +45,7 @@ $ vue init vuetifyjs/nuxt my-vuetify
 
 $ cd my-vuetify
 $ npm install
+
 ```
 
 # サーバー起動
@@ -60,5 +62,5 @@ $ npm run dev
 ![Vuetify](/images/uploads/screen_vuetify_demo_20180315115443.png)
 
 
-まだ、デモページを用意するほどでもない！
+まだ、デモページを用意するほどでもない！  
 引き続き進めていきます！！
