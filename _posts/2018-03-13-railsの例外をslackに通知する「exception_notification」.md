@@ -1,7 +1,7 @@
 ---
 layout: post
 thumbnail: /images/uploads/slack_logo.png
-title: Railsの例外をSlackに通知する「exception_notification」
+title: Railsの例外をSlackに通知「exception_notification」
 description: 「exception_notification」を利用して、Railsの例外をSlackに通知します。
 location: Hong Kong
 categories:
