@@ -62,5 +62,8 @@ $ npm run dev
 ![Vuetify](/images/uploads/screen_vuetify_demo_20180315115443.png)
 
 
-まだ、デモページを用意するほどでもない！  
-引き続き進めていきます！！
+今回の成果物は [こちら](https://github.com/nakanakamu0828/my-vuetify) になります。  
+Netlifyでデモ環境を用意しています。以下のURLにてご確認ください。
+
+<https://elated-booth-6c04fe.netlify.com/>
+
