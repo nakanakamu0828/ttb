@@ -10,6 +10,7 @@ tags:
   - ruby
   - ruby on rails
   - sitemap_generator
+  - sitemap.xml
 ---
 こんばんは、なかむです。  
 今回は[kjvarga/sitemap_generator](https://github.com/kjvarga/sitemap_generator)というgemを利用して、サイトマップXMLを自動生成したいと思います。
@@ -66,6 +67,7 @@ SitemapGenerator::Sitemap.create do
 end
 
 ```
+※ こちらの例はリポジトリには含めていません。
 
 ## sitemap.xml.gz生成
 以下のコマンドを実行することでサイトマップが生成されます。
