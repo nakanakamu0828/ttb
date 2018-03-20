@@ -44,6 +44,8 @@ Based on the Bulma CSS Framework.
 
 * <https://dansup.github.io/bulma-templates/>
 * <https://github.com/dansup/bulma-templates>
+* <http://html.mijnspeelplek.com/bulma1/>
+* <https://jenil.github.io/bulmaswatch/>
 
 ![Bulmaテンプレート](/images/uploads/screen_20180314171534.png)
 
