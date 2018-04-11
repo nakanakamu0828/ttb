@@ -37,7 +37,7 @@ gem 'globalize', git: 'https://github.com/nakanakamu0828/globalize'
 
 # forkしたリポジトリのブランチまで指定する
 gem 'globalize', git: 'https://github.com/nakanakamu0828/globalize', branch: 'feature/v5.2.0'
-
+  
 
 ```
 
