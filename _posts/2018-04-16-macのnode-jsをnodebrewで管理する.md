@@ -20,9 +20,7 @@ tags:
 バージョンが表示されればインストールされている状態になります。
 
 ```command
-
 $ node -v
-
 ```
 
 私の環境では、homebrewで既にnode.jsがインストールされていました。  
@@ -33,9 +31,7 @@ homebrewでインストールされているものは削除していきます。
 以下のコマンドからアンインストールしてください。
 
 ```command
-
 $ sudo npm uninstall npm -g
-
 ```
 
 
@@ -43,9 +39,7 @@ $ sudo npm uninstall npm -g
 yarnを利用しているPJもあるので、yarnを先にアンインストールしておきます。以下のコマンドからアンインストールしてください。
 
 ```command
-
 $ brew uninstall yarn
-
 ```
 
 
@@ -53,9 +47,7 @@ $ brew uninstall yarn
 以下のコマンドからアンインストールしてください。
 
 ```command
-
 $ brew uninstall --force node
-
 ```
 ※ node.jsを複数バージョンで管理している場合、`--force`オプションをつけて全てのバージョンを削除しましょう。
 
@@ -67,7 +59,6 @@ $ brew uninstall --force node
 
 以下のコマンドからインストールしましょう
 ```command
-
 $ curl -L git.io/nodebrew | perl - setup
 $ vi ~/.bash_profile
 
@@ -78,7 +69,6 @@ $ source ~/.bash_profile
 
 # nodebrew helpでヘルプの詳細が見れればインストールは完了です
 $ nodebrew help
-
 ```
 
 # node.jsインストール
@@ -86,11 +76,10 @@ $ nodebrew help
 元の環境がv8だったので今回は8系の最新となるv8.11.1をインストールします。
 
 ```command
-
 $ nodebrew install v8.11.1
 $ nodebrew use v8.11.1
-
 ```
+
 2018/04/16時点では、`v9.11.1`が最新となっています。  
 `nodebrew ls-remote`で確認することができます。
 
@@ -98,9 +87,7 @@ $ nodebrew use v8.11.1
 以下のコマンドからyarnをインストールします。
 
 ```command
-
 $ npm install -g yarn
-
 ```
 
 以上でnodebrewへの移行が完了です。
