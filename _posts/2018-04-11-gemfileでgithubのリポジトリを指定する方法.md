@@ -23,7 +23,7 @@ Globalizeをforkして一旦5.2.0で動作確認できるように対応しま�
 その際に、Gemfileでgitのブランチを指定する方法を学んだのでメモを残します。
 
 
-```
+```ruby
 
 # Gemfile
 gem 'globalize'
@@ -37,7 +37,6 @@ gem 'globalize', git: 'https://github.com/nakanakamu0828/globalize'
 
 # forkしたリポジトリのブランチまで指定する
 gem 'globalize', git: 'https://github.com/nakanakamu0828/globalize', branch: 'feature/v5.2.0'
-  
 
 ```
 
