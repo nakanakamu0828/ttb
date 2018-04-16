@@ -23,7 +23,7 @@ Globalizeをforkして一旦5.2.0で動作確認できるように対応しま�
 その際に、Gemfileでgitのブランチを指定する方法を学んだのでメモを残します。
 
 
-```bash
+```ruby
 
 # Gemfile
 gem 'globalize'
