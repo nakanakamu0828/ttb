@@ -1,3 +1,7 @@
+[build]
+  command = "JEKYLL_ENV=production jekyll build"
+  publish = "_site/"
+
 [[redirects]]
   from = "/infrastructure/2018/04/16/macのnode-jsをnodebrewで管理する.html"
   to = "https://blog.nakamu.life/posts/mac-node-js-nodebrew/"
