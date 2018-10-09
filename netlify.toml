@@ -21,3 +21,8 @@
   from = "https://tech-talk-blog.ml/programming/2018/03/05/rails-cron%E3%81%A7%E3%83%90%E3%83%83%E3%83%81%E3%82%92%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B%E3%81%AA%E3%82%89-whenever.html"
   to = "https://blog.nakamu.life/posts/rails-cron-whenever"
   status = 301
+
+[[redirects]]
+  from = "https://tech-talk-blog.ml/programming/2018/03/17/nuxt-js%E3%81%AE%E5%9B%BD%E9%9A%9B%E5%8C%96-i18n-%E5%AF%BE%E5%BF%9C.html"
+  to = "https://blog.nakamu.life/posts/nuxt-js-i18n"
+  status = 301
