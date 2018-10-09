@@ -3,7 +3,7 @@
   publish = "_site/"
 
 [[redirects]]
-  from = "/infrastructure/2018/04/16/macのnode-jsをnodebrewで管理する.html"
+  from = "https://tech-talk-blog.ml/infrastructure/2018/04/16/mac%E3%81%AEnode-js%E3%82%92nodebrew%E3%81%A7%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B.html"
   to = "https://blog.nakamu.life/posts/mac-node-js-nodebrew/"
   status = 301
 
