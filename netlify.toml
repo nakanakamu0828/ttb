@@ -31,3 +31,8 @@
   from = "https://tech-talk-blog.ml/programming/2018/03/15/vue%E3%81%AEcss%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF-vuetify-%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6nuxt-js%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B.html"
   to = "https://blog.nakamu.life/posts/vue-css-vuetify-nuxt-js"
   status = 301
+
+[[redirects]]
+  from = "https://tech-talk-blog.ml/design/2018/03/14/css%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF-bulma-%E3%82%92%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E6%99%82%E3%81%AE%E5%8F%82%E8%80%83url.html"
+  to = "https://blog.nakamu.life/posts/css-bulma-url"
+  status = 301
