@@ -49,7 +49,7 @@
 
 [[redirects]]
   from = "https://tech-talk-blog.ml/programming/2018/03/13/rails%E3%81%AE%E4%BE%8B%E5%A4%96%E3%82%92slack%E3%81%AB%E9%80%9A%E7%9F%A5%E3%81%99%E3%82%8B-exception_notification.html"
-  to = "https://blog.nakamu.life/posts/rails-slack-exception_notification#slack%E3%81%8B%E3%82%89webhooks-url%E3%82%92%E5%8F%96%E5%BE%97"
+  to = "https://blog.nakamu.life/posts/rails-slack-exception_notification"
   status = 301
 
 [[redirects]]
