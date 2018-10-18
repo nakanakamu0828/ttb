@@ -8,6 +8,11 @@
   status = 301
 
 [[redirects]]
+  from = "https://tech-talk-blog.ml/other/2018/02/02/%E6%8A%80%E8%A1%93%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F.html"
+  to = "https://blog.nakamu.life/posts/start-blog"
+  status = 301
+
+[[redirects]]
   from = "https://tech-talk-blog.ml/infrastructure/2018/04/16/mac%E3%81%AEnode-js%E3%82%92nodebrew%E3%81%A7%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B.html"
   to = "https://blog.nakamu.life/posts/mac-node-js-nodebrew"
   status = 301
