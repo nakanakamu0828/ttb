@@ -62,3 +62,27 @@
   to = "https://blog.nakamu.life/posts/linux-command-su"
   status = 301
   
+[[redirects]]
+  from = "https://tech-talk-blog.ml/programming/2018/02/07/ruby%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6tinypng%E3%81%AEdeveloper-api%E3%81%A7%E5%9C%A7%E7%B8%AE%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95.html"
+  to = "https://blog.nakamu.life/posts/ruby-tinypng-developer-api"
+  status = 301
+  
+[[redirects]]
+  from = "https://tech-talk-blog.ml/blog/2018/02/02/%E6%9C%AC%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E6%A7%8B%E7%AF%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.html"
+  to = "https://blog.nakamu.life/posts/building-blog-p1"
+  status = 301
+  
+[[redirects]]
+  from = "https://tech-talk-blog.ml/blog/2018/02/03/%E6%9C%AC%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E6%A7%8B%E7%AF%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-part2.html"
+  to = "https://blog.nakamu.life/posts/building-blog-p2"
+  status = 301
+
+[[redirects]]
+  from = "https://tech-talk-blog.ml/blog/2018/02/04/%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E6%A7%8B%E7%AF%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-part3.html"
+  to = "https://blog.nakamu.life/posts/building-blog-p3"
+  status = 301
+
+[[redirects]]
+  from = "https://tech-talk-blog.ml/blog/2018/02/05/%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E6%A7%8B%E7%AF%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-part4.html"
+  to = "https://blog.nakamu.life/posts/building-blog-p4"
+  status = 301
