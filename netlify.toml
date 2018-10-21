@@ -86,3 +86,13 @@
   from = "https://tech-talk-blog.ml/blog/2018/02/05/%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E6%A7%8B%E7%AF%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-part4.html"
   to = "https://blog.nakamu.life/posts/building-blog-p4"
   status = 301
+
+[[redirects]]
+  from = "https://tech-talk-blog.ml/programming/2018/02/08/jekyll%E3%81%A7%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%92%E4%BD%9C%E6%88%90%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B.html"
+  to = "https://blog.nakamu.life/posts/jekyll-custom-plugin"
+  status = 301
+
+[[redirects]]
+  from = "https://tech-talk-blog.ml/infrastructure/2018/02/12/aws%E3%81%AEelasticache%E3%81%A7redis%E3%82%92%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B.html"
+  to = "https://blog.nakamu.life/posts/aws-elasticache-redis"
+  status = 301
