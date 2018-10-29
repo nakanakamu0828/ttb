@@ -121,3 +121,8 @@
   from = "https://tech-talk-blog.ml/blog/2018/02/19/jekyll%E3%81%A7%E9%96%A2%E9%80%A3%E6%8A%95%E7%A8%BF%E3%82%92%E8%A1%A8%E7%A4%BA.html"
   to = "https://blog.nakamu.life/posts/jekyll-related-post"
   status = 301
+
+[[redirects]]
+  from = "https://tech-talk-blog.ml/command/2018/02/14/git%E3%81%A7%E3%82%BF%E3%82%B0%E3%82%92%E4%BD%9C%E3%82%8A%E7%9B%B4%E3%81%99.html"
+  to = "https://blog.nakamu.life/posts/git-tag-renew"
+  status = 301
